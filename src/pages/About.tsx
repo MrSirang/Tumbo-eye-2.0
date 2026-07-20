@@ -16,16 +16,28 @@ import {
   Briefcase,
   Rocket,
   Users,
+  TrendingUp,
 } from 'lucide-react';
 
-import aboutHeroTeam from '../assets/about-hero-meeting.png';
-import aboutStoryIllustration from '../assets/about-story-illustration.png';
-import teamJohn from '../assets/team-john-doe.png';
-import teamSarah from '../assets/team-sarah-johnson.png';
-import teamMichael from '../assets/team-michael-chen.png';
-import teamAmina from '../assets/team-amina-hassan.png';
-import JoinMovementCTA from '../components/JoinMovementCTA';
+const LinkedInIcon: React.FC = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.02 8h4.96v14H.02V8zM8.5 8h4.75v1.92h.07c.66-1.25 2.28-2.57 4.7-2.57 5.03 0 5.96 3.31 5.96 7.62V22h-4.96v-6.28c0-1.5-.03-3.43-2.09-3.43-2.09 0-2.41 1.63-2.41 3.32V22H8.5V8z" />
+  </svg>
+);
 
+const TwitterIcon: React.FC = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.9 1.5h3.68l-8.04 9.19L24 22.5h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.5h7.6l5.24 6.93L18.9 1.5zm-1.29 18.8h2.04L6.48 3.6H4.29l13.32 16.7z" />
+  </svg>
+);
+
+import aboutHeroCircle1 from '../assets/about-hero-circle-1.png';
+import aboutHeroCircle2 from '../assets/about-hero-circle-2.png';
+import aboutJourneyPhoto from '../assets/about-journey-photo.png';
+import teamMember1 from '../assets/team-member-1.png';
+import teamMember2 from '../assets/team-member-2.png';
+import teamMember3 from '../assets/team-member-3.png';
+import teamMember4 from '../assets/team-member-4.png';
 const AVATARS = [
   'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100&h=100',
   'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100',
@@ -40,10 +52,10 @@ const AboutHero: React.FC = () => (
         <div className="hero-tag-pill">ABOUT TUMBO EYE 2.0</div>
         <h1 className="about-hero-title">
           Connecting People to Opportunities That{' '}
-          <span className="highlight-blue">Transform Lives</span>
+          <span className="about-hero-title-accent">Transform Lives</span>
         </h1>
         <p className="about-hero-desc">
-          Tumbo Eye 2.0 connects students, job seekers, entrepreneurs, and communities with jobs, scholarships, internships, mentorships, funding, and resources — all in one powerful ecosystem.
+          Tumbo is South Africa's Digital Inclusion Ecosystem, connecting verified individuals, businesses, communities and government institutions through intelligent opportunity matching. Our mission is to ensure that opportunities reach the right people while creating measurable social and economic impact across South Africa.
         </p>
         <div className="hero-btn-group">
           <Link to="/#opportunities" className="btn btn-primary">
@@ -66,7 +78,15 @@ const AboutHero: React.FC = () => (
         </div>
       </div>
       <div className="about-hero-visual-wrap">
-        <img src={aboutHeroTeam} alt="Team collaborating around a project plan" className="about-hero-main-img" />
+        <div className="about-hero-collage">
+          <div className="about-hero-circle about-hero-circle-lg">
+            <img src={aboutHeroCircle1} alt="Community member presenting the Tumbo app at an EMA event" />
+          </div>
+          <div className="about-hero-circle about-hero-circle-sm">
+            <img src={aboutHeroCircle2} alt="Community members attending a Tumbo engagement session" />
+          </div>
+          <span className="about-hero-dots" aria-hidden="true" />
+        </div>
       </div>
     </div>
   </section>
@@ -74,27 +94,32 @@ const AboutHero: React.FC = () => (
 
 const MissionVision: React.FC = () => (
   <section id="purpose" className="section about-purpose-section">
+    <span className="about-purpose-dots" aria-hidden="true" />
     <div className="container text-center">
       <div className="section-tag">OUR PURPOSE</div>
       <h2 className="about-section-title">
-        Driven by Purpose. Guided by <span className="highlight-blue">Vision.</span>
+        Driven by Purpose. Inspired by <span className="highlight-blue">Impact.</span>
       </h2>
       <p className="about-section-subtitle">
-        We exist to close the opportunity gap and help people unlock their potential through one connected digital ecosystem.
+        At Tumbo, we believe that opportunity changes lives. Our platform empowers individuals, strengthens communities and enables organisations to connect with verified people through one trusted digital ecosystem.
       </p>
       <div className="about-mv-grid">
         <article className="about-mv-card">
-          <div className="about-mv-icon"><Target size={24} strokeWidth={1.75} /></div>
-          <h3>Our Mission</h3>
+          <div className="about-mv-head">
+            <div className="about-mv-icon"><Target size={24} strokeWidth={1.75} /></div>
+            <h3>Our <span className="highlight-blue">Mission</span></h3>
+          </div>
           <p>
-            To connect people with meaningful opportunities in education, careers, funding, and community support — making growth accessible for everyone.
+            To connect verified individuals, communities, businesses and government institutions through digital innovation, creating equal access to employment, education, funding, entrepreneurship and community development opportunities.
           </p>
         </article>
         <article className="about-mv-card">
-          <div className="about-mv-icon"><Lightbulb size={24} strokeWidth={1.75} /></div>
-          <h3>Our Vision</h3>
+          <div className="about-mv-head">
+            <div className="about-mv-icon"><Lightbulb size={24} strokeWidth={1.75} /></div>
+            <h3>Our <span className="highlight-blue">Vision</span></h3>
+          </div>
           <p>
-            A world where every student, professional, and entrepreneur can discover and pursue opportunities that transform their future.
+            To become Africa's leading Digital Inclusion Ecosystem where every individual has access to opportunities that improve lives, strengthen communities and drive sustainable economic growth.
           </p>
         </article>
       </div>
@@ -137,16 +162,19 @@ const CoreValues: React.FC = () => {
 const OurStory: React.FC = () => {
   const steps = [
     {
-      title: 'Our Beginning',
-      desc: 'Tumbo Eye started as a vision to bridge the opportunity gap for students and young professionals seeking scholarships and career pathways.',
+      title: 'The Beginning',
+      desc: 'Tumbo began as a platform focused on connecting persons and communities to opportunities.',
+      icon: <Rocket size={16} />,
     },
     {
-      title: 'Our Growth',
-      desc: 'We expanded partnerships with universities, employers, and NGOs — growing into a platform serving thousands across multiple regions.',
+      title: 'Growth',
+      desc: 'It expanded into a broader ecosystem of education, careers, funding, and community engagement.',
+      icon: <TrendingUp size={16} />,
     },
     {
       title: 'Today',
-      desc: 'Tumbo Eye 2.0 is a full digital ecosystem with AI guidance, funding tools, and community support empowering 120,000+ members.',
+      desc: 'Building a growing digital ecosystem, Tumbo connects people with meaningful opportunities and community intelligence.',
+      icon: <Sparkles size={16} />,
     },
   ];
 
@@ -160,38 +188,45 @@ const OurStory: React.FC = () => {
   return (
     <section className="section about-story-section">
       <div className="container">
-        <div className="about-story-split">
-          <div className="about-story-left">
-            <div className="section-tag">OUR STORY</div>
-            <h2 className="about-section-title" style={{ textAlign: 'left' }}>
-              Our Journey Towards Empowering <span className="highlight-blue">Communities</span>
-            </h2>
-            <p className="about-story-intro">
-              What started as a vision to bridge the opportunity divide has evolved into a thriving digital ecosystem connecting students, professionals, entrepreneurs, and organizations.
-            </p>
-            <div className="about-story-timeline">
-              {steps.map((step, i) => (
-                <div key={i} className="about-story-step">
-                  <div className={`about-story-step-icon step-${i + 1}`}>
-                    <span>{i + 1}</span>
+        <div className="about-story-card">
+          <div className="about-story-split">
+            <div className="about-story-left">
+              <div className="section-tag">OUR STORY</div>
+              <h2 className="about-section-title about-story-heading">
+                Our Journey Towards Empowering <span className="highlight-blue">Communities</span>
+              </h2>
+              <p className="about-story-intro">
+                Tumbo was established to bridge the gap between opportunity providers and communities by using technology, verified identity, and community intelligence. Today, Tumbo continues to build an ecosystem that creates meaningful opportunities for everyone.
+              </p>
+              <div className="about-story-timeline">
+                {steps.map((step, i) => (
+                  <div key={i} className="about-story-step">
+                    <div className={`about-story-step-icon step-${i + 1}`}>
+                      {step.icon}
+                    </div>
+                    <div>
+                      <h4 className="about-story-step-title">{step.title}</h4>
+                      <p className="about-story-step-desc">{step.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="about-story-step-title">{step.title}</h4>
-                    <p className="about-story-step-desc">{step.desc}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="about-story-right">
-            <img
-              src={aboutStoryIllustration}
-              alt="Our journey empowering communities worldwide"
-              className="about-story-illus"
-            />
+            <div className="about-story-right">
+              <img
+                src={aboutJourneyPhoto}
+                alt="Community member showcasing local heritage at a Tumbo event"
+                className="about-story-illus"
+              />
+            </div>
           </div>
         </div>
 
+        <div className="about-focus-heading">
+          <h2 className="about-section-title">
+            Impact <span className="highlight-blue">Areas</span>
+          </h2>
+        </div>
         <div className="about-focus-grid">
           {focusAreas.map((area, i) => (
             <div key={i} className="about-focus-card">
@@ -241,6 +276,12 @@ const Milestones: React.FC = () => {
             ))}
           </div>
         </div>
+        <div className="about-milestones-footer">
+          <h3 className="about-milestones-footer-title">Building the Future Together</h3>
+          <p className="about-milestones-footer-desc">
+            Every milestone reflects our commitment to empowering people, strengthening communities, and creating opportunities for everyone.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -249,50 +290,72 @@ const Milestones: React.FC = () => {
 const TeamSection: React.FC = () => {
   const team = [
     {
-      name: 'John Doe',
+      name: 'David Mokoena',
       role: 'Founder & CEO',
-      quote: 'Opportunity should never be limited by location or connections.',
-      img: teamJohn,
+      bio: 'Leads the vision and strategy of Tumbo, driving digital inclusion and lasting community impact.',
+      img: teamMember1,
     },
     {
-      name: 'Sarah Johnson',
-      role: 'Head of Partnerships',
-      quote: 'Strong partnerships turn individual ambition into collective progress.',
-      img: teamSarah,
+      name: 'Naledi Dlamini',
+      role: 'Community Engagement Lead',
+      bio: 'Builds and nurtures the community, connecting members with opportunities that change lives.',
+      img: teamMember2,
     },
     {
-      name: 'Michael Chen',
-      role: 'Product Lead',
-      quote: 'Great products remove friction between people and opportunity.',
-      img: teamMichael,
+      name: 'Michael Brown',
+      role: 'Head of Operations',
+      bio: 'Oversees day-to-day operations, ensuring the ecosystem runs smoothly and reaches more people.',
+      img: teamMember3,
     },
     {
-      name: 'Amina Hassan',
-      role: 'Community Director',
-      quote: 'Communities grow when every member feels seen and supported.',
-      img: teamAmina,
+      name: 'Amara Okafor',
+      role: 'Head of Product & Design',
+      bio: 'Shapes the product experience, making opportunity accessible through thoughtful design.',
+      img: teamMember4,
     },
   ];
 
   return (
     <section className="section about-team-section">
       <div className="container text-center">
-        <div className="section-tag">LEADERSHIP</div>
+        <div className="section-tag">OUR LEADERSHIP</div>
         <h2 className="about-section-title">
-          Meet the People Behind <span className="highlight-blue">Tumbo Eye 2.0</span>
+          Meet the Team Behind <span className="highlight-blue">Tumbo</span>
         </h2>
         <p className="about-section-subtitle">
-          A dedicated team building tools, partnerships, and community systems that help people grow.
+          Our leadership team is committed to building innovative digital solutions that connect communities, businesses and institutions while creating lasting social impact.
         </p>
         <div className="about-team-grid">
           {team.map((member) => (
             <article className="about-team-card" key={member.name}>
-              <img src={member.img} alt={member.name} className="about-team-photo" />
+              <img
+                src={member.img}
+                alt={member.name}
+                className="about-team-photo"
+              />
               <h3>{member.name}</h3>
               <p className="about-team-role">{member.role}</p>
-              <p className="about-team-quote">&ldquo;{member.quote}&rdquo;</p>
+              <p className="about-team-quote">{member.bio}</p>
+              <div className="about-team-social">
+                <a href="#" aria-label={`${member.name} on LinkedIn`} className="about-team-social-link">
+                  <LinkedInIcon />
+                </a>
+                <a href="#" aria-label={`${member.name} on Twitter`} className="about-team-social-link">
+                  <TwitterIcon />
+                </a>
+              </div>
             </article>
           ))}
+        </div>
+
+        <div className="about-team-banner">
+          <h3 className="about-team-banner-title">Together We Create Opportunities</h3>
+          <p className="about-team-banner-desc">
+            Our shared team of experts works together to build a stronger, more connected ecosystem — driving growth, collaboration, and success for everyone.
+          </p>
+          <button className="btn btn-primary" onClick={() => alert('Join the Team')}>
+            Join the Team <ArrowRight size={16} />
+          </button>
         </div>
       </div>
     </section>
@@ -317,7 +380,7 @@ const OurImpact: React.FC = () => {
           Creating Opportunities. <span className="highlight-blue">Transforming Communities.</span>
         </h2>
         <p className="about-section-subtitle">
-          Every number represents real lives changed — students funded, careers launched, and communities strengthened through our ecosystem.
+          Every opportunity shared through Tumbo Eye 2.0 contributes to stronger communities, better education, meaningful careers, and sustainable growth across Africa and beyond.
         </p>
         <div className="about-impact-grid">
           {stats.map((s, i) => (
@@ -331,7 +394,7 @@ const OurImpact: React.FC = () => {
         <div className="about-impact-cta-card">
           <h3 className="about-impact-cta-title">Be Part of Our Impact</h3>
           <p className="about-impact-cta-desc">
-            Join our growing community of students, professionals, entrepreneurs, and partners making a difference together.
+            Join South Africa's Digital Inclusion Ecosystem and discover opportunities designed to match your potential, skills and aspirations.
           </p>
           <div className="about-impact-cta-actions">
             <button className="btn btn-primary" onClick={() => alert('Join the Community')}>
@@ -356,7 +419,6 @@ export const About: React.FC = () => (
     <Milestones />
     <TeamSection />
     <OurImpact />
-    <JoinMovementCTA />
   </>
 );
 

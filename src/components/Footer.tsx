@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import logo from '../assets/logo.png';
+import logoMark from '../assets/tumbo-mark.svg';
 
 export const Footer: React.FC = () => {
   const currentYear = 2026; // Set specifically to 2026 to match screenshot exactly
@@ -17,9 +17,9 @@ export const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="footer-brand-col">
             <Link to="/" className="footer-logo-link" onClick={handleScrollTop}>
-              <img src={logo} alt="Tumbo Eye 2.0" className="footer-logo-img" />
+              <span className="footer-logo-word">TUMBO</span>
+              <img src={logoMark} alt="" className="footer-logo-mark" aria-hidden="true" />
             </Link>
-            <h3 className="footer-brand-title">Tumbo Eye 2.0</h3>
             <p className="footer-desc">
               Empowering people by connecting them with opportunities, education, careers, funding, and community support through one powerful digital ecosystem.
             </p>

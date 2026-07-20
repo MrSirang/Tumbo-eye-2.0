@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="tumboRing" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E91E8C"/>
+      <stop offset="25%" stop-color="#F15A29"/>
+      <stop offset="50%" stop-color="#7CB342"/>
+      <stop offset="75%" stop-color="#29B6F6"/>
+      <stop offset="100%" stop-color="#7B1FA2"/>
+    </linearGradient>
+    <linearGradient id="tumboTop" x1="12" y1="16" x2="52" y2="16" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C2185B"/>
+      <stop offset="100%" stop-color="#E91E8C"/>
+    </linearGradient>
+    <linearGradient id="tumboStem" x1="26" y1="20" x2="40" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#29B6F6"/>
+      <stop offset="45%" stop-color="#F15A29"/>
+      <stop offset="100%" stop-color="#7CB342"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="28" stroke="url(#tumboRing)" stroke-width="3.5"/>
+  <path d="M16 20.5c0-2.2 1.8-4 4-4h24c2.2 0 4 1.8 4 4s-1.8 4-4 4H36.5v23c0 2.5-2 4.5-4.5 4.5s-4.5-2-4.5-4.5v-23H20c-2.2 0-4-1.8-4-4z" fill="url(#tumboStem)"/>
+  <path d="M16 20.5c0-2.2 1.8-4 4-4h24c2.2 0 4 1.8 4 4s-1.8 4-4 4H20c-2.2 0-4-1.8-4-4z" fill="url(#tumboTop)"/>
+</svg>

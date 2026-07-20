@@ -3,193 +3,176 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   ArrowUpRight,
+  Play,
   GraduationCap,
   Briefcase,
   Network,
-  FileText,
-  Bot,
-  BookOpen,
-  Users,
-  Trophy,
-  Play,
-  Compass,
-  Search,
-  Sparkles,
-  Handshake,
-  Globe,
-  User,
-  Plus,
-  Rocket,
-  Landmark,
   MessageSquare,
+  Rocket,
+  Search,
+  Target,
+  Sparkles,
+  User,
+  Share2,
+  Home,
+  Globe,
 } from 'lucide-react';
 
-import ecosystemHeroDevices from '../assets/ecosystem-hero-devices.png';
-import ecosystemGlobalNetwork from '../assets/ecosystem-global-network.png';
-import ecosystemPathMountains from '../assets/ecosystem-path-mountains.png';
-import ecosystemCtaIllustration from '../assets/ecosystem-cta-illustration.png';
+import ecoHeroPhoto from '../assets/eco-hero-event.png';
+import ecoJourneyStage from '../assets/eco-journey-stage.png';
+import ecoJoinPhoto from '../assets/eco-join-photo.png';
 import ecosystemCitySkyline from '../assets/ecosystem-city-skyline.png';
-import iconEducation from '../assets/icon-education.png';
-import iconCareers from '../assets/icon-careers.png';
-import iconFunding from '../assets/icon-funding.png';
-import iconAnalytics from '../assets/icon-analytics.png';
-import platformAiRobot from '../assets/platform-ai-robot.png';
-import iconResources from '../assets/icon-resources.png';
-import iconCommunity from '../assets/icon-community.png';
-import iconEvents from '../assets/icon-events.png';
+import ecoBannerMountains from '../assets/eco-src-20.png';
+import ecoBannerGlobe from '../assets/eco-src-21.png';
+
+// Card icons (top) and illustrations (bottom-right)
+import icTumboApp from '../assets/eco-src-19.png';
+import icTumboBiz from '../assets/eco-src-18.png';
+import icTumboGov from '../assets/eco-src-17.png';
+import icTumboAi from '../assets/eco-src-16.png';
+import icTumboYe2 from '../assets/eco-src-03.png';
+import icVerified from '../assets/eco-src-04.png';
+import icCommunity from '../assets/eco-src-02.png';
+import icMatching from '../assets/eco-src-12.png';
+
+import ilTumboApp from '../assets/eco-src-19.png';
+import ilTumboBiz from '../assets/eco-src-11.png';
+import ilTumboGov from '../assets/eco-src-09.png';
+import ilTumboAi from '../assets/eco-src-07.png';
+import ilTumboYe2 from '../assets/eco-src-10.png';
+import ilVerified from '../assets/eco-src-06.png';
+import ilCommunity from '../assets/eco-src-05.png';
+import ilMatching from '../assets/eco-src-08.png';
 
 /* ==========================================================================
    SUB-COMPONENT: ECOSYSTEM HERO
    ========================================================================== */
-const EcosystemHero: React.FC = () => {
-  const stats = [
-    { icon: <Users size={18} strokeWidth={2} />, value: '120k+', label: 'Active Users' },
-    { icon: (
-      <span className="eco-hero-stat-icon-combo">
-        <Briefcase size={16} strokeWidth={2} />
-        <Plus size={8} strokeWidth={3} className="eco-hero-stat-plus" />
-      </span>
-    ), value: '8.5k+', label: 'Scholarships' },
-    { icon: <Network size={18} strokeWidth={2} />, value: '25k+', label: 'Opportunities' },
-    { icon: <Handshake size={18} strokeWidth={2} />, value: '500+', label: 'Partners' },
-  ];
-
-  return (
-    <section className="section section-blue-bg eco-page-hero-wrap">
-      <div className="container">
-        <div className="eco-page-hero-grid">
-          <div className="eco-page-hero-left">
-            <div className="hero-tag-pill">ECOSYSTEM EXPLORER</div>
-            <h1 className="eco-page-hero-title">
-              Explore a Connected Ecosystem of{' '}
-              <span className="hero-title-blue">
-                Endless Opportunities<span className="hero-title-underline"></span>
-              </span>
-            </h1>
-            <p className="eco-page-hero-desc">
-              Discover a powerful digital ecosystem that brings together education, careers, funding, business support, AI-powered guidance, and community resources—all designed to help you learn, grow, and succeed in one platform.
-            </p>
-            <div className="hero-btn-group">
-              <Link to="/#opportunities" className="btn btn-primary">
-                Explore Opportunities <ArrowRight size={16} />
-              </Link>
-              <button className="btn btn-outline" onClick={() => alert('Watch Demo')}>
-                Watch Demo <Play size={12} fill="currentColor" style={{ marginLeft: '4px' }} />
-              </button>
-            </div>
-          </div>
-          <div className="eco-page-hero-right">
-            <img
-              src={ecosystemHeroDevices}
-              alt="Tumbo Eye ecosystem on laptop and mobile"
-              className="eco-page-hero-devices-img"
-            />
+const EcosystemHero: React.FC = () => (
+  <section className="section eco2-hero-section">
+    <div className="container">
+      <div className="eco2-hero-grid">
+        <div className="eco2-hero-left">
+          <div className="hero-tag-pill">TUMBO DIGITAL ECOSYSTEM</div>
+          <h1 className="eco2-hero-title">
+            One Ecosystem. Multiple Solutions.{' '}
+            <span className="eco2-title-accent">Unlimited Opportunity.</span>
+          </h1>
+          <p className="eco2-hero-desc">
+            Discover South Africa's Digital Inclusion Ecosystem where verified
+            individuals, businesses, communities and government institutions
+            connect through one intelligent platform. Access employment,
+            education, funding, entrepreneurship, AI-powered support and
+            community services—all designed to create measurable impact.
+          </p>
+          <div className="hero-btn-group">
+            <Link to="/#opportunities" className="btn btn-primary">
+              Explore the Ecosystem <ArrowRight size={16} />
+            </Link>
+            <button className="btn btn-outline" onClick={() => alert('Watch Demo')}>
+              Watch Demo <Play size={12} fill="currentColor" style={{ marginLeft: '4px' }} />
+            </button>
           </div>
         </div>
-
-        <div className="eco-hero-stats-pill">
-          {stats.map((stat, i) => (
-            <div key={i} className="eco-hero-stat-item">
-              <span className="eco-hero-stat-icon">{stat.icon}</span>
-              <div className="eco-hero-stat-text">
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </div>
-              {i < stats.length - 1 && <span className="eco-hero-stat-divider" aria-hidden="true" />}
-            </div>
-          ))}
+        <div className="eco2-hero-right">
+          <img
+            src={ecoHeroPhoto}
+            alt="Community members connecting at a Tumbo ecosystem event"
+            className="eco2-hero-photo"
+          />
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 /* ==========================================================================
-   SUB-COMPONENT: CONNECTED PLATFORM SERVICES
+   SUB-COMPONENT: CONNECTED ECOSYSTEM CARDS
    ========================================================================== */
-const ConnectedPlatform: React.FC = () => {
-  const services = [
+const ConnectedEcosystem: React.FC = () => {
+  const cards = [
     {
-      title: 'Education',
-      desc: 'Access courses, certifications, and scholarships to advance your learning journey.',
-      icon: <GraduationCap size={22} strokeWidth={1.75} />,
-      illustration: iconEducation,
+      title: 'Tumbo App',
+      desc: 'A one-stop verified digital hub for individuals, communities and organisations to connect with opportunities.',
+      icon: icTumboApp,
+      illustration: ilTumboApp,
     },
     {
-      title: 'Jobs & Careers',
-      desc: 'Discover jobs, internships, and career tools to grow professionally.',
-      icon: <Briefcase size={22} strokeWidth={1.75} />,
-      illustration: iconCareers,
+      title: 'Tumbo Biz',
+      desc: 'A business ecosystem for SMEs and entrepreneurs to access support, resources and growth opportunities.',
+      icon: icTumboBiz,
+      illustration: ilTumboBiz,
     },
     {
-      title: 'Grants & Funding',
-      desc: 'Find grants, scholarships, and financial support for your goals.',
-      icon: <Network size={22} strokeWidth={1.75} />,
-      illustration: iconFunding,
+      title: 'Tumbo Gov',
+      desc: 'A trusted channel that connects government institutions and programmes with the people who need them.',
+      icon: icTumboGov,
+      illustration: ilTumboGov,
     },
     {
-      title: 'Business Support',
-      desc: 'Get mentorship, resources, and tools to start and grow your business.',
-      icon: <FileText size={22} strokeWidth={1.75} />,
-      illustration: iconAnalytics,
+      title: 'Tumbo AI',
+      desc: 'Smart, AI-powered guidance and recommendations that match people to the right opportunities.',
+      icon: icTumboAi,
+      illustration: ilTumboAi,
     },
     {
-      title: 'AI Assistant',
-      desc: 'Receive personalized recommendations and guidance powered by AI.',
-      icon: <Bot size={22} strokeWidth={1.75} />,
-      illustration: platformAiRobot,
+      title: 'Tumbo YE2',
+      desc: 'A youth empowerment programme creating pathways to education, skills and employment.',
+      icon: icTumboYe2,
+      illustration: ilTumboYe2,
     },
     {
-      title: 'Resources',
-      desc: 'Explore articles, guides, and learning materials to support your growth.',
-      icon: <BookOpen size={22} strokeWidth={1.75} />,
-      illustration: iconResources,
+      title: 'Verified Identity',
+      desc: 'A secure, verified identity layer that builds trust between individuals, businesses and institutions.',
+      icon: icVerified,
+      illustration: ilVerified,
     },
     {
       title: 'Community',
-      desc: 'Connect with mentors, peers, and professionals in your field.',
-      icon: <Users size={22} strokeWidth={1.75} />,
-      illustration: iconCommunity,
+      desc: 'Connect with mentors, peers and communities to collaborate and make an impact together.',
+      icon: icCommunity,
+      illustration: ilCommunity,
     },
     {
-      title: 'Events',
-      desc: 'Join workshops, webinars, and networking events to expand your network.',
-      icon: <Trophy size={22} strokeWidth={1.75} />,
-      illustration: iconEvents,
+      title: 'Opportunity Matching',
+      desc: 'Intelligent matching that connects verified people with the right opportunities in the ecosystem.',
+      icon: icMatching,
+      illustration: ilMatching,
     },
   ];
 
   return (
-    <section className="section eco-connected-section">
+    <section className="section eco2-cards-section">
       <div className="container">
-        <div className="eco-connected-header text-center">
+        <div className="eco2-cards-header text-center">
           <div className="section-tag">OUR ECOSYSTEM</div>
-          <h2 className="eco-connected-title">
-            Everything You Need in One <span className="highlight-blue">Connected Platform</span>
+          <h2 className="eco2-cards-title">
+            Everything You Need in One <span className="highlight-blue">Connected Ecosystem</span>
           </h2>
-          <p className="eco-connected-subtitle">
-            Explore powerful services designed to support your education, career, business, and personal growth through one integrated ecosystem.
+          <p className="eco2-cards-subtitle">
+            Tumbo combines multiple digital solutions into one integrated platform, making it easier to access opportunities, connect with communities and create measurable social impact.
           </p>
         </div>
 
-        <div className="eco-platform-cards-grid">
-          {services.map((service, i) => (
-            <div key={i} className="eco-platform-card">
-              <div className="eco-platform-card-icon">{service.icon}</div>
-              <h3 className="eco-platform-card-title">{service.title}</h3>
-              <p className="eco-platform-card-desc">{service.desc}</p>
-              <div className="eco-platform-card-bottom">
+        <div className="eco2-cards-grid">
+          {cards.map((card, i) => (
+            <div key={i} className="eco2-card">
+              <div className="eco2-card-icon">
+                <img src={card.icon} alt="" aria-hidden="true" />
+              </div>
+              <h3 className="eco2-card-title">{card.title}</h3>
+              <p className="eco2-card-desc">{card.desc}</p>
+              <div className="eco2-card-bottom">
                 <button
-                  className="eco-platform-card-arrow"
-                  onClick={() => alert(`Explore ${service.title}`)}
-                  aria-label={`Explore ${service.title}`}
+                  className="eco2-card-arrow"
+                  onClick={() => alert(`Explore ${card.title}`)}
+                  aria-label={`Explore ${card.title}`}
                 >
                   <ArrowUpRight size={16} />
                 </button>
                 <img
-                  src={service.illustration}
+                  src={card.illustration}
                   alt=""
-                  className="eco-platform-card-illus"
+                  className="eco2-card-illus"
                   aria-hidden="true"
                 />
               </div>
@@ -197,28 +180,18 @@ const ConnectedPlatform: React.FC = () => {
           ))}
         </div>
 
-        <div className="eco-choose-path-banner">
-          <div className="eco-choose-path-left">
-            <div className="eco-choose-path-compass">
-              <Compass size={28} strokeWidth={1.75} />
-            </div>
-          </div>
-          <div className="eco-choose-path-content">
-            <h3 className="eco-choose-path-title">Choose Your Path</h3>
-            <p className="eco-choose-path-desc">
-              Select a category and start exploring opportunities tailored to your goals.
+        <div className="eco2-banner">
+          <img src={ecoBannerGlobe} alt="" aria-hidden="true" className="eco2-banner-globe" />
+          <div className="eco2-banner-content">
+            <h3 className="eco2-banner-title">One Ecosystem. Unlimited Possibilities.</h3>
+            <p className="eco2-banner-desc">
+              Everything you need to learn, work, grow, connect and create impact—available through one intelligent digital ecosystem.
             </p>
-            <button className="btn btn-primary" onClick={() => alert('Explore All Services')}>
-              Explore All Services <ArrowRight size={16} />
-            </button>
+            <Link to="/#opportunities" className="btn btn-primary">
+              Explore the Ecosystem <ArrowRight size={16} />
+            </Link>
           </div>
-          <div className="eco-choose-path-visual">
-            <img
-              src={ecosystemPathMountains}
-              alt="Path to success illustration"
-              className="eco-choose-path-img"
-            />
-          </div>
+          <img src={ecoBannerMountains} alt="" aria-hidden="true" className="eco2-banner-mountains" />
         </div>
       </div>
     </section>
@@ -226,28 +199,28 @@ const ConnectedPlatform: React.FC = () => {
 };
 
 /* ==========================================================================
-   SUB-COMPONENT: POWERING YOUR JOURNEY
+   SUB-COMPONENT: POWERING EVERY STAGE OF YOUR JOURNEY
    ========================================================================== */
 const PoweringJourney: React.FC = () => {
   const serviceCards = [
     {
       title: 'Education Services',
-      desc: 'Find scholarships, online courses, certifications, and learning resources.',
+      desc: 'Scholarships, bursaries, courses, certifications and learning opportunities.',
       icon: <GraduationCap size={20} strokeWidth={1.75} />,
     },
     {
-      title: 'Career Services',
-      desc: 'Discover verified jobs, internships, graduate programs, and career support.',
-      icon: <Landmark size={20} strokeWidth={1.75} />,
+      title: 'Employment Services',
+      desc: 'Verified jobs, internships, apprenticeships and workforce development.',
+      icon: <Briefcase size={20} strokeWidth={1.75} />,
     },
     {
-      title: 'Funding Services',
-      desc: 'Explore grants, business funding, startup support, and financial opportunities.',
+      title: 'Business Growth',
+      desc: 'Business networking, suppliers, customers and Tumbo Biz solutions.',
       icon: <Network size={20} strokeWidth={1.75} />,
     },
     {
-      title: 'AI-Powered Guidance',
-      desc: 'Receive personalized recommendations and smart assistance based on your goals.',
+      title: 'AI Assistant',
+      desc: 'Smart recommendations, digital guidance and personalised support.',
       icon: <MessageSquare size={20} strokeWidth={1.75} />,
     },
   ];
@@ -261,15 +234,15 @@ const PoweringJourney: React.FC = () => {
             Powering Every Stage of <span className="highlight-blue">Your Journey</span>
           </h2>
           <p className="eco-journey-subtitle">
-            From education and career development to entrepreneurship and community engagement, Tumbo Eye 2.0 provides a complete suite of digital services designed to help you achieve your goals.
+            From education and employment to entrepreneurship and public services, Tumbo provides integrated digital solutions that empower individuals, organisations and communities.
           </p>
         </div>
 
         <div className="eco-journey-split">
           <div className="eco-journey-visual">
             <img
-              src={ecosystemGlobalNetwork}
-              alt="Tumbo Eye platform on laptop and mobile with global network"
+              src={ecoJourneyStage}
+              alt="Tumbo digital community engagement app presented at an EMA event"
               className="eco-journey-devices-img"
             />
           </div>
@@ -314,86 +287,67 @@ const PoweringJourney: React.FC = () => {
 };
 
 /* ==========================================================================
-   SUB-COMPONENT: EXPLORE FUTURE CTA
+   SUB-COMPONENT: JOIN THE ECOSYSTEM CTA
    ========================================================================== */
-const ExploreFutureCTA: React.FC = () => {
+const JoinEcosystem: React.FC = () => {
   const features = [
-    {
-      icon: <Search size={18} strokeWidth={2} />,
-      title: 'Discover Opportunities',
-      desc: 'Jobs, Scholarships, Grants, Internship & Funds',
-    },
-    {
-      icon: <Network size={18} strokeWidth={2} />,
-      title: 'Connect with Partners',
-      desc: 'Universities, NGOs, Government & Companies',
-    },
-    {
-      icon: <Sparkles size={18} strokeWidth={2} />,
-      title: 'AI Smart Recommendations',
-      desc: 'Personalized opportunities based on your profile',
-    },
+    { icon: <Search size={18} strokeWidth={2} />, label: 'Verified Digital Identity' },
+    { icon: <Target size={18} strokeWidth={2} />, label: 'Smart Opportunity Matching' },
+    { icon: <Sparkles size={18} strokeWidth={2} />, label: 'AI-Powered Guidance' },
   ];
 
-  const bottomStats = [
-    { icon: <User size={18} />, value: '120K+', label: 'Active User' },
-    { icon: <Briefcase size={18} />, value: '8.5K+', label: 'Job Opportunities' },
-    { icon: <GraduationCap size={18} />, value: '8k+', label: 'Scholarship' },
-    { icon: <Globe size={18} />, value: '50+', label: 'Countries Reached' },
+  const stats = [
+    { icon: <User size={20} strokeWidth={2} />, value: '120K+', label: 'Verified Users' },
+    { icon: <Share2 size={20} strokeWidth={2} />, value: '25K+', label: 'Opportunities Shared' },
+    { icon: <Home size={20} strokeWidth={2} />, value: '500+', label: 'Strategic Partners' },
+    { icon: <Globe size={20} strokeWidth={2} />, value: '250K+', label: 'Community Beneficiaries' },
   ];
 
   return (
-    <section className="section eco-future-cta-section">
+    <section className="section eco-join-section">
       <div className="container">
-        <div className="eco-future-cta-card">
-          <div className="eco-future-cta-grid">
-            <div className="eco-future-cta-content">
-              <div className="eco-future-cta-badge">GET STARTED</div>
-              <h2 className="eco-future-cta-title">Start Exploring Your Future Today</h2>
-              <p className="eco-future-cta-desc">
-                Join thousands of students, professionals, entrepreneurs, and organizations already using Tumbo Eye 2.0 to discover opportunities, build connections, and achieve their goals.
+        <div className="eco-join-card">
+          <div className="eco-join-top">
+            <div className="eco-join-left">
+              <div className="eco-join-badge">JOIN THE ECOSYSTEM</div>
+              <h2 className="eco-join-title">Start Your Journey with Tumbo Today</h2>
+              <p className="eco-join-desc">
+                Become part of South Africa's Digital Inclusion Ecosystem and unlock verified opportunities, trusted partnerships and AI-powered support designed to help you succeed.
               </p>
-
-              <ul className="eco-future-features">
-                {features.map((feature, i) => (
-                  <li key={i} className="eco-future-feature-item">
-                    <span className="eco-future-feature-icon">{feature.icon}</span>
-                    <div>
-                      <strong>{feature.title}</strong>
-                      <span>{feature.desc}</span>
-                    </div>
-                  </li>
+              <div className="eco-join-features">
+                {features.map((f, i) => (
+                  <div key={i} className="eco-join-feature">
+                    <span className="eco-join-feature-icon">{f.icon}</span>
+                    <span className="eco-join-feature-label">{f.label}</span>
+                  </div>
                 ))}
-              </ul>
-
-              <div className="eco-future-cta-actions">
-                <Link to="/#opportunities" className="btn btn-primary">
+              </div>
+              <div className="eco-join-btns">
+                <Link to="/#opportunities" className="btn eco-join-btn-primary">
                   Explore Opportunities <ArrowRight size={16} />
                 </Link>
-                <button className="btn btn-outline-light" onClick={() => alert('Create Free Account')}>
-                  Create Free Account
+                <button className="btn eco-join-btn-outline" onClick={() => alert('Create Your Account')}>
+                  Create Your Account
                 </button>
               </div>
             </div>
-
-            <div className="eco-future-cta-visual">
+            <div className="eco-join-media">
               <img
-                src={ecosystemCtaIllustration}
-                alt="Students and professionals using Tumbo Eye platform"
-                className="eco-future-cta-img"
+                src={ecoJoinPhoto}
+                alt="Community members participating in a Tumbo ecosystem session"
+                className="eco-join-photo"
               />
             </div>
           </div>
 
-          <div className="eco-future-stats-bar">
-            {bottomStats.map((stat, i) => (
-              <div key={i} className="eco-future-stat">
-                <span className="eco-future-stat-icon">{stat.icon}</span>
+          <div className="eco-join-stats">
+            {stats.map((s, i) => (
+              <div key={i} className="eco-join-stat">
+                <span className="eco-join-stat-icon">{s.icon}</span>
                 <div>
-                  <strong>{stat.value}</strong>
-                  <span>{stat.label}</span>
+                  <div className="eco-join-stat-value">{s.value}</div>
+                  <div className="eco-join-stat-label">{s.label}</div>
                 </div>
-                {i < bottomStats.length - 1 && <span className="eco-future-stat-divider" aria-hidden="true" />}
               </div>
             ))}
           </div>
@@ -410,9 +364,9 @@ export const Ecosystem: React.FC = () => {
   return (
     <>
       <EcosystemHero />
-      <ConnectedPlatform />
+      <ConnectedEcosystem />
       <PoweringJourney />
-      <ExploreFutureCTA />
+      <JoinEcosystem />
     </>
   );
 };

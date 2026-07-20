@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import heroGirl from '../assets/Hero girl image.png';
-import platformEndless from '../assets/platform-endless.png';
-import circleLogo from '../assets/circle-logo.png';
-import communityGrowing from '../assets/community-growing.png';
-import successStorySarah from '../assets/success-story-sarah.png';
-import partnerHandshake from '../assets/partners-handshake.png';
+import heroStudent from '../assets/hero-student.png';
+import featuredOppDsv from '../assets/featured-opp-dsv.png';
+import featuredOppMrd from '../assets/featured-opp-mrd.png';
+import ecoBannerMan from '../assets/eco-banner-man.png';
+import ecoBannerWoman from '../assets/eco-banner-woman.png';
+import successStoryFeatured from '../assets/success-story-featured.png';
+import successStoryCta from '../assets/success-story-cta.png';
+import partnerCta from '../assets/partner-cta.png';
 import partnerMinistry from '../assets/partner-ministry.png';
 import partnerWorldBank from '../assets/partner-world-bank.png';
 import partnerUnesco from '../assets/partner-unesco.png';
@@ -18,29 +20,27 @@ import partnerMastercard from '../assets/partner-mastercard.png';
 import partnerAws from '../assets/partner-aws.png';
 import partnerDell from '../assets/partner-dell.png';
 import partnerBritishCouncil from '../assets/partner-british-council.png';
-import newsletterIllustration from '../assets/newsletter-illustration.png';
 import {
   ArrowRight,
   Briefcase,
   GraduationCap,
   DollarSign,
   Calendar,
-  CalendarCheck,
-  CheckCircle2,
   Star,
-  Play,
   Sparkles,
   Award,
   Users,
-  Rocket,
-  Bot,
   Globe,
-  Network,
-  MapPin,
   Landmark,
-  IdCard,
-  MessageCircle,
-  UserRound,
+  ShieldCheck,
+  Cpu,
+  Store,
+  Settings2,
+  Trophy,
+  HeartHandshake,
+  PersonStanding,
+  Cog,
+  User,
 } from 'lucide-react';
 
 /* ==========================================================================
@@ -56,29 +56,37 @@ const HeroSection: React.FC = () => {
             EMPOWERING PEOPLE. CONNECTING OPPORTUNITIES.
           </div>
           <h1 className="hero-title">
-            Your Gateway to <span className="hero-title-blue">Opportunities<span className="hero-title-underline"></span></span>
+          Replace 'Gateway Opportunities' with: Matching{' '}
+            <span className="hero-title-blue">Opportunities with Targeted </span>
+            <span className="hero-title-blue hero-title-potential">
+              Potential
+              <span className="hero-title-underline"></span>
+            </span>
           </h1>
           <p className="hero-subtitle-text">
-            Tumbo Eye 2.0 connects students, job seekers, entrepreneurs, businesses, and communities with jobs, internships, scholarships, grants, events, and valuable resources—all in one powerful ecosystem.
+            Tumbo is South Africa&apos;s Digital Inclusion Ecosystem, intelligently connecting verified individuals, businesses, communities and government institutions with opportunities that create measurable impact. Whether you&apos;re searching for employment, funding, skills development, business opportunities or community programmes, Tumbo ensures opportunities reach the right people at the right time.
           </p>
           
           <div className="hero-btn-group">
             <Link to="/opportunities" className="btn btn-primary hero-btn-primary">
               Explore Opportunities <ArrowRight size={16} />
             </Link>
-            <button className="btn btn-outline hero-btn-outline" onClick={() => {
-              document.getElementById('ecosystem')?.scrollIntoView({ behavior: 'smooth' });
-            }}>
-              Explore Ecosystem <Play size={12} fill="currentColor" style={{ marginLeft: '4px' }} />
+            <button
+              className="btn btn-outline hero-btn-outline"
+              onClick={() => {
+                document.getElementById('ecosystem')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Explore Ecosystem <ArrowRight size={16} />
             </button>
           </div>
 
           <div className="hero-trust-row">
             <div className="hero-avatar-stack">
-              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100&h=100" alt="User Avatar" />
-              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100" alt="User Avatar" />
-              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100&h=100" alt="User Avatar" />
-              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" alt="User Avatar" />
+              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100&h=100" alt="" />
+              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100" alt="" />
+              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100&h=100" alt="" />
+              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" alt="" />
               <div className="hero-avatar-plus">+15K</div>
             </div>
             <div className="hero-trust-text">
@@ -90,41 +98,33 @@ const HeroSection: React.FC = () => {
         {/* Right Visual Column */}
         <div className="hero-right-col">
           <div className="hero-visual-wrapper">
-            {/* Soft concentric background rings */}
+            {/* Soft halo circle behind the portrait */}
             <div className="hero-circle-bg"></div>
-            <div className="hero-ring-1"></div>
-            <div className="hero-ring-2"></div>
 
-            {/* Orbit container (holds rotating satellite elements) */}
-            <div className="orbit-container">
-              {/* Yellow Star satellite at top */}
-              <div className="satellite-star-wrapper">
-                <svg viewBox="0 0 24 24" fill="#eab308" className="satellite-star">
-                  <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z" />
-                </svg>
-              </div>
-              {/* Yellow Dot satellite at bottom */}
-              <div className="satellite-dot-wrapper">
-                <div className="satellite-dot"></div>
-              </div>
-            </div>
+            {/* Elliptical orbit ring */}
+            <div className="hero-orbit-ring"></div>
 
-            {/* Static decorative elements */}
-            {/* Blue Star at bottom-left */}
-            <div className="static-star-blue-wrap">
-              <svg viewBox="0 0 24 24" fill="#2563eb" className="static-star-blue">
-                <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z" />
+            {/* Dots travelling along the orbit */}
+            <div className="orbit-dot orbit-dot-blue"></div>
+            <div className="orbit-dot orbit-dot-yellow"></div>
+
+            {/* Static decorative sparkles */}
+            <div className="hero-star hero-star-yellow">
+              <svg viewBox="0 0 24 24" fill="#facc15">
+                <path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z" />
               </svg>
             </div>
-            {/* Blue Dot at middle-right */}
-            <div className="static-dot-blue"></div>
+            <div className="hero-star hero-star-blue">
+              <svg viewBox="0 0 24 24" fill="#2563eb">
+                <path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z" />
+              </svg>
+            </div>
 
-            {/* Layered Hero Image */}
+            {/* Circle with portrait breaking out of the top */}
             <div className="hero-image-wrapper">
               <div className="hero-outer-oval"></div>
               <div className="hero-middle-circle"></div>
-              <div className="hero-accent-circle"></div>
-              <img src={heroGirl} alt="Student holding books" className="hero-photo" />
+              <img src={heroStudent} alt="Student holding books" className="hero-photo" />
             </div>
 
             {/* Floating Info Cards */}
@@ -136,7 +136,7 @@ const HeroSection: React.FC = () => {
                 </div>
                 <div className="card-info-content">
                   <div className="card-info-title">Jobs</div>
-                  <div className="card-info-desc">Find your next career opportunity.</div>
+                  <div className="card-info-desc">Get your next career opportunity.</div>
                 </div>
                 <div className="card-info-arrow">
                   <ArrowRight size={10} />
@@ -168,7 +168,7 @@ const HeroSection: React.FC = () => {
                 </div>
                 <div className="card-info-content">
                   <div className="card-info-title">Scholarships</div>
-                  <div className="card-info-desc">Discover scholarships for your education.</div>
+                  <div className="card-info-desc">Unlock your future with education.</div>
                 </div>
                 <div className="card-info-arrow">
                   <ArrowRight size={10} />
@@ -184,7 +184,7 @@ const HeroSection: React.FC = () => {
                 </div>
                 <div className="card-info-content">
                   <div className="card-info-title">Events</div>
-                  <div className="card-info-desc">Join workshops, networking, and community events.</div>
+                  <div className="card-info-desc">Join conferences, networking and mentorship events.</div>
                 </div>
                 <div className="card-info-arrow">
                   <ArrowRight size={10} />
@@ -200,7 +200,7 @@ const HeroSection: React.FC = () => {
                 </div>
                 <div className="card-info-content">
                   <div className="card-info-title">Internships</div>
-                  <div className="card-info-desc">Gain real-world experience.</div>
+                  <div className="card-info-desc">Gain valuable experience.</div>
                 </div>
                 <div className="card-info-arrow">
                   <ArrowRight size={10} />
@@ -299,117 +299,62 @@ const StatsRow: React.FC = () => {
    SUB-COMPONENT: FEATURED OPPORTUNITIES
    ========================================================================== */
 const FeaturedOpportunities: React.FC = () => {
-  const categories = [
+  const listings = [
     {
-      title: 'Jobs',
-      desc: 'Find exciting career opportunities with trusted employers across multiple industries.',
-      count: '2,450+ Openings',
-      linkText: 'View Jobs',
-      icon: <Briefcase size={26} strokeWidth={1.75} />,
-      theme: 'jobs',
-      solid: true,
+      image: featuredOppDsv,
+      imageAlt: 'Tumbo community engagement event outdoors',
+      title: 'DSV Recruitment Drive',
+      location: 'South Africa',
+      category: 'Employment',
+      desc: 'DSV is recruiting for multiple positions across South Africa, including drivers, security guards, general workers, cleaners, data capturers and administration clerks.',
     },
     {
-      title: 'Scholarships',
-      desc: 'Discover local and international scholarships to support your educational journey.',
-      count: '1,250+ Scholarships',
-      linkText: 'View Scholarships',
-      icon: <GraduationCap size={26} strokeWidth={1.75} />,
-      theme: 'scholarships',
-      solid: false,
-    },
-    {
-      title: 'Internships',
-      desc: 'Gain practical experience and build your career through internship programs.',
-      count: '1,850+ Internships',
-      linkText: 'Browse Internships',
-      icon: <IdCard size={26} strokeWidth={1.75} />,
-      theme: 'internships',
-      solid: false,
-    },
-    {
-      title: 'Grants & Funding',
-      desc: 'Access funding opportunities to bring your ideas and community projects to life.',
-      count: '320+ Grants',
-      linkText: 'Explore Grants',
-      icon: <Network size={26} strokeWidth={1.75} />,
-      theme: 'grants',
-      solid: false,
-    },
-    {
-      title: 'Events',
-      desc: 'Join workshops, conferences, networking sessions, and community events.',
-      count: '980+ Events',
-      linkText: 'View Events',
-      icon: <CalendarCheck size={26} strokeWidth={1.75} />,
-      theme: 'events',
-      solid: false,
+      image: featuredOppMrd,
+      imageAlt: 'Community workshop and recruitment session',
+      title: 'Mr D Driver Recruitment',
+      location: 'South Africa',
+      category: 'Driver Opportunities',
+      desc: 'Mr D is recruiting vehicle and motorcycle delivery drivers in Middelburg. Applicants require a reliable vehicle or motorcycle, valid documentation and the relevant licence.',
     },
   ];
 
   return (
-    <section id="opportunities" className="section section-bg featured-opportunities-section">
+    <section id="opportunities" className="section featured-opportunities-section">
       <div className="container">
         <div className="featured-opp-header text-center">
+          <div className="section-tag">DISCOVER OPPORTUNITIES</div>
           <h2 className="section-title">
             Featured <span className="highlight-blue">Opportunities</span>
           </h2>
           <p className="section-subtitle featured-opp-subtitle">
-            Explore jobs, scholarships, internships, grants, and events designed to help you grow your career, education, and future.
+            Every opportunity published through Tumbo is designed to reach verified individuals based on location, skills, qualifications and community data. Rather than relying on mass applications, Tumbo intelligently connects opportunities with people who meet the required criteria—creating better outcomes for both applicants and organisations.
           </p>
         </div>
 
-        <div className="opportunity-grid">
-          {categories.map((cat) => (
-            <div key={cat.theme} className={`opp-card opp-card-${cat.theme}`}>
-              <div className="opp-card-icon">{cat.icon}</div>
-              <h3 className="opp-card-title">{cat.title}</h3>
-              <p className="opp-card-desc">{cat.desc}</p>
-              <div className="opp-card-count">
-                <UserRound size={15} strokeWidth={2} />
-                <span>{cat.count}</span>
+        <div className="featured-listing-grid">
+          {listings.map((item) => (
+            <article key={item.title} className="featured-listing-card">
+              <div className="featured-listing-image-wrap">
+                <img src={item.image} alt={item.imageAlt} className="featured-listing-image" />
               </div>
-              <button
-                type="button"
-                className={`opp-card-btn ${cat.solid ? 'opp-card-btn-solid' : 'opp-card-btn-outline'}`}
-                onClick={() => alert(`Navigating to ${cat.title}`)}
-              >
-                {cat.linkText} <ArrowRight size={15} />
-              </button>
-            </div>
+              <div className="featured-listing-body">
+                <h3 className="featured-listing-title">{item.title}</h3>
+                <p className="featured-listing-meta">
+                  <strong>Location :</strong> {item.location}
+                  <span className="featured-listing-meta-sep">|</span>
+                  <strong>Category :</strong> {item.category}
+                </p>
+                <p className="featured-listing-desc">{item.desc}</p>
+                <button
+                  type="button"
+                  className="btn btn-primary featured-listing-btn"
+                  onClick={() => alert(`Apply: ${item.title}`)}
+                >
+                  Apply Now <ArrowRight size={15} />
+                </button>
+              </div>
+            </article>
           ))}
-        </div>
-
-        <div className="ai-reco-banner">
-          <div className="ai-reco-visual" aria-hidden="true">
-            <span className="ai-reco-bubble ai-reco-bubble-1">
-              <MessageCircle size={16} fill="currentColor" strokeWidth={0} />
-            </span>
-            <span className="ai-reco-bubble ai-reco-bubble-2">
-              <MessageCircle size={12} fill="currentColor" strokeWidth={0} />
-            </span>
-            <div className="ai-reco-robot">
-              <Bot size={36} strokeWidth={1.6} />
-            </div>
-          </div>
-
-          <div className="ai-reco-content">
-            <h3 className="ai-reco-title">Need Personalized Recommendations?</h3>
-            <p className="ai-reco-desc">
-              Let our AI Assistant recommend the best opportunities based on your profile, interests, and career goals.
-            </p>
-          </div>
-
-          <div className="ai-reco-action">
-            <button
-              type="button"
-              className="btn btn-primary ai-reco-btn"
-              onClick={() => alert('Opening AI Assistant')}
-            >
-              <Sparkles size={16} /> Ask AI Assistant
-            </button>
-            <p className="ai-reco-meta">Smart • Fast • Personalized</p>
-          </div>
         </div>
       </div>
     </section>
@@ -422,39 +367,34 @@ const FeaturedOpportunities: React.FC = () => {
 const EcosystemOverview: React.FC = () => {
   const features = [
     {
-      title: 'Education',
-      desc: 'Access courses, scholarships, and learning resources tailored to your goals.',
+      title: 'Tumbo App',
+      desc: 'The community-facing platform where individuals register, verify their identity and gain access to employment, training, funding, bursaries and community programmes.',
       link: 'Learn More',
-      icon: <GraduationCap size={20} strokeWidth={1.75} />,
-      theme: 'education',
+      icon: <ShieldCheck size={22} strokeWidth={1.75} />,
     },
     {
-      title: 'Careers',
-      desc: 'Discover jobs, internships, and career tools to accelerate your growth.',
-      link: 'View Careers',
-      icon: <Briefcase size={20} strokeWidth={1.75} />,
-      theme: 'careers',
+      title: 'Tumbo Biz',
+      desc: 'Helping businesses discover customers, suppliers, community partners and verified local talent while measuring social investment and impact.',
+      link: 'Explore Biz',
+      icon: <Settings2 size={22} strokeWidth={1.75} />,
     },
     {
-      title: 'Entrepreneurship',
-      desc: 'Build your business with funding, mentorship, and startup resources.',
-      link: 'Explore Business',
-      icon: <Rocket size={20} strokeWidth={1.75} />,
-      theme: 'entrepreneurship',
+      title: 'Tumbo Gov',
+      desc: 'Helping municipalities and government departments engage communities, verify beneficiaries and improve service delivery.',
+      link: 'Explore Gov',
+      icon: <Landmark size={22} strokeWidth={1.75} />,
     },
     {
-      title: 'Community',
-      desc: 'Connect with peers, mentors, and support groups in your field.',
-      link: 'Join Community',
-      icon: <Users size={20} strokeWidth={1.75} />,
-      theme: 'community',
-    },
-    {
-      title: 'AI Assistant',
-      desc: 'Get personalized guidance and recommendations powered by AI.',
+      title: 'Tumbo AI',
+      desc: 'An intelligent assistant providing guidance, information and support across the ecosystem.',
       link: 'Chat with AI',
-      icon: <Bot size={20} strokeWidth={1.75} />,
-      theme: 'ai',
+      icon: <Cpu size={22} strokeWidth={1.75} />,
+    },
+    {
+      title: 'Tumbo Ye2',
+      desc: 'A community participation platform supporting township commerce and trusted community engagement.',
+      link: 'Join Community',
+      icon: <Store size={22} strokeWidth={1.75} />,
     },
   ];
 
@@ -462,21 +402,28 @@ const EcosystemOverview: React.FC = () => {
     <section id="ecosystem" className="section eco-overview-section">
       <div className="container">
         <div className="eco-overview-header text-center">
+          <div className="section-tag">OUR ECOSYSTEM</div>
           <h2 className="eco-overview-title">
-            Everything You Need in One <span className="eco-overview-title-blue">Ecosystem</span>
+            One Ecosystem. Multiple Solutions.{' '}
+            <span className="eco-overview-title-blue">Unlimited Opportunity.</span>
           </h2>
           <p className="eco-overview-subtitle">
-            Tumbo Eye 2.0 connects education, careers, funding, business, and community support into one powerful platform—helping individuals discover opportunities, build skills, and achieve long-term success.
+            To digitally connect every community with opportunities that improve livelihoods while enabling businesses and government to make informed, data-driven decisions.
+          </p>
+          <h3 className="eco-overview-unique-title">What Makes Tumbo Unique</h3>
+          <p className="eco-overview-unique-desc">
+            Unlike traditional recruitment or business platforms, Tumbo combines verified identity, community intelligence and digital services into one integrated ecosystem.
           </p>
         </div>
 
         <div className="eco-overview-grid">
-          {features.map((feature, i) => (
-            <div key={i} className={`eco-overview-card eco-overview-card-${feature.theme}`}>
+          {features.map((feature) => (
+            <div key={feature.title} className="eco-overview-card">
               <div className="eco-overview-card-icon">{feature.icon}</div>
               <h3 className="eco-overview-card-title">{feature.title}</h3>
               <p className="eco-overview-card-desc">{feature.desc}</p>
               <button
+                type="button"
                 className="eco-overview-card-link"
                 onClick={() => alert(feature.link)}
               >
@@ -486,32 +433,30 @@ const EcosystemOverview: React.FC = () => {
           ))}
         </div>
 
-        <div className="eco-overview-banner">
-          <div className="eco-overview-banner-visual">
-            <img
-              src={platformEndless}
-              alt="Tumbo Eye platform dashboard illustration"
-              className="eco-overview-banner-img"
-            />
+        <div className="eco-impact-banner">
+          <div className="eco-impact-banner-media">
+            <img src={ecoBannerMan} alt="Tumbo community event presenter" className="eco-impact-banner-img" />
           </div>
-
-          <div className="eco-overview-banner-content">
-            <h3 className="eco-overview-banner-title">One Platform. Endless Opportunities.</h3>
-            <p className="eco-overview-banner-desc">
-              Whether you&apos;re a student, job seeker, entrepreneur, or community member, Tumbo Eye 2.0 provides the tools, resources, and connections you need to succeed.
-            </p>
-            <div className="eco-overview-banner-actions">
+          <div className="eco-impact-banner-content">
+            <h3 className="eco-impact-banner-title">
+              Empowering Opportunity. Igniting Hope.{' '}
+              <span className="eco-overview-title-blue">Inspiring Greatness.</span>
+            </h3>
+            <div className="eco-impact-banner-actions">
               <Link to="/ecosystem" className="btn btn-primary">
                 Explore the Ecosystem <ArrowRight size={16} />
               </Link>
-              <button className="btn btn-secondary" onClick={() => alert('Get Started')}>
-                Get Started
+              <button type="button" className="btn btn-outline" onClick={() => alert('Get Started')}>
+                Get Started <ArrowRight size={16} />
               </button>
             </div>
           </div>
-
-          <div className="eco-overview-banner-orbit" aria-hidden="true">
-            <img src={circleLogo} alt="" className="eco-overview-orbit-img" />
+          <div className="eco-impact-banner-media">
+            <img
+              src={ecoBannerWoman}
+              alt="Tumbo Digital Community Engagement App launch"
+              className="eco-impact-banner-img"
+            />
           </div>
         </div>
       </div>
@@ -520,82 +465,65 @@ const EcosystemOverview: React.FC = () => {
 };
 
 /* ==========================================================================
-   SUB-COMPONENT: EMPOWERING COMMUNITIES
+   SUB-COMPONENT: COMMUNITIES
    ========================================================================== */
 const EmpoweringCommunities: React.FC = () => {
-  const stats = [
+  const communities = [
     {
-      title: 'Active Users',
-      stat: '120K+',
-      desc: 'Thousands of students, professionals, and community members actively use Tumbo Eye 2.0.',
-      icon: <Users size={22} strokeWidth={1.75} />,
+      title: 'Push iPASSION',
+      desc: 'Helping young people discover careers that match their strengths and passions.',
+      icon: <PersonStanding size={24} strokeWidth={1.75} />,
     },
     {
-      title: 'Job Opportunities',
-      stat: '25K+',
-      desc: 'Verified job opportunities from trusted employers and partners.',
-      icon: <Briefcase size={22} strokeWidth={1.75} />,
+      title: 'Business Showers',
+      desc: 'Supporting entrepreneurs through networking, mentorship and business development.',
+      icon: <Briefcase size={24} strokeWidth={1.75} />,
     },
     {
-      title: 'Scholarships',
-      stat: '8K+',
-      desc: 'Scholarships available from local and international institutions.',
-      icon: <GraduationCap size={22} strokeWidth={1.75} />,
+      title: 'Tumbo Leadership Academy',
+      desc: 'Developing future leaders through mentorship and community engagement.',
+      icon: (
+        <span className="communities-icon-stack" aria-hidden="true">
+          <GraduationCap size={18} strokeWidth={1.75} />
+          <Cog size={14} strokeWidth={1.75} className="communities-icon-cog" />
+        </span>
+      ),
     },
     {
-      title: 'Partner Organizations',
-      stat: '500+',
-      desc: 'Government agencies, universities, NGOs, and companies working together.',
-      icon: <Network size={22} strokeWidth={1.75} />,
+      title: 'Tumbo Sports Tournament',
+      desc: 'Bringing communities together through sport while identifying talent.',
+      icon: <Trophy size={24} strokeWidth={1.75} />,
     },
     {
-      title: 'Countries Reached',
-      stat: '50+',
-      desc: 'Supporting users and communities across multiple countries.',
-      icon: <Globe size={22} strokeWidth={1.75} />,
+      title: 'Protec Sponsorship',
+      desc: 'Supporting education and youth development initiatives.',
+      icon: <HeartHandshake size={24} strokeWidth={1.75} />,
     },
   ];
 
   return (
-    <section className="section empower-section section-blue-bg">
+    <section id="communities" className="section communities-section">
       <div className="container">
-        <div className="empower-header text-center">
-          <h2 className="empower-title">
-            Empowering Communities Through <span className="highlight-blue">Opportunities</span>
+        <div className="communities-header text-center">
+          <div className="section-tag">COMMUNITIES</div>
+          <h2 className="communities-title">
+            Matching Opportunities with{' '}
+            <span className="communities-title-blue">
+              Targeted Potential
+              <span className="communities-title-underline" aria-hidden="true" />
+            </span>
           </h2>
-          <p className="empower-subtitle">
-            Our growing ecosystem connects people, organizations, and institutions to create meaningful opportunities and lasting impact.
-          </p>
         </div>
 
-        <div className="empower-stats-grid">
-          {stats.map((item, i) => (
-            <div key={i} className="empower-stat-card">
-              <div className="empower-stat-icon">{item.icon}</div>
-              <h3 className="empower-stat-title">{item.title}</h3>
-              <p className="empower-stat-number">{item.stat}</p>
-              <p className="empower-stat-desc">{item.desc}</p>
-            </div>
+        <div className="communities-grid">
+          {communities.map((item) => (
+            <article key={item.title} className="communities-card">
+              <div className="communities-card-icon">{item.icon}</div>
+              <h3 className="communities-card-title">{item.title}</h3>
+              <div className="communities-card-divider" aria-hidden="true" />
+              <p className="communities-card-desc">{item.desc}</p>
+            </article>
           ))}
-        </div>
-
-        <div className="empower-community-banner">
-          <div className="empower-community-visual">
-            <img
-              src={communityGrowing}
-              alt="Diverse community members connected through Tumbo Eye"
-              className="empower-community-img"
-            />
-          </div>
-          <div className="empower-community-content">
-            <h3 className="empower-community-title">Join Our Growing Community</h3>
-            <p className="empower-community-desc">
-              Become part of a platform that empowers learning, careers, innovation, and community development.
-            </p>
-            <button className="btn btn-primary" onClick={() => alert('Get Started Today')}>
-              Get Started Today <ArrowRight size={16} />
-            </button>
-          </div>
         </div>
       </div>
     </section>
@@ -609,77 +537,73 @@ const Testimonials: React.FC = () => {
   const reviews = [
     {
       name: 'David M.',
-      quote: 'The AI Assistant recommended the perfect internship for me. The application process was simple and fast.',
-      role: 'Computer Science Student',
-      roleIcon: <GraduationCap size={14} strokeWidth={2} />,
+      quote:
+        'Supporting grassroots sport by providing sponsorship to young athletes and promoting youth participation.',
+      role: 'MP Mpumalanga UFC Netball Sponsorship',
+      roleIcon: <Trophy size={14} strokeWidth={2} />,
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100',
     },
     {
       name: 'Amina K.',
       quote: 'I discovered funding opportunities that helped me launch my small business.',
-      role: 'Entrepreneur',
-      roleIcon: <Rocket size={14} strokeWidth={2} />,
+      role: 'Community Athletics',
+      roleIcon: <Award size={14} strokeWidth={2} />,
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100&h=100',
     },
     {
       name: 'James P.',
-      quote: 'The platform connected me with employers and I found a full-time job within weeks.',
-      role: 'Job Seeker',
-      roleIcon: <Briefcase size={14} strokeWidth={2} />,
+      quote:
+        'Partnering with annual sporting events that unite communities while identifying and nurturing emerging talent.',
+      role: 'School of Excellence (SoE) Social Club',
+      roleIcon: <Users size={14} strokeWidth={2} />,
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100',
     },
   ];
 
+  const stats = [
+    { icon: <User size={18} />, value: '120K+', label: 'Active User' },
+    { icon: <Briefcase size={18} />, value: '25K+', label: 'Job Opportunities' },
+    { icon: <GraduationCap size={18} />, value: '8k+', label: 'Scholarship' },
+    { icon: <Globe size={18} />, value: '50+', label: 'Countries Reached' },
+  ];
+
   return (
-    <section id="testimonials" className="section success-stories-section section-blue-bg">
+    <section id="testimonials" className="section success-stories-section">
       <div className="container">
         <div className="success-stories-header text-center">
+          <div className="section-tag">SUCCESS STORIES</div>
           <h2 className="success-stories-title">
-            Real People. Real <span className="highlight-blue">Success.</span>
+            Real People. Real <span className="highlight-blue">Impact.</span>
           </h2>
           <p className="success-stories-subtitle">
             Discover how Tumbo Eye 2.0 has helped students, professionals, entrepreneurs, and communities achieve their goals through life-changing opportunities.
           </p>
         </div>
 
-        <div className="featured-story-layout">
+        <article className="featured-story-layout">
           <div className="featured-story-photo-wrap">
             <img
-              src={successStorySarah}
-              alt="Sarah Johnson, scholarship recipient and software engineer"
+              src={successStoryFeatured}
+              alt="Sarah Johnson presenting at a Tumbo community event"
               className="featured-story-photo"
             />
           </div>
 
           <div className="featured-story-body">
             <p className="featured-story-name">Sarah Johnson</p>
-            <h3 className="featured-story-headline">From Student to Software Engineer</h3>
+            <h3 className="featured-story-headline">PCB Power Valves &amp; Nkangala TVET Bursaries</h3>
             <p className="featured-story-text">
-              Sarah used Tumbo Eye 2.0 to discover a fully funded scholarship and later secured an internship that led to a full-time software engineering role.
+              Through strategic partnerships, deserving students received bursary support, creating pathways toward education and long-term employment.
             </p>
-            <div className="featured-story-meta">
-              <span className="featured-story-meta-item">
-                <MapPin size={14} />
-                South Africa
-              </span>
-              <span className="featured-story-meta-item">
-                <GraduationCap size={14} />
-                Scholarship Recipient
-              </span>
-              <span className="featured-story-meta-item">
-                <Briefcase size={14} />
-                Software Engineer
-              </span>
-            </div>
-            <button className="btn btn-primary" onClick={() => alert('Read Full Story')}>
+            <button type="button" className="btn btn-primary" onClick={() => alert('Read Full Story')}>
               Read Full Story <ArrowRight size={16} />
             </button>
           </div>
-        </div>
+        </article>
 
         <div className="success-reviews-grid">
-          {reviews.map((review, i) => (
-            <div key={i} className="success-review-card">
+          {reviews.map((review) => (
+            <div key={review.name} className="success-review-card">
               <div className="success-review-top">
                 <img src={review.avatar} alt={review.name} className="success-review-avatar" />
                 <div className="success-review-user">
@@ -696,6 +620,41 @@ const Testimonials: React.FC = () => {
                 <span className="success-review-footer-icon">{review.roleIcon}</span>
                 <span>{review.role}</span>
               </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="success-cta-banner">
+          <div className="success-cta-copy">
+            <h3 className="success-cta-title">Start Your Success Story Today</h3>
+            <p className="success-cta-desc">
+              Hear inspiring journeys from students, professionals, and entrepreneurs who transformed their futures with Tumbo Eye 2.0.
+            </p>
+            <div className="success-cta-actions">
+              <button type="button" className="btn btn-white" onClick={() => alert('Join Now')}>
+                Join Now <ArrowRight size={15} />
+              </button>
+              <Link to="/opportunities" className="btn success-cta-outline">
+                Explore Opportunities <ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
+          <div className="success-cta-media">
+            <img
+              src={successStoryCta}
+              alt="Tumbo community awards and engagement event"
+              className="success-cta-img"
+            />
+          </div>
+        </div>
+
+        <div className="success-stats-row">
+          {stats.map((stat) => (
+            <div key={stat.label} className="success-stat-item">
+              <span className="success-stat-icon">{stat.icon}</span>
+              <p className="success-stat-text">
+                <strong>{stat.value}</strong> {stat.label}
+              </p>
             </div>
           ))}
         </div>
@@ -779,7 +738,6 @@ const TrustedPartners: React.FC = () => {
         </div>
 
         <div className="partner-cta-banner">
-          <img className="partner-cta-image" src={partnerHandshake} alt="" aria-hidden="true" />
           <div className="partner-cta-content">
             <h3 className="partner-cta-title">Become a Partner</h3>
             <p className="partner-cta-desc">
@@ -789,104 +747,17 @@ const TrustedPartners: React.FC = () => {
               <Link to="/partners" className="btn btn-white">
                 Become a Partner <ArrowRight size={15} />
               </Link>
-              <button className="btn btn-white-outline" onClick={() => alert('Contact Us')}>
-                Contact Us
+              <button className="btn partner-cta-outline" onClick={() => alert('Contact Us')}>
+                Contact Us <ArrowRight size={15} />
               </button>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-/* ==========================================================================
-   SUB-COMPONENT: ARTICLES AND NEWSLETTER
-   ========================================================================== */
-const LatestNews: React.FC = () => {
-  const articles = [
-    {
-      icon: <GraduationCap size={22} />,
-      title: 'New scholarship program 2026',
-      desc: 'Applications are now open for international students pursuing higher education.',
-    },
-    {
-      icon: <Briefcase size={22} />,
-      title: 'Career Fair 2026',
-      desc: 'Meet top employers, attend workshops, and discover exciting career opportunities.',
-    },
-    {
-      icon: <Sparkles size={22} />,
-      title: 'AI career assistant launch',
-      desc: 'Get personalized recommendations and career guidance powered by AI.',
-    },
-    {
-      icon: <Users size={22} />,
-      title: 'Community development grant',
-      desc: 'Funding opportunities are now available for community projects.',
-    }
-  ];
-
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setSubscribed(true);
-    setEmail('');
-  };
-
-  return (
-    <section id="resources" className="section home-updates-section">
-      <div className="container">
-        <div className="updates-heading">
-          <h2 className="updates-title">Stay Updated with the Latest <span className="highlight-blue">Opportunities</span></h2>
-          <p className="updates-subtitle">
-            Explore the latest news, scholarships, jobs, events, articles, and platform updates to stay informed and never miss an opportunity.
-          </p>
-        </div>
-
-        <div className="updates-grid">
-          {articles.map((article) => (
-            <article className="update-card" key={article.title}>
-              <span className="update-card-icon">{article.icon}</span>
-              <h3>{article.title}</h3>
-              <p>{article.desc}</p>
-              <button className="update-card-link" onClick={() => alert(`Reading: ${article.title}`)}>
-                Read More <ArrowRight size={14} />
-              </button>
-            </article>
-          ))}
-        </div>
-
-        <div className="newsletter-box">
-          <div className="newsletter-illustration-wrap">
-            <img src={newsletterIllustration} alt="Newsletter and opportunity updates" className="newsletter-illustration" />
-          </div>
-          <div className="newsletter-content">
-            <h3 className="newsletter-title">Never miss an opportunity</h3>
-            <p className="newsletter-desc">Subscribe to receive the latest jobs, scholarships, grants, events, and platform updates directly in your inbox.</p>
-            {!subscribed ? (
-              <form onSubmit={handleSubscribe} className="newsletter-form">
-                <input
-                  type="email"
-                  className="newsletter-input"
-                  placeholder="Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <button type="submit" className="btn btn-primary newsletter-submit">
-                  Subscribe
-                </button>
-              </form>
-            ) : (
-              <div className="newsletter-success">
-                <CheckCircle2 size={18} />
-                <span>Thank you! You have successfully subscribed to alerts.</span>
-              </div>
-            )}
+          <div className="partner-cta-media">
+            <img
+              src={partnerCta}
+              alt="Tumbo community engagement performance event"
+              className="partner-cta-img"
+            />
           </div>
         </div>
       </div>
@@ -907,7 +778,6 @@ export const Home: React.FC = () => {
       <EmpoweringCommunities />
       <Testimonials />
       <TrustedPartners />
-      <LatestNews />
     </>
   );
 };

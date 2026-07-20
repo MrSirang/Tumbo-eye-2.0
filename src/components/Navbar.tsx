@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import logo from '../assets/logo.png';
+import logo from '../assets/tumbo-logo-nav.png';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +24,7 @@ export const Navbar: React.FC = () => {
       <div className="container nav-container">
         {/* Logo */}
         <Link to="/" className="logo-link" onClick={closeMenu}>
-          <img src={logo} alt="Tumbo Eye 2.0" className="logo-img" />
+          <img src={logo} alt="Tumbo" className="logo-img" />
         </Link>
 
         {/* Desktop Nav Links */}

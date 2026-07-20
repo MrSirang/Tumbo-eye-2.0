@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   Briefcase,
@@ -11,35 +10,32 @@ import {
   MapPin,
   Calendar,
   Clock,
-  Shield,
-  DollarSign,
-  Laptop,
-  Globe,
-  Home,
-  Bookmark,
-  SlidersHorizontal,
-  ChevronDown,
-  Sparkles,
+  ShieldCheck,
   Handshake,
   FolderCheck,
-  ShieldCheck,
   IdCard,
   Award,
+  RotateCcw,
+  LayoutGrid,
+  List,
+  Tag,
+  Layers,
+  Target,
+  Users,
+  Lightbulb,
+  TrendingUp,
+  Flame,
+  RefreshCw,
+  ChevronDown,
 } from 'lucide-react';
 
-import opportunitiesHero from '../assets/opportunities-hero.png';
-import opportunitiesDevices from '../assets/opportunities-devices.png';
-import opportunitiesCta from '../assets/opportunities-cta-illustration.png';
-import opportunitiesRobot from '../assets/opportunities-ai-robot.png';
-import logoGoogle from '../assets/partner-google.png';
-import logoMicrosoft from '../assets/opp-logo-microsoft.png';
-import logoUct from '../assets/opp-logo-uct.png';
-import logoUndp from '../assets/opp-logo-undp.png';
-import logoUnesco from '../assets/opp-logo-unesco.png';
-import logoWorldBank from '../assets/partner-world-bank.png';
+import oppHeroSpeaker from '../assets/opp-hero-speaker.png';
+import oppFindGroup from '../assets/opp-find-group.png';
+import oppAiRobot from '../assets/opp-ai-robot-new.png';
+import oppReadyBooth from '../assets/opp-ready-booth.png';
 
-type Category = 'Jobs' | 'Scholarships' | 'Internships' | 'Grants' | 'Events';
-type SortKey = 'Latest' | 'Most Popular' | 'Shortlist' | 'Recommended';
+type Category = 'Employment' | 'Scholarships' | 'Internships' | 'Grants' | 'Events';
+type SortKey = 'Latest' | 'Most Popular' | 'Near Me' | 'Recommended';
 
 /* ==========================================================================
    HERO
@@ -50,25 +46,25 @@ const OpportunitiesHero: React.FC = () => (
       <div className="opp-page-hero-content">
         <div className="hero-tag-pill">DISCOVER OPPORTUNITIES</div>
         <h1 className="opp-page-hero-title">
-          Your Gateway to Jobs, Scholarships &{' '}
-          <span className="highlight-blue">Career Growth</span>
+          Matching Opportunities with{' '}
+          <span className="eco2-title-accent">Targeted Potential</span>
         </h1>
         <p className="opp-page-hero-desc">
-          Browse thousands of verified jobs, internships, scholarships, grants, and events from trusted organizations. Find the right opportunity that matches your skills, interests, and career goals—all in one platform.
+          Tumbo intelligently connects verified individuals with employment, education, funding, entrepreneurship and community programmes. Discover opportunities that match your location, skills, qualifications and aspirations.
         </p>
         <div className="hero-btn-group">
-          <a href="#featured" className="btn btn-primary">
+          <a href="#search" className="btn btn-primary">
             Explore Opportunities <ArrowRight size={16} />
           </a>
-          <button className="btn btn-outline" onClick={() => alert('Create Free Account')}>
-            <UserRound size={15} /> Create Free Account
+          <button className="btn btn-outline" onClick={() => alert('Create Your Profile')}>
+            <UserRound size={15} /> Create Your Profile
           </button>
         </div>
       </div>
       <div className="opp-page-hero-visual">
         <img
-          src={opportunitiesHero}
-          alt="Students discovering opportunities on Tumbo Eye 2.0"
+          src={oppHeroSpeaker}
+          alt="Community leader presenting the Tumbo digital engagement app"
           className="opp-page-hero-img"
         />
       </div>
@@ -81,10 +77,10 @@ const OpportunitiesHero: React.FC = () => (
    ========================================================================== */
 const OpportunitiesStats: React.FC = () => {
   const stats = [
-    { icon: <User size={18} />, value: '120K+', label: 'Active User' },
-    { icon: <Briefcase size={18} />, value: '25K+', label: 'Job Opportunities' },
-    { icon: <GraduationCap size={18} />, value: '8K+', label: 'Scholarship' },
-    { icon: <Building2 size={18} />, value: '500+', label: 'Partner Institution' },
+    { icon: <User size={18} />, value: '120K+', label: 'Verified Users' },
+    { icon: <Search size={18} />, value: '25K+', label: 'Opportunities Shared' },
+    { icon: <GraduationCap size={18} />, value: '5K+', label: 'Strategic Partners' },
+    { icon: <Building2 size={18} />, value: '500+', label: 'Community Organizations' },
   ];
 
   return (
@@ -113,12 +109,13 @@ const OpportunitiesStats: React.FC = () => {
    FIND / SEARCH
    ========================================================================== */
 const FindOpportunities: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<Category>('Jobs');
+  const [activeCategory, setActiveCategory] = useState<Category>('Employment');
   const [sortBy, setSortBy] = useState<SortKey>('Latest');
   const [query, setQuery] = useState('');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const categories: { name: Category; icon: React.ReactNode }[] = [
-    { name: 'Jobs', icon: <Briefcase size={16} /> },
+    { name: 'Employment', icon: <Briefcase size={16} /> },
     { name: 'Scholarships', icon: <GraduationCap size={16} /> },
     { name: 'Internships', icon: <IdCard size={16} /> },
     { name: 'Grants', icon: <Award size={16} /> },
@@ -126,14 +123,14 @@ const FindOpportunities: React.FC = () => {
   ];
 
   const filters = [
-    { icon: <MapPin size={15} />, label: 'All locations' },
-    { icon: <Building2 size={15} />, label: 'All Organizations' },
-    { icon: <Laptop size={15} />, label: 'All Options' },
-    { icon: <Calendar size={15} />, label: 'Any Time' },
-    { icon: <UserRound size={15} />, label: 'All Levels' },
+    { icon: <MapPin size={15} />, label: 'Location' },
+    { icon: <Layers size={15} />, label: 'Category' },
+    { icon: <GraduationCap size={15} />, label: 'Level of Study' },
+    { icon: <Clock size={15} />, label: 'Date Posted' },
+    { icon: <Tag size={15} />, label: 'Opportunity Type' },
   ];
 
-  const sorts: SortKey[] = ['Latest', 'Most Popular', 'Shortlist', 'Recommended'];
+  const sorts: SortKey[] = ['Latest', 'Most Popular', 'Near Me', 'Recommended'];
 
   return (
     <section id="search" className="section opp-find-section">
@@ -142,16 +139,16 @@ const FindOpportunities: React.FC = () => {
           <div className="opp-find-copy">
             <div className="hero-tag-pill">FIND OPPORTUNITIES</div>
             <h2 className="opp-page-section-title">
-              Search Opportunities That <span className="highlight-blue">Match Your Goals</span>
+              Find Opportunities That Match <span className="eco2-title-accent">Your Potential</span>
             </h2>
             <p className="opp-find-desc">
-              Use powerful search and smart filters to quickly discover jobs, internships, scholarships, grants, and events that fit your interests and career aspirations.
+              Search verified employment, bursaries, scholarships, grants, internships and community programmes tailored to your profile and career goals.
             </p>
           </div>
           <div className="opp-find-visual">
             <img
-              src={opportunitiesDevices}
-              alt="Tumbo Eye opportunities dashboard on laptop and phone"
+              src={oppFindGroup}
+              alt="Community members connecting at a Tumbo opportunity event"
               className="opp-find-devices-img"
             />
           </div>
@@ -169,7 +166,7 @@ const FindOpportunities: React.FC = () => {
             <input
               type="search"
               className="opp-search-input"
-              placeholder="Search Opportunities, Companies, Universities, or keywords..."
+              placeholder="Search opportunities, organizations, programmes and keywords..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
@@ -191,26 +188,26 @@ const FindOpportunities: React.FC = () => {
               </button>
             ))}
           </div>
+        </div>
 
-          <div className="opp-filters-box">
-            <div className="opp-filters-row">
-              {filters.map((filter) => (
-                <button key={filter.label} type="button" className="opp-filter-select">
-                  {filter.icon}
-                  <span>{filter.label}</span>
-                  <ChevronDown size={14} />
-                </button>
-              ))}
-            </div>
-            <button type="button" className="opp-more-filters" onClick={() => alert('More Filters')}>
-              <SlidersHorizontal size={14} /> More Filters
-            </button>
+        <div className="opp-filters-panel">
+          <div className="opp-filters-row">
+            {filters.map((filter) => (
+              <button key={filter.label} type="button" className="opp-filter-select">
+                {filter.icon}
+                <span>{filter.label}</span>
+                <ChevronDown size={14} />
+              </button>
+            ))}
           </div>
+          <button type="button" className="opp-reset-filters" onClick={() => alert('Filters reset')}>
+            <RotateCcw size={14} /> Reset Filter
+          </button>
         </div>
 
         <div className="opp-results-bar">
           <p className="opp-results-count">
-            <ShieldCheck size={16} /> Showing 1,245 verified opportunities
+            <ShieldCheck size={16} /> Showing 1–20 matching opportunities
           </p>
           <div className="opp-sort-row">
             <span className="opp-sort-label">Sort By:</span>
@@ -224,6 +221,24 @@ const FindOpportunities: React.FC = () => {
                 {sort}
               </button>
             ))}
+            <div className="opp-view-toggles">
+              <button
+                type="button"
+                className={`opp-view-btn ${viewMode === 'grid' ? 'is-active' : ''}`}
+                aria-label="Grid view"
+                onClick={() => setViewMode('grid')}
+              >
+                <LayoutGrid size={16} />
+              </button>
+              <button
+                type="button"
+                className={`opp-view-btn ${viewMode === 'list' ? 'is-active' : ''}`}
+                aria-label="List view"
+                onClick={() => setViewMode('list')}
+              >
+                <List size={16} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -237,165 +252,95 @@ const FindOpportunities: React.FC = () => {
 const FeaturedListings: React.FC = () => {
   const listings = [
     {
-      logo: logoGoogle,
-      logoAlt: 'Google',
-      tag: 'JOB',
-      tagTone: 'job',
-      title: 'Software Engineer',
-      org: 'Google',
-      details: [
-        { icon: <MapPin size={14} />, text: 'Cape Town, South Africa' },
-        { icon: <Briefcase size={14} />, text: 'Full-time' },
-        { icon: <Calendar size={14} />, text: 'Apply Before: Aug 30, 2025' },
-      ],
-      cta: 'Apply Now',
-      solid: true,
-    },
-    {
-      logo: logoUct,
-      logoAlt: 'University of Cape Town',
-      tag: 'SCHOLARSHIP',
-      tagTone: 'scholarship',
-      title: "Master's Scholarship",
-      org: 'University of Cape Town',
-      details: [
-        { icon: <Shield size={14} />, text: 'Fully Funded' },
-        { icon: <Calendar size={14} />, text: 'Intake: 2025' },
-      ],
+      icon: <Briefcase size={20} strokeWidth={1.75} />,
+      title: 'DSV Recruitment Drive',
+      desc: 'Drivers, security guards, cleaners, administration clerks and general workers across South Africa.',
       cta: 'View Details',
-      solid: false,
     },
     {
-      logo: logoUndp,
-      logoAlt: 'UNDP',
-      tag: 'GRANT',
-      tagTone: 'grant',
-      title: 'Startup Innovation Grant',
-      org: 'UNDP',
-      details: [
-        { icon: <DollarSign size={14} />, text: 'Funding: $10,000' },
-        { icon: <Calendar size={14} />, text: 'Deadline: Sep 15, 2025' },
-      ],
+      icon: <Search size={20} strokeWidth={1.75} />,
+      title: 'Mr D Driver Recruitment',
+      desc: 'Vehicle and motorcycle delivery opportunities available in Middelburg.',
       cta: 'Apply Now',
-      solid: true,
     },
     {
-      logo: logoMicrosoft,
-      logoAlt: 'Microsoft',
-      tag: 'INTERNSHIP',
-      tagTone: 'internship',
-      title: 'UI/UX Design Internship',
-      org: 'Microsoft',
-      details: [
-        { icon: <MapPin size={14} />, text: 'Johannesburg' },
-        { icon: <Clock size={14} />, text: '6 Months' },
-      ],
-      cta: 'Apply Now',
-      solid: true,
+      icon: <Lightbulb size={20} strokeWidth={1.75} />,
+      title: 'Government Skills Programme',
+      desc: 'Training and employment opportunities for unemployed youth.',
+      cta: 'Learn More',
     },
     {
-      logo: logoWorldBank,
-      logoAlt: 'World Bank',
-      tag: 'EVENT',
-      tagTone: 'event',
-      title: 'AI & Technology Summit',
-      org: 'World Bank',
-      details: [
-        { icon: <Laptop size={14} />, text: 'Hybrid Event' },
-        { icon: <Calendar size={14} />, text: 'Oct 12, 2025' },
-      ],
+      icon: <Users size={20} strokeWidth={1.75} />,
+      title: 'Community Development Programme',
+      desc: 'Supporting local community growth through education and entrepreneurship.',
+      cta: 'Join Programme',
+    },
+    {
+      icon: <TrendingUp size={20} strokeWidth={1.75} />,
+      title: 'Business Growth Initiative',
+      desc: 'Helping entrepreneurs grow through mentorship and networking.',
+      cta: 'Explore',
+    },
+    {
+      icon: <Flame size={20} strokeWidth={1.75} />,
+      title: 'Youth Leadership Programme',
+      desc: 'Leadership development opportunities for future community leaders.',
       cta: 'Register',
-      solid: false,
-    },
-    {
-      logo: logoUnesco,
-      logoAlt: 'UNESCO',
-      tag: 'PROGRAM',
-      tagTone: 'program',
-      title: 'Community Leadership Program',
-      org: 'UNESCO',
-      details: [
-        { icon: <Globe size={14} />, text: 'Online' },
-        { icon: <Home size={14} />, text: 'Applications Open' },
-      ],
-      cta: 'Join Program',
-      solid: true,
     },
   ];
 
   return (
     <section id="featured" className="section opp-featured-section">
       <div className="container">
-        <div className="opp-featured-panel">
-          <div className="text-center">
-            <div className="section-tag">FEATURED OPPORTUNITIES</div>
-            <h2 className="opp-page-section-title">
-              Explore Verified <span className="highlight-blue">Opportunities</span>
-            </h2>
-            <p className="opp-page-subtitle">
-              Browse hand-picked jobs, internships, scholarships, grants, and events from trusted organizations and institutions.
+        <div className="text-center">
+          <div className="section-tag">FEATURED OPPORTUNITIES</div>
+          <h2 className="opp-page-section-title">
+            Verified <span className="eco2-title-accent">Opportunities</span>
+          </h2>
+          <p className="opp-page-subtitle">
+            Browse verified opportunities from trusted businesses, educational institutions, municipalities and development partners.
+          </p>
+        </div>
+
+        <div className="opp-listings-grid">
+          {listings.map((item) => (
+            <article key={item.title} className="opp-feat-card">
+              <div className="opp-feat-card-head">
+                <span className="opp-feat-card-icon">{item.icon}</span>
+                <h3 className="opp-feat-card-title">{item.title}</h3>
+              </div>
+              <p className="opp-feat-card-desc">{item.desc}</p>
+              <button
+                type="button"
+                className="opp-feat-card-btn"
+                onClick={() => alert(`${item.cta}: ${item.title}`)}
+              >
+                {item.cta} <ArrowRight size={14} />
+              </button>
+            </article>
+          ))}
+        </div>
+
+        <div className="opp-ai-banner">
+          <img
+            src={oppAiRobot}
+            alt=""
+            className="opp-ai-robot"
+            aria-hidden="true"
+          />
+          <div className="opp-ai-copy">
+            <h3 className="opp-ai-title">Looking for the Right Opportunity?</h3>
+            <p className="opp-ai-desc">
+              Let our AI-powered system match you with the right options based on your verified skills, certifications and interests.
             </p>
           </div>
-
-          <div className="opp-listings-grid">
-            {listings.map((item) => (
-              <article key={item.title} className="opp-listing-card">
-                <div className="opp-listing-top">
-                  <div className={`opp-listing-logo-wrap opp-listing-logo-${item.tagTone}`}>
-                    <img src={item.logo} alt={item.logoAlt} className="opp-listing-logo" />
-                  </div>
-                  <button type="button" className="opp-listing-bookmark" aria-label="Bookmark">
-                    <Bookmark size={18} />
-                  </button>
-                </div>
-
-                <div className="opp-listing-meta">
-                  <span className={`opp-listing-tag opp-listing-tag-${item.tagTone}`}>{item.tag}</span>
-                </div>
-                <h3 className="opp-listing-title">{item.title}</h3>
-                <p className="opp-listing-org">{item.org}</p>
-
-                <ul className="opp-listing-details">
-                  {item.details.map((d) => (
-                    <li key={d.text}>
-                      {d.icon}
-                      <span>{d.text}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  type="button"
-                  className={`opp-listing-btn ${item.solid ? 'is-solid' : 'is-outline'}`}
-                  onClick={() => alert(`${item.cta}: ${item.title}`)}
-                >
-                  {item.cta} <ArrowRight size={14} />
-                </button>
-              </article>
-            ))}
-          </div>
-
-          <div className="opp-ai-banner">
-            <img
-              src={opportunitiesRobot}
-              alt=""
-              className="opp-ai-robot"
-              aria-hidden="true"
-            />
-            <div className="opp-ai-copy">
-              <h3 className="opp-ai-title">Can&apos;t Find the Right Opportunity?</h3>
-              <p className="opp-ai-desc">
-                Use AI recommendations to discover personalized opportunities based on your skills and interests.
-              </p>
-            </div>
-            <div className="opp-ai-actions">
-              <button className="btn btn-primary" onClick={() => alert('Get AI Recommendations')}>
-                <Sparkles size={16} /> Get AI Recommendations
-              </button>
-              <a href="#search" className="btn btn-outline">
-                Browse All Opportunities <ArrowRight size={14} />
-              </a>
-            </div>
+          <div className="opp-ai-actions">
+            <button className="btn btn-primary" onClick={() => alert('Get Personalized Matches')}>
+              Get Personalized Matches <ArrowRight size={14} />
+            </button>
+            <a href="#search" className="btn btn-outline">
+              Browse All Opportunities
+            </a>
           </div>
         </div>
       </div>
@@ -411,42 +356,43 @@ const WhyChoose: React.FC = () => {
     {
       icon: <ShieldCheck size={22} />,
       title: 'Verified Opportunities',
-      desc: 'Every opportunity is reviewed and verified before being published.',
+      desc: 'Every opportunity is screened and verified carefully.',
     },
     {
-      icon: <Sparkles size={22} />,
-      title: 'AI Smart Recommendations',
-      desc: 'Receive personalized jobs, scholarships, and grants based on your profile.',
+      icon: <Target size={22} />,
+      title: 'Direct Matching',
+      desc: 'Personalised matches based on your profile and skills.',
     },
     {
       icon: <Handshake size={22} />,
-      title: 'Trusted Partners',
-      desc: 'Access opportunities from governments, universities, NGOs, and global companies.',
+      title: 'Trusted Organizations',
+      desc: 'Connect with businesses, NGOs and government institutions.',
     },
     {
       icon: <FolderCheck size={22} />,
       title: 'Easy Applications',
-      desc: 'Apply faster with a simple and user-friendly application process.',
+      desc: 'Apply quickly using your verified Tumbo profile.',
     },
   ];
 
   const stats = [
-    { icon: <User size={18} />, value: '120K+', label: 'Active User' },
-    { icon: <Briefcase size={18} />, value: '25K+', label: 'Job Opportunities' },
-    { icon: <GraduationCap size={18} />, value: '8.5k+', label: 'Scholarship' },
-    { icon: <Handshake size={18} />, value: '50+', label: 'Partner Organizations' },
+    { icon: <User size={18} />, value: '120K+', label: 'Verified Users' },
+    { icon: <RefreshCw size={18} />, value: '25K+', label: 'Opportunities Shared' },
+    { icon: <GraduationCap size={18} />, value: '8.5K+', label: 'Strategic Partners' },
+    { icon: <Handshake size={18} />, value: '50+', label: 'Partnerships' },
   ];
 
   return (
     <section className="section opp-why-section">
       <div className="container">
         <div className="text-center">
-          <div className="section-tag">WHY CHOOSE TUMBO EYE</div>
+          <div className="section-tag">WHY CHOOSE TUMBO</div>
           <h2 className="opp-page-section-title">
-            Why Millions Trust Tumbo <span className="highlight-blue">Eye 2.0</span>
+            Why Thousands Trust the Tumbo{' '}
+            <span className="eco2-title-accent">Digital Ecosystem</span>
           </h2>
           <p className="opp-page-subtitle">
-            We connect students, professionals, entrepreneurs, and organizations through a trusted platform that delivers verified opportunities and AI-powered recommendations.
+            Our intelligent platform connects verified individuals, communities, businesses and government institutions through secure digital identity and smart opportunity matching.
           </p>
         </div>
 
@@ -476,21 +422,21 @@ const WhyChoose: React.FC = () => {
           <div className="opp-ready-copy">
             <h3 className="opp-ready-title">Ready to Discover Your Next Opportunity?</h3>
             <p className="opp-ready-desc">
-              Create a free account to save opportunities, get AI recommendations, and apply faster.
+              Join the Tumbo Digital Ecosystem and unlock endless opportunities for growth that match your skills, interests and career goals.
             </p>
             <div className="opp-ready-actions">
-              <button className="btn btn-white" onClick={() => alert('Get Started')}>
-                Get Started
+              <a href="#search" className="btn btn-white">
+                Explore Opportunities
+              </a>
+              <button className="btn opp-ready-outline" onClick={() => alert('Create Your Profile')}>
+                Create Your Profile
               </button>
-              <Link to="/about" className="btn opp-ready-outline">
-                Learn More
-              </Link>
             </div>
           </div>
           <div className="opp-ready-visual">
             <img
-              src={opportunitiesCta}
-              alt="Student exploring opportunities on a laptop"
+              src={oppReadyBooth}
+              alt="Tumbo community engagement booth at an outdoor event"
               className="opp-ready-img"
             />
           </div>
