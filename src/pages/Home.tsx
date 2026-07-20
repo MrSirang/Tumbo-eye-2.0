@@ -56,8 +56,8 @@ const HeroSection: React.FC = () => {
             EMPOWERING PEOPLE. CONNECTING OPPORTUNITIES.
           </div>
           <h1 className="hero-title">
-          Replace 'Gateway Opportunities' with: Matching{' '}
-            <span className="hero-title-blue">Opportunities with Targeted </span>
+          Matching
+            <span className="hero-title-blue"> Opportunities with Targeted </span>
             <span className="hero-title-blue hero-title-potential">
               Potential
               <span className="hero-title-underline"></span>
