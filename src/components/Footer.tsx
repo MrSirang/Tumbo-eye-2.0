@@ -34,8 +34,8 @@ export const Footer: React.FC = () => {
               <li><Link to="/ecosystem" className="footer-link" onClick={handleScrollTop}>Ecosystem</Link></li>
               <li><Link to="/partners" className="footer-link" onClick={handleScrollTop}>Partners</Link></li>
               <li><Link to="/opportunities" className="footer-link" onClick={handleScrollTop}>Opportunities</Link></li>
-              <li><Link to="/#resources" className="footer-link">Resources</Link></li>
-              <li><Link to="/#contact" className="footer-link">Contact</Link></li>
+              <li><Link to="/resources" className="footer-link" onClick={handleScrollTop}>Resources</Link></li>
+              <li><Link to="/contact" className="footer-link">Contact</Link></li>
             </ul>
           </div>
 

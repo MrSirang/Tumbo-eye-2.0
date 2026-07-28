@@ -61,7 +61,7 @@ const AboutHero: React.FC = () => (
           <Link to="/#opportunities" className="btn btn-primary">
             Explore Opportunities <ArrowRight size={16} />
           </Link>
-          <Link to="/#contact" className="btn btn-outline">
+          <Link to="/contact" className="btn btn-outline">
             Contact Us <Phone size={14} />
           </Link>
         </div>

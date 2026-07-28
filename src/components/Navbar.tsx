@@ -51,14 +51,14 @@ export const Navbar: React.FC = () => {
               </NavLink>
             </li>
             <li>
-              <Link to="/#resources" className="nav-item-link" onClick={() => handleNavClick('resources')}>
+              <NavLink to="/resources" className={({ isActive }) => `nav-item-link ${isActive ? 'active' : ''}`}>
                 Resources
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/#testimonials" className="nav-item-link" onClick={() => handleNavClick('testimonials')}>
+              <NavLink to="/success-stories" className={({ isActive }) => `nav-item-link ${isActive ? 'active' : ''}`}>
                 Success Stories
-              </Link>
+              </NavLink>
             </li>
             <li>
               <NavLink to="/partners" className={({ isActive }) => `nav-item-link ${isActive ? 'active' : ''}`}>
@@ -66,9 +66,9 @@ export const Navbar: React.FC = () => {
               </NavLink>
             </li>
             <li>
-              <Link to="/#contact" className="nav-item-link" onClick={() => handleNavClick('contact')}>
+              <NavLink to="/contact" className={({ isActive }) => `nav-item-link ${isActive ? 'active' : ''}`}>
                 Contact
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
@@ -113,14 +113,14 @@ export const Navbar: React.FC = () => {
             </NavLink>
           </li>
           <li>
-            <Link to="/#resources" className="mobile-nav-item-link" onClick={() => handleNavClick('resources')}>
+            <NavLink to="/resources" className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`} onClick={closeMenu}>
               Resources
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/#testimonials" className="mobile-nav-item-link" onClick={() => handleNavClick('testimonials')}>
+            <NavLink to="/success-stories" className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`} onClick={closeMenu}>
               Success Stories
-            </Link>
+            </NavLink>
           </li>
           <li>
             <NavLink to="/partners" className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`} onClick={closeMenu}>
@@ -128,9 +128,9 @@ export const Navbar: React.FC = () => {
             </NavLink>
           </li>
           <li>
-            <Link to="/#contact" className="mobile-nav-item-link" onClick={() => handleNavClick('contact')}>
+            <NavLink to="/contact" className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`} onClick={closeMenu}>
               Contact
-            </Link>
+            </NavLink>
           </li>
         </ul>
 

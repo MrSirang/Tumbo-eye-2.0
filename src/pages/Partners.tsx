@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
-  ArrowDown,
   GraduationCap,
   Globe,
   Rocket,
@@ -21,8 +20,9 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 
-import partnersHero from '../assets/partners-hero.png';
-import partnersStrategicCta from '../assets/partners-strategic-cta.png';
+import partnersHero from '../assets/partners-hero-focus.png';
+import partnersJoinIcon from '../assets/partners-join-icon-v2.png';
+import partnersStrategicCta from '../assets/partners-strategic-event.png';
 import logoOxford from '../assets/partner-logo-oxford.png';
 import logoTechnova from '../assets/partner-logo-technova.png';
 import logoNgo from '../assets/partner-logo-ngo.png';
@@ -39,20 +39,24 @@ const PartnersHero: React.FC = () => (
       <div className="partners-hero-content">
         <div className="hero-tag-pill">PARTNERS</div>
         <h1 className="partners-hero-title">
-          Building Strong Partnerships for{' '}
-          <span className="highlight-blue">Greater Impact</span>
+          Let&apos;s Build Communities <span className="highlight-blue">Together</span>
         </h1>
         <p className="partners-hero-desc">
-          Collaborate with Tumbo Eye 2.0 to empower students, professionals, and communities through education, career opportunities, innovation, and meaningful partnerships.
+          Partner with Tumbo to connect with verified communities, measure social impact and create
+          sustainable opportunities across South Africa. Together, we can strengthen communities
+          through innovation, collaboration and digital inclusion.
         </p>
         <div className="hero-btn-group">
-          <button className="btn btn-primary" onClick={() => alert('Become a Partner')}>
-            Become a Partner <ArrowRight size={16} />
+          <button className="btn btn-primary" onClick={() => alert('Partner with Tumbo Eye')}>
+            Partner with Tumbo Eye <ArrowRight size={16} />
           </button>
-          <a href="#categories" className="btn btn-outline">
+          <button className="btn btn-outline" onClick={() => alert('Schedule a Meeting')}>
+            Schedule a Meeting
+          </button>
+          <a href="#categories" className="partners-hidden-anchor" aria-hidden="true">
             Explore Partnership Opportunities
           </a>
-        </div>
+        </div> 
       </div>
       <div className="partners-hero-visual">
         <img
@@ -71,24 +75,19 @@ const PartnersHero: React.FC = () => (
 const WhyPartner: React.FC = () => {
   const benefits = [
     {
-      icon: <GraduationCap size={22} strokeWidth={1.75} />,
-      title: 'Access Top Talent',
-      desc: 'Connect with skilled students, professionals, and innovators ready to contribute.',
+      icon: <Globe size={20} strokeWidth={1.9} />,
+      title: 'PCB Power Valves & Nkangala TVET Bursaries',
+      desc: 'Supporting deserving students through bursary programmes that create pathways to higher education and employment.',
     },
     {
-      icon: <Globe size={22} strokeWidth={1.75} />,
-      title: 'Expand Your Network',
-      desc: 'Join a growing ecosystem of universities, companies, NGOs, and government partners.',
+      icon: <Shuffle size={20} strokeWidth={1.9} />,
+      title: 'PPT Mpumalanga U12 Netball Sponsorship',
+      desc: 'Empowering young athletes through grassroots sports development and community sponsorship.',
     },
     {
-      icon: <Rocket size={22} strokeWidth={1.75} />,
-      title: 'Drive Innovation',
-      desc: 'Collaborate on programs that create real opportunities and lasting change.',
-    },
-    {
-      icon: <TrendingUp size={22} strokeWidth={1.75} />,
-      title: 'Increase Your Impact',
-      desc: 'Amplify your mission by reaching more people through our platform.',
+      icon: <Rocket size={20} strokeWidth={1.9} />,
+      title: 'School of Excellence (SoE) Social Club',
+      desc: 'Creating opportunities for youth through education, leadership and community sporting initiatives.',
     },
   ];
 
@@ -97,16 +96,17 @@ const WhyPartner: React.FC = () => {
       <div className="container">
         <div className="partners-why-card">
           <div className="text-center partners-why-header">
-            <div className="section-tag">WHY PARTNER WITH US</div>
+            <div className="section-tag">PARTNER SUCCESS STORIES</div>
             <h2 className="partners-page-title">
-              Create Greater Impact <span className="highlight-blue">Together</span>
+              Partnerships Creating <span className="highlight-blue">Real Impact</span>
             </h2>
             <p className="partners-page-subtitle">
-              Partnering with Tumbo Eye 2.0 means joining a mission-driven platform that connects people to opportunities and helps organizations create meaningful impact.
+              Discover how partnerships are working with Tumbo to empower communities, expand
+              opportunities and create measurable social impact.
             </p>
           </div>
 
-          <div className="partners-why-grid">
+          <div className="partners-why-grid partners-why-grid-three">
             {benefits.map((item) => (
               <article key={item.title} className="partners-why-item">
                 <div className="partners-why-icon">{item.icon}</div>
@@ -118,15 +118,17 @@ const WhyPartner: React.FC = () => {
 
           <div className="partners-blue-banner">
             <div className="partners-blue-banner-copy">
-              <p className="partners-blue-banner-eyebrow">BUILDING THE FUTURE TOGETHER</p>
-              <h3 className="partners-blue-banner-title">Join Our Growing Partner Network</h3>
-              <button className="btn btn-white" onClick={() => alert('Become a Partner Today')}>
-                Become a Partner Today <ArrowDown size={15} />
+              <p className="partners-blue-banner-eyebrow">PARTNERSHIP OPPORTUNITIES</p>
+              <h3 className="partners-blue-banner-title">Join Hundreds of Trusted Partners</h3>
+              <p className="partners-blue-banner-desc">
+                Become part of South Africa&apos;s Digital Inclusion Ecosystem and help create opportunities that transform communities.
+              </p>
+              <button className="btn btn-white" onClick={() => alert('Become a Partner')}>
+                Become a Partner
               </button>
             </div>
             <div className="partners-blue-banner-art" aria-hidden="true">
-              <Handshake size={72} strokeWidth={1.25} />
-              <CheckCircle2 size={28} className="partners-blue-banner-check" />
+              <img src={partnersJoinIcon} alt="" className="partners-blue-banner-img-icon" />
             </div>
           </div>
         </div>
@@ -143,38 +145,38 @@ const PartnershipCategories: React.FC = () => {
     {
       num: '01',
       icon: <GraduationCap size={20} strokeWidth={1.75} />,
-      title: 'Universities',
-      desc: 'Collaborate on education, research, and student development.',
+      title: 'Businesses',
+      desc: 'Connect with verified communities and grow local economic inclusion.',
     },
     {
       num: '02',
       icon: <Building2 size={20} strokeWidth={1.75} />,
-      title: 'Companies',
-      desc: 'Hire top talent, sponsor programs, and support career growth.',
+      title: 'Municipalities',
+      desc: 'Coordinate civic opportunities and targeted social impact initiatives.',
     },
     {
       num: '03',
       icon: <Shield size={20} strokeWidth={1.75} />,
       title: 'NGOs',
-      desc: 'Work together on community projects and social impact initiatives.',
+      desc: 'Reach vulnerable communities with programmes and support services.',
     },
     {
       num: '04',
       icon: <Landmark size={20} strokeWidth={1.75} />,
       title: 'Government',
-      desc: 'Support national education, workforce, and innovation programs.',
+      desc: 'Align with national priorities using inclusive digital delivery channels.',
     },
     {
       num: '05',
       icon: <Rocket size={20} strokeWidth={1.75} />,
-      title: 'Startups',
-      desc: 'Connect with emerging talent, mentors, and investors.',
+      title: 'Educational Institutions',
+      desc: 'Connect learners with opportunities, bursaries and practical pathways.',
     },
     {
       num: '06',
       icon: <Sparkles size={20} strokeWidth={1.75} />,
-      title: 'Investors & Sponsors',
-      desc: 'Fund scholarships, innovation programs, and entrepreneurial initiatives.',
+      title: 'Development Partners',
+      desc: 'Measure programme outcomes through trusted reporting and collaboration.',
     },
   ];
 
@@ -187,7 +189,8 @@ const PartnershipCategories: React.FC = () => {
             Who Can Partner <span className="highlight-blue">With Us</span>
           </h2>
           <p className="partners-page-subtitle">
-            We collaborate with organizations across education, business, government, and innovation to create meaningful opportunities worldwide.
+            We collaborate with organisations across multiple sectors to create sustainable
+            opportunities and strengthen communities throughout South Africa.
           </p>
         </div>
 
@@ -209,7 +212,7 @@ const PartnershipCategories: React.FC = () => {
             Find the Right Partnership for Your Organization
           </h3>
           <p className="partners-categories-cta-desc">
-            Let&apos;s build something impactful together and create opportunities that change lives.
+            Let&apos;s work together to deliver opportunities that empower and strengthen communities.
           </p>
           <button className="btn btn-primary" onClick={() => alert('Explore Partnership Options')}>
             Explore Partnership Options <ArrowRight size={16} />
@@ -228,29 +231,29 @@ const PartnershipProcess: React.FC = () => {
     {
       num: 1,
       icon: <FileText size={18} strokeWidth={1.75} />,
-      title: 'Apply',
-      desc: 'Submit your partnership application.',
+      title: 'Connect',
+      desc: 'Meet with our partnership team and align objectives.',
       active: false,
     },
     {
       num: 2,
       icon: <Shuffle size={18} strokeWidth={1.75} />,
-      title: 'Connect',
-      desc: 'Meet with our partnership team.',
+      title: 'Plan',
+      desc: 'Collaboratively design the right partnership model.',
       active: true,
     },
     {
       num: 3,
       icon: <ClipboardList size={18} strokeWidth={1.75} />,
-      title: 'Collaborate',
-      desc: 'Plan and launch initiatives together.',
+      title: 'Launch',
+      desc: 'Deliver opportunities and community programmes together.',
       active: false,
     },
     {
       num: 4,
       icon: <TrendingUp size={18} strokeWidth={1.75} />,
-      title: 'Grow',
-      desc: 'Measure impact and expand opportunities.',
+      title: 'Measure',
+      desc: 'Track social impact and strengthen long-term outcomes.',
       active: false,
     },
   ];
@@ -258,51 +261,52 @@ const PartnershipProcess: React.FC = () => {
   return (
     <section className="section partners-process-section">
       <div className="container">
-        <div className="text-center">
-          <div className="section-tag">HOW IT WORKS</div>
-          <h2 className="partners-page-title">
-            Our Simple Partnership <span className="highlight-blue">Process</span>
-          </h2>
-          <p className="partners-page-subtitle">
-            Become a partner in just a few simple steps and start creating meaningful impact together.
-          </p>
-        </div>
-
-        <div className="partners-process-track" aria-hidden="true">
-          {steps.map((step, i) => (
-            <React.Fragment key={step.num}>
-              <div className="partners-process-node">{step.num}</div>
-              {i < steps.length - 1 && <div className="partners-process-line" />}
-            </React.Fragment>
-          ))}
-        </div>
-
-        <div className="partners-process-grid">
-          {steps.map((step) => (
-            <article
-              key={step.num}
-              className={`partners-process-card ${step.active ? 'is-active' : ''}`}
-            >
-              <div className="partners-process-icon">{step.icon}</div>
-              <h3 className="partners-process-title">{step.title}</h3>
-              <p className="partners-process-desc">{step.desc}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className="partners-journey-banner">
-          <div className="partners-journey-copy">
-            <h3 className="partners-journey-title">Ready to Start Your Partnership Journey?</h3>
-            <p className="partners-journey-desc">
-              Join hands with Tumbo Eye 2.0 and be part of a community that empowers lives and builds a better future.
+        <div className="partners-process-panel">
+          <div className="text-center">
+            <div className="section-tag">HOW IT WORKS</div>
+            <h2 className="partners-page-title">
+              Our Simple Partnership <span className="highlight-blue">Process</span>
+            </h2>
+            <p className="partners-page-subtitle">
+              Become a strategic partner in four simple steps and start creating measurable impact.
             </p>
-            <button className="btn btn-white" onClick={() => alert('Apply for Partnership')}>
-              Apply for Partnership
-            </button>
           </div>
-          <div className="partners-journey-art" aria-hidden="true">
-            <Handshake size={80} strokeWidth={1.2} />
-            <CheckCircle2 size={30} className="partners-journey-check" />
+
+          <div className="partners-process-track" aria-hidden="true">
+            {steps.map((step, i) => (
+              <React.Fragment key={step.num}>
+                <div className="partners-process-node">{step.num}</div>
+                {i < steps.length - 1 && <div className="partners-process-line" />}
+              </React.Fragment>
+            ))}
+          </div>
+
+          <div className="partners-process-grid">
+            {steps.map((step) => (
+              <article
+                key={step.num}
+                className={`partners-process-card ${step.active ? 'is-active' : ''}`}
+              >
+                <div className="partners-process-icon">{step.icon}</div>
+                <h3 className="partners-process-title">{step.title}</h3>
+                <p className="partners-process-desc">{step.desc}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="partners-journey-banner">
+            <div className="partners-journey-copy">
+              <h3 className="partners-journey-title">Ready to Start Your Partnership Journey?</h3>
+              <p className="partners-journey-desc">
+                Join businesses, municipalities, NGOs and government institutions creating opportunities through Tumbo.
+              </p>
+              <button className="btn btn-white" onClick={() => alert('Apply for Partnership')}>
+                Apply for Partnership
+              </button>
+            </div>
+            <div className="partners-journey-art" aria-hidden="true">
+              <img src={partnersJoinIcon} alt="" className="partners-journey-img-icon" />
+            </div>
           </div>
         </div>
       </div>
@@ -427,14 +431,16 @@ const StrategicPartnerCTA: React.FC = () => (
             Ready to Become Our Next Strategic Partner?
           </h2>
           <p className="partners-strategic-desc">
-            Join universities, companies, NGOs, and organizations already creating opportunities and lasting impact through Tumbo Eye 2.0.
+            Whether you&apos;re a business, municipality, government department, NGO or development
+            partner, Tumbo helps you connect with verified communities, measure impact and create
+            sustainable opportunities.
           </p>
           <div className="partners-strategic-actions">
-            <Link to="/#testimonials" className="btn btn-white">
-              Success Stories <ArrowDown size={15} />
+            <Link to="/partners" className="btn btn-white">
+              Partner with Tumbo Eye <ArrowRight size={15} />
             </Link>
-            <Link to="/about" className="btn partners-strategic-outline">
-              About Tumbo Eye
+            <Link to="/partners" className="btn partners-strategic-outline">
+              Schedule a Meeting
             </Link>
           </div>
         </div>
@@ -459,7 +465,6 @@ export const Partners: React.FC = () => (
     <WhyPartner />
     <PartnershipCategories />
     <PartnershipProcess />
-    <PartnerTestimonials />
     <StrategicPartnerCTA />
   </>
 );
