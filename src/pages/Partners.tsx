@@ -13,22 +13,11 @@ import {
   FileText,
   Shuffle,
   ClipboardList,
-  Briefcase,
-  Users,
-  Handshake,
-  Star,
-  CheckCircle2,
 } from 'lucide-react';
 
 import partnersHero from '../assets/partners-hero-focus.png';
 import partnersJoinIcon from '../assets/partners-join-icon-v2.png';
 import partnersStrategicCta from '../assets/partners-strategic-event.png';
-import logoOxford from '../assets/partner-logo-oxford.png';
-import logoTechnova from '../assets/partner-logo-technova.png';
-import logoNgo from '../assets/partner-logo-ngo.png';
-import photoJames from '../assets/partner-testimonial-james.png';
-import photoSarah from '../assets/partner-testimonial-sarah.png';
-import photoMaria from '../assets/team-amina-hassan.png';
 
 /* ==========================================================================
    HERO
@@ -308,110 +297,6 @@ const PartnershipProcess: React.FC = () => {
               <img src={partnersJoinIcon} alt="" className="partners-journey-img-icon" />
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-/* ==========================================================================
-   TESTIMONIALS
-   ========================================================================== */
-const PartnerTestimonials: React.FC = () => {
-  const testimonials = [
-    {
-      logo: logoOxford,
-      logoAlt: 'University of Oxford',
-      badgeIcon: <GraduationCap size={14} />,
-      badge: 'University Partner',
-      org: 'Oxford University',
-      quote:
-        'Partnering with Tumbo Eye 2.0 helped us connect with talented students and expand our global outreach.',
-      photo: photoJames,
-      name: 'Dr. James Wilson',
-      role: 'Head of Recruitment',
-    },
-    {
-      logo: logoTechnova,
-      logoAlt: 'Technova',
-      badgeIcon: <Briefcase size={14} />,
-      badge: 'Corporate Partner',
-      org: 'Technova Solutions',
-      quote:
-        'We discovered exceptional talent and built a stronger recruitment pipeline through this partnership.',
-      photo: photoSarah,
-      name: 'Sarah Miller',
-      role: 'Chief Talent Officer',
-    },
-    {
-      logo: logoNgo,
-      logoAlt: 'NGO Partners',
-      badgeIcon: <Users size={14} />,
-      badge: 'NGO Partner',
-      org: 'Youth Impact Foundation',
-      quote:
-        "Together, we've empowered thousands of young people with education and career opportunities.",
-      photo: photoMaria,
-      name: 'Maria Lopez',
-      role: 'Founder & Director',
-    },
-  ];
-
-  return (
-    <section className="section partners-testimonials-section">
-      <div className="container">
-        <div className="text-center">
-          <div className="section-tag">TESTIMONIALS</div>
-          <h2 className="partners-page-title">
-            See What Our Partners <span className="highlight-blue">Say</span>
-          </h2>
-          <p className="partners-page-subtitle">
-            Hear from universities, companies, NGOs, and organizations that have partnered with Tumbo Eye 2.0 to create meaningful impact.
-          </p>
-        </div>
-
-        <div className="partners-testimonials-grid">
-          {testimonials.map((t) => (
-            <article key={t.org} className="partners-testimonial-card">
-              <div className="partners-testimonial-logo-wrap">
-                <img src={t.logo} alt={t.logoAlt} className="partners-testimonial-logo" />
-              </div>
-              <div className="partners-testimonial-badge">
-                <span className="partners-testimonial-badge-icon">{t.badgeIcon}</span>
-                {t.badge}
-              </div>
-              <h3 className="partners-testimonial-org">{t.org}</h3>
-              <p className="partners-testimonial-quote">&ldquo;{t.quote}&rdquo;</p>
-              <div className="partners-testimonial-footer">
-                <img src={t.photo} alt={t.name} className="partners-testimonial-photo" />
-                <div>
-                  <p className="partners-testimonial-name">{t.name}</p>
-                  <p className="partners-testimonial-role">{t.role}</p>
-                  <div className="partners-testimonial-stars" aria-label="5 star rating">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={14} fill="#f59e0b" strokeWidth={0} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="partners-join-banner">
-          <div className="partners-join-banner-icon" aria-hidden="true">
-            <Handshake size={36} strokeWidth={1.5} />
-            <CheckCircle2 size={18} className="partners-join-banner-check" />
-          </div>
-          <div className="partners-join-banner-copy">
-            <h3 className="partners-join-banner-title">Join Hundreds of Trusted Partners</h3>
-            <p className="partners-join-banner-desc">
-              Become part of a growing network committed to creating opportunity.
-            </p>
-          </div>
-          <button className="btn btn-white" onClick={() => alert('Become a Partner')}>
-            Become a Partner
-          </button>
         </div>
       </div>
     </section>
