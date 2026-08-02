@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
 import heroStudent from '../assets/hero-student.png';
 import featuredOppDsv from '../assets/featured-opp-dsv.png';
 import featuredOppMrd from '../assets/featured-opp-mrd.png';
@@ -20,6 +21,9 @@ import partnerMastercard from '../assets/partner-mastercard.png';
 import partnerAws from '../assets/partner-aws.png';
 import partnerDell from '../assets/partner-dell.png';
 import partnerBritishCouncil from '../assets/partner-british-council.png';
+import { Reveal } from '../components/Reveal';
+import { AnimatedStat } from '../components/AnimatedStat';
+import SplitText from '../components/SplitText';
 import {
   ArrowRight,
   Briefcase,
@@ -33,7 +37,7 @@ import {
   Globe,
   Landmark,
   ShieldCheck,
-  Cpu,
+  Eye,
   Store,
   Settings2,
   Trophy,
@@ -47,38 +51,51 @@ import {
    SUB-COMPONENT: HERO SECTION
    ========================================================================== */
 const HeroSection: React.FC = () => {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="section section-blue-bg hero-outer-section">
+      <div className="hero-atmosphere" aria-hidden="true" />
       <div className="container hero-grid">
         {/* Left Content Column */}
-        <div className="hero-left-col">
+        <motion.div
+          className="hero-left-col"
+          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="hero-brand-mark">Tumbo</p>
           <div className="hero-tag-pill">
-            EMPOWERING PEOPLE. CONNECTING OPPORTUNITIES.
+            Built in South Africa for African communities
           </div>
-          <h1 className="hero-title">
-          Matching
-            <span className="hero-title-blue"> Opportunities with Targeted </span>
-            <span className="hero-title-blue hero-title-potential">
-              Potential
-              <span className="hero-title-underline"></span>
-            </span>
-          </h1>
+          <SplitText
+            tag="h1"
+            text="Digital community empowerment through trusted technology "
+            className="hero-title hero-title-split"
+            delay={40}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-80px"
+            textAlign="left"
+          />
           <p className="hero-subtitle-text">
-            Tumbo is South Africa&apos;s Digital Inclusion Ecosystem, intelligently connecting verified individuals, businesses, communities and government institutions with opportunities that create measurable impact. Whether you&apos;re searching for employment, funding, skills development, business opportunities or community programmes, Tumbo ensures opportunities reach the right people at the right time.
+            Tumbo is a South African digital community empowerment platform that helps
+            communities, businesses, governments and development partners connect through
+            verified data, digital identity and community-driven services—so opportunity
+            reaches the right people at the right time.
           </p>
-          
+
           <div className="hero-btn-group">
             <Link to="/opportunities" className="btn btn-primary hero-btn-primary">
               Explore Opportunities <ArrowRight size={16} />
             </Link>
-            <button
-              className="btn btn-outline hero-btn-outline"
-              onClick={() => {
-                document.getElementById('ecosystem')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
+            <Link to="/ecosystem" className="btn btn-outline hero-btn-outline">
               Explore Ecosystem <ArrowRight size={16} />
-            </button>
+            </Link>
           </div>
 
           <div className="hero-trust-row">
@@ -90,13 +107,18 @@ const HeroSection: React.FC = () => {
               <div className="hero-avatar-plus">+15K</div>
             </div>
             <div className="hero-trust-text">
-              Trusted by thousands of students, professionals, and partners worldwide.
+              Trusted by communities, students, professionals and partners across South Africa.
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Visual Column */}
-        <div className="hero-right-col">
+        <motion.div
+          className="hero-right-col"
+          initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="hero-visual-wrapper">
             {/* Soft halo circle behind the portrait */}
             <div className="hero-circle-bg"></div>
@@ -209,7 +231,7 @@ const HeroSection: React.FC = () => {
             </div>
 
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -222,7 +244,7 @@ const StatsRow: React.FC = () => {
   const stats = [
     {
       num: '120K+',
-      label: 'Active User',
+      label: 'Active Users',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -241,8 +263,8 @@ const StatsRow: React.FC = () => {
       ),
     },
     {
-      num: '8k+',
-      label: 'Scholarship',
+      num: '8K+',
+      label: 'Scholarships',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28">
           <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
@@ -252,7 +274,7 @@ const StatsRow: React.FC = () => {
     },
     {
       num: '500+',
-      label: 'Partner Institution',
+      label: 'Partner Institutions',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28">
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -262,7 +284,7 @@ const StatsRow: React.FC = () => {
     },
     {
       num: '50+',
-      label: 'Countries Reached',
+      label: 'Communities Reached',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28">
           <circle cx="12" cy="12" r="10" />
@@ -276,20 +298,20 @@ const StatsRow: React.FC = () => {
   return (
     <div className="stats-pill-wrapper">
       <div className="container stats-pill-container">
-        <div className="stats-pill-card">
+        <Reveal className="stats-pill-card">
           {stats.map((stat, i) => (
-            <React.Fragment key={i}>
+            <React.Fragment key={stat.label}>
               <div className="stats-pill-item">
                 <div className="stats-pill-icon">{stat.icon}</div>
                 <div className="stats-pill-text">
-                  <span className="stats-pill-num">{stat.num}</span>
+                  <AnimatedStat value={stat.num} className="stats-pill-num" />
                   <span className="stats-pill-label">{stat.label}</span>
                 </div>
               </div>
               {i < stats.length - 1 && <div className="stats-pill-divider" />}
             </React.Fragment>
           ))}
-        </div>
+        </Reveal>
       </div>
     </div>
   );
@@ -321,7 +343,7 @@ const FeaturedOpportunities: React.FC = () => {
   return (
     <section id="opportunities" className="section featured-opportunities-section">
       <div className="container">
-        <div className="featured-opp-header text-center">
+        <Reveal className="featured-opp-header text-center">
           <div className="section-tag">DISCOVER OPPORTUNITIES</div>
           <h2 className="section-title">
             Featured <span className="highlight-blue">Opportunities</span>
@@ -329,31 +351,29 @@ const FeaturedOpportunities: React.FC = () => {
           <p className="section-subtitle featured-opp-subtitle">
             Every opportunity published through Tumbo is designed to reach verified individuals based on location, skills, qualifications and community data. Rather than relying on mass applications, Tumbo intelligently connects opportunities with people who meet the required criteria—creating better outcomes for both applicants and organisations.
           </p>
-        </div>
+        </Reveal>
 
         <div className="featured-listing-grid">
-          {listings.map((item) => (
-            <article key={item.title} className="featured-listing-card">
-              <div className="featured-listing-image-wrap">
-                <img src={item.image} alt={item.imageAlt} className="featured-listing-image" />
-              </div>
-              <div className="featured-listing-body">
-                <h3 className="featured-listing-title">{item.title}</h3>
-                <p className="featured-listing-meta">
-                  <strong>Location :</strong> {item.location}
-                  <span className="featured-listing-meta-sep">|</span>
-                  <strong>Category :</strong> {item.category}
-                </p>
-                <p className="featured-listing-desc">{item.desc}</p>
-                <button
-                  type="button"
-                  className="btn btn-primary featured-listing-btn"
-                  onClick={() => alert(`Apply: ${item.title}`)}
-                >
-                  Apply Now <ArrowRight size={15} />
-                </button>
-              </div>
-            </article>
+          {listings.map((item, index) => (
+            <Reveal key={item.title} delay={index * 0.08}>
+              <article className="featured-listing-card">
+                <div className="featured-listing-image-wrap">
+                  <img src={item.image} alt={item.imageAlt} className="featured-listing-image" />
+                </div>
+                <div className="featured-listing-body">
+                  <h3 className="featured-listing-title">{item.title}</h3>
+                  <p className="featured-listing-meta">
+                    <strong>Location :</strong> {item.location}
+                    <span className="featured-listing-meta-sep">|</span>
+                    <strong>Category :</strong> {item.category}
+                  </p>
+                  <p className="featured-listing-desc">{item.desc}</p>
+                  <Link to="/opportunities" className="btn btn-primary featured-listing-btn">
+                    View Opportunity <ArrowRight size={15} />
+                  </Link>
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -367,33 +387,38 @@ const FeaturedOpportunities: React.FC = () => {
 const EcosystemOverview: React.FC = () => {
   const features = [
     {
+      title: 'Tumbo Eye',
+      desc: 'The single sign-on hub and AI brain of the ecosystem—landing and discovery layer with progressive activation that guides users into the right services.',
+      link: 'Explore Eye',
+      to: '/ecosystem',
+      icon: <Eye size={22} strokeWidth={1.75} />,
+    },
+    {
       title: 'Tumbo App',
-      desc: 'The community-facing platform where individuals register, verify their identity and gain access to employment, training, funding, bursaries and community programmes.',
+      desc: 'Community data collection with ten category forms and field agent tools—so citizens register once, verify once, and securely access multiple services.',
       link: 'Learn More',
+      to: '/ecosystem',
       icon: <ShieldCheck size={22} strokeWidth={1.75} />,
     },
     {
       title: 'Tumbo Biz',
-      desc: 'Helping businesses discover customers, suppliers, community partners and verified local talent while measuring social investment and impact.',
+      desc: 'Business engagement with CSI and B-BBEE tracking plus a community data marketplace for partners seeking verified local insight and talent.',
       link: 'Explore Biz',
+      to: '/ecosystem',
       icon: <Settings2 size={22} strokeWidth={1.75} />,
     },
     {
       title: 'Tumbo Gov',
-      desc: 'Helping municipalities and government departments engage communities, verify beneficiaries and improve service delivery.',
+      desc: 'Municipal integration with service delivery tracking and policy insight dashboards that help government engage communities with verified data.',
       link: 'Explore Gov',
+      to: '/ecosystem',
       icon: <Landmark size={22} strokeWidth={1.75} />,
     },
     {
-      title: 'Tumbo AI',
-      desc: 'An intelligent assistant providing guidance, information and support across the ecosystem.',
-      link: 'Chat with AI',
-      icon: <Cpu size={22} strokeWidth={1.75} />,
-    },
-    {
-      title: 'Tumbo Ye2',
-      desc: 'A community participation platform supporting township commerce and trusted community engagement.',
+      title: 'Tumbo Ye²',
+      desc: 'An informal marketplace supporting stock pooling, bulk buying and digital storefronts for township commerce and trusted community trade.',
       link: 'Join Community',
+      to: '/ecosystem',
       icon: <Store size={22} strokeWidth={1.75} />,
     },
   ];
@@ -401,64 +426,66 @@ const EcosystemOverview: React.FC = () => {
   return (
     <section id="ecosystem" className="section eco-overview-section">
       <div className="container">
-        <div className="eco-overview-header text-center">
+        <Reveal className="eco-overview-header text-center">
           <div className="section-tag">OUR ECOSYSTEM</div>
           <h2 className="eco-overview-title">
             One Ecosystem. Multiple Solutions.{' '}
             <span className="eco-overview-title-blue">Unlimited Opportunity.</span>
           </h2>
           <p className="eco-overview-subtitle">
-            To digitally connect every community with opportunities that improve livelihoods while enabling businesses and government to make informed, data-driven decisions.
+            A unified digital ecosystem enabling trusted data collection, digital identity,
+            artificial intelligence and community-driven services—built for African communities.
           </p>
           <h3 className="eco-overview-unique-title">What Makes Tumbo Unique</h3>
           <p className="eco-overview-unique-desc">
-            Unlike traditional recruitment or business platforms, Tumbo combines verified identity, community intelligence and digital services into one integrated ecosystem.
+            Tumbo addresses fragmented and unverified community data by letting citizens register
+            once, verify once, and securely access multiple services across one trusted platform.
           </p>
-        </div>
+        </Reveal>
 
         <div className="eco-overview-grid">
-          {features.map((feature) => (
-            <div key={feature.title} className="eco-overview-card">
-              <div className="eco-overview-card-icon">{feature.icon}</div>
-              <h3 className="eco-overview-card-title">{feature.title}</h3>
-              <p className="eco-overview-card-desc">{feature.desc}</p>
-              <button
-                type="button"
-                className="eco-overview-card-link"
-                onClick={() => alert(feature.link)}
-              >
-                {feature.link} <ArrowRight size={14} />
-              </button>
-            </div>
+          {features.map((feature, index) => (
+            <Reveal key={feature.title} delay={index * 0.06}>
+              <div className="eco-overview-card">
+                <div className="eco-overview-card-icon">{feature.icon}</div>
+                <h3 className="eco-overview-card-title">{feature.title}</h3>
+                <p className="eco-overview-card-desc">{feature.desc}</p>
+                <Link to={feature.to} className="eco-overview-card-link">
+                  {feature.link} <ArrowRight size={14} />
+                </Link>
+              </div>
+            </Reveal>
           ))}
         </div>
 
-        <div className="eco-impact-banner">
-          <div className="eco-impact-banner-media">
-            <img src={ecoBannerMan} alt="Tumbo community event presenter" className="eco-impact-banner-img" />
-          </div>
-          <div className="eco-impact-banner-content">
-            <h3 className="eco-impact-banner-title">
-              Empowering Opportunity. Igniting Hope.{' '}
-              <span className="eco-overview-title-blue">Inspiring Greatness.</span>
-            </h3>
-            <div className="eco-impact-banner-actions">
-              <Link to="/ecosystem" className="btn btn-primary">
-                Explore the Ecosystem <ArrowRight size={16} />
-              </Link>
-              <button type="button" className="btn btn-outline" onClick={() => alert('Get Started')}>
-                Get Started <ArrowRight size={16} />
-              </button>
+        <Reveal>
+          <div className="eco-impact-banner">
+            <div className="eco-impact-banner-media">
+              <img src={ecoBannerMan} alt="Tumbo community event presenter" className="eco-impact-banner-img" />
+            </div>
+            <div className="eco-impact-banner-content">
+              <h3 className="eco-impact-banner-title">
+                Empowering Opportunity. Igniting Hope.{' '}
+                <span className="eco-overview-title-blue">Inspiring Greatness.</span>
+              </h3>
+              <div className="eco-impact-banner-actions">
+                <Link to="/ecosystem" className="btn btn-primary">
+                  Explore the Ecosystem <ArrowRight size={16} />
+                </Link>
+                <Link to="/about" className="btn btn-outline">
+                  About Tumbo <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+            <div className="eco-impact-banner-media">
+              <img
+                src={ecoBannerWoman}
+                alt="Tumbo Digital Community Engagement App launch"
+                className="eco-impact-banner-img"
+              />
             </div>
           </div>
-          <div className="eco-impact-banner-media">
-            <img
-              src={ecoBannerWoman}
-              alt="Tumbo Digital Community Engagement App launch"
-              className="eco-impact-banner-img"
-            />
-          </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -504,7 +531,7 @@ const EmpoweringCommunities: React.FC = () => {
   return (
     <section id="communities" className="section communities-section">
       <div className="container">
-        <div className="communities-header text-center">
+        <Reveal className="communities-header text-center">
           <div className="section-tag">COMMUNITIES</div>
           <h2 className="communities-title">
             Matching Opportunities with{' '}
@@ -513,16 +540,18 @@ const EmpoweringCommunities: React.FC = () => {
               <span className="communities-title-underline" aria-hidden="true" />
             </span>
           </h2>
-        </div>
+        </Reveal>
 
         <div className="communities-grid">
-          {communities.map((item) => (
-            <article key={item.title} className="communities-card">
-              <div className="communities-card-icon">{item.icon}</div>
-              <h3 className="communities-card-title">{item.title}</h3>
-              <div className="communities-card-divider" aria-hidden="true" />
-              <p className="communities-card-desc">{item.desc}</p>
-            </article>
+          {communities.map((item, index) => (
+            <Reveal key={item.title} delay={index * 0.05}>
+              <article className="communities-card">
+                <div className="communities-card-icon">{item.icon}</div>
+                <h3 className="communities-card-title">{item.title}</h3>
+                <div className="communities-card-divider" aria-hidden="true" />
+                <p className="communities-card-desc">{item.desc}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -631,9 +660,9 @@ const Testimonials: React.FC = () => {
               Hear inspiring journeys from students, professionals, and entrepreneurs who transformed their futures with Tumbo Eye 2.0.
             </p>
             <div className="success-cta-actions">
-              <button type="button" className="btn btn-white" onClick={() => alert('Join Now')}>
-                Join Now <ArrowRight size={15} />
-              </button>
+              <Link to="/success-stories" className="btn btn-white">
+                View Success Stories <ArrowRight size={15} />
+              </Link>
               <Link to="/opportunities" className="btn success-cta-outline">
                 Explore Opportunities <ArrowRight size={15} />
               </Link>
@@ -747,9 +776,9 @@ const TrustedPartners: React.FC = () => {
               <Link to="/partners" className="btn btn-white">
                 Become a Partner <ArrowRight size={15} />
               </Link>
-              <button className="btn partner-cta-outline" onClick={() => alert('Contact Us')}>
+              <Link to="/contact" className="btn partner-cta-outline">
                 Contact Us <ArrowRight size={15} />
-              </button>
+              </Link>
             </div>
           </div>
           <div className="partner-cta-media">

@@ -10,6 +10,8 @@ import { Opportunities } from './pages/Opportunities';
 import { Resources } from './pages/Resources';
 import { SuccessStories } from './pages/SuccessStories';
 import { Contact } from './pages/Contact';
+import { PrivacyPage, TermsPage } from './pages/Legal';
+import { TumisoAI } from './pages/TumisoAI';
 
 // Scroll behavior manager to handle scroll-to-top and hash section targets
 const ScrollManager: React.FC = () => {
@@ -51,6 +53,10 @@ function App() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/success-stories" element={<SuccessStories />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/ai-assistant" element={<TumisoAI />} />
+          <Route path="/tumiso-ai" element={<TumisoAI />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
         </Routes>
       </main>
       <Footer />
