@@ -1,0 +1,305 @@
+FILE: Website Review Feedback and Development Action Plan (2).pdf
+PAGES: 10
+
+===== PAGE 1 =====
+Website Review Feedback and Development Action 
+Plan
+Project: Tumbo Website Development
+Prepared by: Reabetswe Mothiba
+Date: 28 July 2026
+Purpose
+This document summarises the outcomes of the internal website review meeting held 
+on 28 July 2026. Its purpose is to provide structured feedback on the current state of 
+the website, identify outstanding work, clarify responsibilities, and guide the next 
+phase of development.
+Overall, the team is satisﬁed with the progress made to date. The website has 
+established a strong foundation in terms of design, structure, and functionality. 
+However, several areas require reﬁnement before the platform proceeds to the next 
+phase of development.
+It is important to note that several outstanding items depend on organisational 
+content that has not yet been provided. These items remain outside the developer's 
+scope until the required information has been supplied.
+Overall Assessment
+The current website demonstrates signiﬁcant progress and aligns well with the approved 
+project scope. The website structure, navigation, visual design, and responsiveness provide a 
+solid foundation for the Tumbo platform.
+The next development phase should focus on:
+Incorporating accurate organisational content.
+Completing outstanding frontend functionality.
+Developing backend functionality.
+Reﬁning the user experience.
+Website Review
+1. Website Structure
+Status: Incomplete
+The homepage should immediately communicate what the platform is about.
+===== PAGE 2 =====
+Action Required
+Redesign the hero section to clearly showcase the platform’s purpose at ﬁrst glance.
+Replace the current opening content with a stronger visual and messaging that reﬂects 
+our core mission.
+Include engaging visuals, banners, or animations that immediately explain the platform’s 
+value.
+The ﬁrst impression should eliminate the need for users to read multiple sections before 
+understanding the platform.
+2. Information Architecture
+Status: Incomplete
+The following content is required from the organisation:
+Company Overview
+Mission
+Vision
+Values
+Brand messaging
+Ecosystem descriptions
+Product descriptions
+Organisational messaging
+Visual representation of ecosystem components
+Once this information has been received, the content should be updated throughout the
+website.
+Action Required
+Improve the organisation and ﬂow of information across the website.
+Ensure content is presented in a logical order that guides users naturally through the 
+platform.
+Structure pages so users can quickly ﬁnd important information.
+3. Navigation Flow
+Status: Incomplete
+Action Required
+Ensure every menu item directs users to the correct destination.
+Improve navigation between pages to create a seamless browsing experience.
+Review all internal links and user journeys to ensure there are no dead ends or 
+incomplete pathways.
+4. Figma Design
+===== PAGE 3 =====
+Status: Partially Complete
+Most website pages have been designed in Figma.
+Action Required
+Add the following missing page:
+Resources Page
+Once completed, the Figma designs should fully correspond with the live website.
+5. User Interface (UI)
+Status: Incomplete
+The current implementation does not fully reﬂect the design inspiration and references that 
+were previously shared.
+Action Required
+Review the inspiration material and reference websites provided.
+Align the overall design, layout, and visual identity with the approved concept.
+Ensure the ﬁnal product reﬂects the original vision discussed at the beginning of the 
+project.
+6. Responsive Layout
+Status: Complete
+The website adapts well across desktop, tablet and mobile devices.
+7. User Journey
+Status: In Progress
+The frontend user experience is progressing well.
+The complete user journey will be ﬁnalised once backend functionality has been 
+implemented.
+Upcoming Features
+User Registration
+Login
+User Proﬁles
+User Dashboard
+Chatbot / AI Functionality
+Personalised User Experience
+===== PAGE 4 =====
+8. Tumbo Branding
+Status: Pending Organisation Input
+The visual identity has been successfully incorporated.
+The following branding information is still required:
+Brand messaging
+Mission
+Vision
+Brand language
+Taglines
+Organisational descriptions
+Once supplied, this content should be integrated consistently across the website.
+9. Homepage
+Status: Incomplete
+The homepage does not align with the intended design direction.
+Action Required
+Reﬁne spacing and alignment where necessary.
+Review typography consistency.
+Improve visual balance across sections.
+10. About Us Page
+Status: Pending Content
+The page structure has been completed successfully.
+The organisation will provide expanded content covering:
+Company background
+Purpose
+Vision
+Mission
+Story
+Impact
+11. Ecosystem
+Status: Pending Organisation Input
+The existing ecosystem descriptions do not accurately reﬂect the organisation.
+===== PAGE 5 =====
+Action Required
+Replace all placeholder descriptions once the approved organisational content has been 
+received.
+12. Opportunities
+Status: Complete
+The uploaded opportunities have been successfully implemented.
+Future opportunities can be added as they become available.
+13. Resources
+Status: Complete
+The Resources page has been successfully implemented.
+14. Success Stories
+Status: Pending Organisation Input
+The page structure has been completed.
+The organisation will provide:
+Success stories
+Testimonials
+Supporting images
+15. Partners
+Status: Partially Complete
+Additional partner information will be supplied by the organisation.
+16. Contact Page
+Status: Pending Organisation Input
+The following information remains outstanding:
+Contact numbers
+Email addresses
+Office locations
+Social media links
+App download links
+General enquiries information
+===== PAGE 6 =====
+Responsive Design Review
+Homepage Responsiveness
+Status: Mostly Complete
+The homepage performs well across mobile devices and adapts appropriately to different 
+screen sizes.
+Navigation Menu
+Status: Functional – Requires Reﬁnement
+The navigation functions correctly but requires minor improvements on mobile devices.
+Action Required
+Improve alignment of navigation items.
+Centre menu items consistently.
+Improve spacing throughout the mobile menu.
+Test complete navigation across all pages.
+Responsive Layout
+Status: Complete
+The responsive layout performs well across the reviewed pages.
+Website Styling
+Status: Good
+The website styling is modern, clean and professional.
+Recommendation
+To create a more engaging user experience, consider introducing subtle motion and 
+interaction throughout the website.
+Suggested Improvements
+Smooth page transitions
+Scroll animations
+Fade-in effects
+Hover animations
+Interactive button states
+Card hover effects
+===== PAGE 7 =====
+Animated statistics counters
+Subtle micro-interactions
+These enhancements should improve user engagement while maintaining strong 
+performance.
+UI Consistency
+Status: Complete
+The user interface demonstrates consistent styling throughout the website.
+Minor reﬁnements to spacing and alignment should be completed during ﬁnal polishing.
+Frontend Functionality
+Status: Approximately 90% Complete
+Outstanding Feature
+Chatbot / AI Page
+Additional Recommendations
+The team recommends the following improvements during the next development phase:
+Enhance animations and transitions.
+Improve visual engagement while maintaining fast loading speeds.
+Ensure consistent spacing across all pages.
+Continue reﬁning the mobile experience.
+Conduct a full Quality Assurance (QA) review after backend development.
+Organisation Deliverables
+The following information will be provided by the organisation:
+Mission
+Vision
+Values
+Brand messaging
+Company overview
+Ecosystem descriptions
+Programme descriptions
+Product descriptions
+Leadership information
+Success stories
+===== PAGE 8 =====
+Partner information
+Contact information
+Social media links
+Approved imagery
+Additional resources and supporting content
+Next Phase
+Once the outstanding organisational information has been received, development may 
+proceed with:
+Updating all website content
+Completing backend development
+Implementing user authentication
+Reﬁning responsiveness
+Completing ﬁnal UI/UX improvements
+Conducting Quality Assurance testing
+Preparing for the next internal review
+Additional Application Requirements
+1. Opportunity Redirection Functionality
+To improve the application experience and increase successful submissions, the platform 
+should provide a seamless transition from opportunity discovery to application.
+Requirements
+When users select an opportunity, they should be redirected directly to the official 
+application website, portal or online application form.
+Where organisations have integrated directly with the platform, completed applications 
+should be submitted directly through the system.
+External links should:
+Open securely.
+Clearly notify users that they are leaving the Tumbo platform.
+Redirect users to the official opportunity provider.
+2. Opportunity Disclaimer
+Disclaimer
+The Tumbo platform connects users with veriﬁed employment, education, funding, 
+internship, bursary and development opportunities.
+===== PAGE 9 =====
+While every effort is made to ensure opportunities are accurate and current, Tumbo does 
+not guarantee employment, funding, acceptance or selection by any organisation.
+All recruitment and selection decisions remain solely the responsibility of the respective 
+opportunity providers.
+Tumbo's role is to simplify access to opportunities by connecting opportunity seekers with 
+trusted organisations.
+3. POPIA Compliance
+To comply with the Protection of Personal Information Act (POPIA), the application should 
+include the following:
+User Consent
+Users must explicitly consent to the collection and processing of their personal information 
+before creating an account or submitting applications.
+Privacy Notice
+The platform should clearly explain:
+What information is collected.
+Why it is collected.
+How it will be used.
+Who it may be shared with.
+How long it will be retained.
+How it will be protected.
+Data Protection
+Personal information should be securely stored and encrypted where appropriate.
+Access must be restricted to authorised personnel and approved system processes.
+User Rights
+Users should be able to:
+View their personal information.
+Update inaccurate information.
+Request deletion of their account (subject to legal requirements).
+Withdraw consent where applicable.
+Sharing Information
+Where application details are submitted directly to an organisation, users must be informed 
+that only the information required for that application will be shared, and only with their 
+===== PAGE 10 =====
+consent.
+Expected Outcome
+These enhancements will create a seamless application journey, strengthen user trust, 
+improve legal compliance with POPIA, and position Tumbo as a reliable bridge between 
+opportunity seekers and opportunity providers.
+Conclusion
+The review team is satisﬁed with the progress made to date and acknowledges the quality of 
+work completed during this phase of development.
+The next stage of the project will focus on integrating approved organisational content, 
+completing backend functionality, reﬁning the user experience, and preparing the platform 
+for comprehensive quality assurance testing and deployment.
+Once these outstanding items have been completed, the website will be well positioned for 
+ﬁnal review of this phase.

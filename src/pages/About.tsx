@@ -54,8 +54,7 @@ const AboutHero: React.FC = () => (
   <section className="section about-hero-section">
     <div className="container about-hero-grid">
       <Reveal className="about-hero-content">
-        <p className="about-hero-brand">Tumbo</p>
-        <div className="hero-tag-pill">ABOUT TUMBO</div>
+      
         <h1 className="about-hero-title">
           A South African digital community empowerment{' '}
           <span className="about-hero-title-accent">platform</span>
@@ -118,7 +117,7 @@ const MissionVision: React.FC = () => (
         </p>
       </Reveal>
       <div className="about-mv-grid">
-        <Reveal delay={0.05}>
+        <Reveal delay={0.08} y={36}>
           <article className="about-mv-card">
             <div className="about-mv-head">
               <div className="about-mv-icon">
@@ -135,7 +134,7 @@ const MissionVision: React.FC = () => (
             </p>
           </article>
         </Reveal>
-        <Reveal delay={0.12}>
+        <Reveal delay={0.2} y={36}>
           <article className="about-mv-card">
             <div className="about-mv-head">
               <div className="about-mv-icon">

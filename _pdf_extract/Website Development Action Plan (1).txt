@@ -1,0 +1,78 @@
+FILE: Website Development Action Plan (1).pdf
+PAGES: 5
+
+===== PAGE 1 =====
+Website Development Action Plan
+1. Website Structure
+Inspo
+https://www.betway.co.za
+2. Information Architecture
+About Tumbo
+Tumbo is a South African digital community empowerment platform dedicated to 
+transforming how communities, businesses, governments, and development partners 
+connect. We provide a uniﬁed digital ecosystem that enables trusted data collection, digital 
+identity, artiﬁcial intelligence, and community-driven services.
+Our platform addresses one of Africa’s greatest challenges: fragmented and unveriﬁed 
+community data. By enabling citizens to register once, verify their information once, and 
+securely access multiple services, Tumbo creates a trusted digital infrastructure that beneﬁts 
+everyone.
+Built in South Africa for African communities, Tumbo combines innovation, inclusivity, and 
+responsible AI to improve service delivery, economic participation, and community 
+development.
+Mission
+To build and operate digital infrastructure that enables African communities, businesses, 
+governments, and development partners to collaborate using veriﬁed data, in their own 
+languages and on their own terms.
+Vision
+An Africa where every community is digitally connected to opportunities, services, and 
+partners that improve lives through trusted technology and veriﬁed data.
+Values
+Community ﬁrst. If a feature does not improve a community member's life, it does not 
+ship.
+Veriﬁed, not assumed. Every data point we publish has a veriﬁcation trail.
+Consent is sacred. POPIA is the ﬂoor, not the ceiling. Users always know what their data is 
+used for and can withdraw consent at any time.
+Built here, owned here. South African team, South African data residency, South African 
+accountability.
+===== PAGE 2 =====
+Inclusion by design. Eleven languages, voice-ﬁrst, offline-capable, low-bandwidth.
+5. User Interface (UI)
+Fully reﬂect the design inspiration and references that were previously shared
+Betway South Africa | Online Sports Betting
+11. Ecosystem 
+Action Required 
+Replace all placeholder descriptions 
+===== PAGE 3 =====
+
+===== PAGE 4 =====
+Description
+The ecosystem includes:
+Tumbo Eye
+Single sign-on hub AI brain
+Landing & discovery layer
+Progressive activation engine
+Tumbo Biz
+Business engagement 
+CSI & B-BBEE tracking 
+Community data marketplace
+Tumbo App
+Community data collection
+10 category forms
+Field agent tools
+Tumbo Gov
+Municipal integration
+Service delivery tracking
+Policy insight dashboards
+Tumbo Ye²
+Informal marketplace
+Stock pooling & bulk buying
+Digital storefronts
+16. Contact Page
+Office locations 
+46 Gray Ave, Klipfontein, eMalahleni, 1035
+===== PAGE 5 =====
+Social media links 
+EMA.TUMBO (@ema.tumbo) • Instagram proﬁle
+Ema Tumbo
+App download links 
+Tumbo - Apps on Google Play

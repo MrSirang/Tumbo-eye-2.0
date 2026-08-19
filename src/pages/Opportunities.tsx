@@ -124,11 +124,10 @@ const OpportunitiesHero: React.FC = () => (
   <section className="section section-blue-bg opp-page-hero">
     <div className="container opp-page-hero-grid">
       <Reveal className="opp-page-hero-content">
-        <p className="opp-page-hero-brand">Tumbo</p>
-        <div className="hero-tag-pill">DISCOVER OPPORTUNITIES</div>
+ 
         <h1 className="opp-page-hero-title">
           Matching Opportunities with{' '}
-          <span className="eco2-title-accent">Targeted Potential</span>
+          <span className="text-grad">Targeted Potential</span>
         </h1>
         <p className="opp-page-hero-desc">
           Tumbo connects verified individuals with employment, education, funding, entrepreneurship

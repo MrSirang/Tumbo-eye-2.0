@@ -161,11 +161,10 @@ const SuccessHero: React.FC = () => (
   <section className="section section-blue-bg ss-page-hero">
     <div className="container ss-page-hero-grid">
       <Reveal className="ss-page-hero-content">
-        <p className="ss-page-hero-brand">Tumbo</p>
-        <div className="hero-tag-pill">SUCCESS STORIES</div>
+
         <h1 className="ss-page-hero-title">
           Real Stories. Real Success.{' '}
-          <span className="eco2-title-accent">Real Impact.</span>
+          <span className="text-grad">Real Impact.</span>
         </h1>
         <p className="ss-page-hero-desc">
           Discover how Tumbo is transforming lives through education, employment, entrepreneurship,

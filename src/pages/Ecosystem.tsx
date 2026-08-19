@@ -53,11 +53,10 @@ const EcosystemHero: React.FC = () => (
     <div className="container">
       <div className="eco2-hero-grid">
         <Reveal className="eco2-hero-left">
-          <p className="eco2-hero-brand">Tumbo</p>
-          <div className="hero-tag-pill">TUMBO DIGITAL ECOSYSTEM</div>
+         
           <h1 className="eco2-hero-title">
             One Ecosystem. Multiple Solutions.{' '}
-            <span className="eco2-title-accent">Unlimited Opportunity.</span>
+            <span className="text-grad">Unlimited Opportunity.</span>
           </h1>
           <p className="eco2-hero-desc">
             A unified digital ecosystem enabling trusted data collection, digital identity,

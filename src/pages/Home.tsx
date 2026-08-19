@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
-import heroStudent from '../assets/hero-student.png';
+import heroWoman from '../assets/hero-woman-new.png';
+import heroCommunity from '../assets/hero-community.png';
+import heroPhone from '../assets/hero-phone-cut.png';
+import heroConsent from '../assets/hero-consent-card-cut.png';
+import heroCloud from '../assets/hero-cloud-cut.png';
 import featuredOppDsv from '../assets/featured-opp-dsv.png';
 import featuredOppMrd from '../assets/featured-opp-mrd.png';
 import ecoBannerMan from '../assets/eco-banner-man.png';
@@ -23,13 +27,10 @@ import partnerDell from '../assets/partner-dell.png';
 import partnerBritishCouncil from '../assets/partner-british-council.png';
 import { Reveal } from '../components/Reveal';
 import { AnimatedStat } from '../components/AnimatedStat';
-import SplitText from '../components/SplitText';
 import {
   ArrowRight,
   Briefcase,
   GraduationCap,
-  DollarSign,
-  Calendar,
   Star,
   Sparkles,
   Award,
@@ -45,6 +46,11 @@ import {
   PersonStanding,
   Cog,
   User,
+  Play,
+  Lock,
+  Cloud,
+  Smartphone,
+  ShoppingCart,
 } from 'lucide-react';
 
 /* ==========================================================================
@@ -53,185 +59,205 @@ import {
 const HeroSection: React.FC = () => {
   const reduceMotion = useReducedMotion();
 
+  const audiences = [
+    { icon: <User size={28} strokeWidth={1.6} />, line1: 'For', line2: 'Citizens' },
+    { icon: <Briefcase size={28} strokeWidth={1.6} />, line1: 'For', line2: 'Businesses' },
+    { icon: <Landmark size={28} strokeWidth={1.6} />, line1: 'For', line2: 'Government' },
+    { icon: <HeartHandshake size={28} strokeWidth={1.6} />, line1: 'For', line2: 'Partners' },
+  ];
+
+  const trustItems = [
+    { icon: <ShieldCheck size={26} strokeWidth={1.7} />, line1: 'Verified', line2: '& trusted' },
+    { icon: <Lock size={26} strokeWidth={1.7} />, line1: 'Privacy by', line2: 'design' },
+    { icon: <Cloud size={26} strokeWidth={1.7} />, line1: 'Hosted in', line2: 'South Africa' },
+    { icon: <Smartphone size={26} strokeWidth={1.7} />, line1: 'Works offline.', line2: 'Works for all.' },
+  ];
+
+  const products = [
+    {
+      title: 'Tumbo Eye',
+      kicker: 'The hub & AI brain',
+      desc: 'Data intelligence and insights that power better decisions for everyone.',
+      color: '#2E6BFF',
+      icon: <Eye size={22} strokeWidth={2} />,
+    },
+    {
+      title: 'Tumbo App',
+      kicker: 'My Community',
+      desc: 'Register once. Verify once. Access services, opportunities and information.',
+      color: '#E8447C',
+      icon: <Users size={22} strokeWidth={2} />,
+    },
+    {
+      title: 'Tumbo Biz',
+      kicker: 'Business Engagement',
+      desc: 'Verified data for CSI, supplier development and inclusive economic growth.',
+      color: '#F5821F',
+      icon: <Briefcase size={22} strokeWidth={2} />,
+    },
+    {
+      title: 'Tumbo Gov',
+      kicker: 'Government Services',
+      desc: 'Real-time community data for planning, service delivery and policy.',
+      color: '#2FA84F',
+      icon: <Landmark size={22} strokeWidth={2} />,
+    },
+    {
+      title: 'Tumbo Ye2',
+      kicker: 'Marketplace',
+      desc: 'The informal-business marketplace. Buy. Sell. Grow together.',
+      color: '#7B4FE0',
+      icon: <ShoppingCart size={22} strokeWidth={2} />,
+    },
+  ];
+
   return (
-    <section className="section section-blue-bg hero-outer-section">
-      <div className="hero-atmosphere" aria-hidden="true" />
-      <div className="container hero-grid">
-        {/* Left Content Column */}
-        <motion.div
-          className="hero-left-col"
-          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p className="hero-brand-mark">Tumbo</p>
-          <div className="hero-tag-pill">
-            Built in South Africa for African communities
-          </div>
-          <SplitText
-            tag="h1"
-            text="Digital community empowerment through trusted technology "
-            className="hero-title hero-title-split"
-            delay={40}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-80px"
-            textAlign="left"
-          />
-          <p className="hero-subtitle-text">
-            Tumbo is a South African digital community empowerment platform that helps
-            communities, businesses, governments and development partners connect through
-            verified data, digital identity and community-driven services—so opportunity
-            reaches the right people at the right time.
-          </p>
+    <section className="th">
+      <div className="th-hero">
+        <div className="th-photo" aria-hidden="true">
+          <img src={heroCommunity} alt="" className="th-photo-bg" />
+          <div className="th-photo-fade" />
+        </div>
 
-          <div className="hero-btn-group">
-            <Link to="/opportunities" className="btn btn-primary hero-btn-primary">
-              Explore Opportunities <ArrowRight size={16} />
-            </Link>
-            <Link to="/ecosystem" className="btn btn-outline hero-btn-outline">
-              Explore Ecosystem <ArrowRight size={16} />
-            </Link>
-          </div>
-
-          <div className="hero-trust-row">
-            <div className="hero-avatar-stack">
-              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100&h=100" alt="" />
-              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100" alt="" />
-              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100&h=100" alt="" />
-              <img className="hero-avatar-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" alt="" />
-              <div className="hero-avatar-plus">+15K</div>
+        <div className="th-wrap th-hero-grid">
+          <motion.div
+            className="th-copy"
+            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <h1 className="th-title">
+              One community.
+              <br />
+              One data layer.
+              <br />
+              <span className="th-unlimited">Unlimited impact.</span>
+            </h1>
+            <p className="th-subtitle">
+              Tumbo connects African communities, businesses, government and partners
+              through verified data, powerful tools and shared opportunities.
+            </p>
+            <div className="th-audiences">
+              {audiences.map((item) => (
+                <div className="th-audience" key={item.line2}>
+                  <span className="th-audience-icon">{item.icon}</span>
+                  <span>
+                    {item.line1}
+                    <br />
+                    {item.line2}
+                  </span>
+                </div>
+              ))}
             </div>
-            <div className="hero-trust-text">
-              Trusted by communities, students, professionals and partners across South Africa.
+            <div className="th-actions">
+              <Link to="/contact" className="th-btn-primary">
+                Join the Movement
+              </Link>
+              <Link to="/ecosystem" className="th-btn-outline">
+                <Play size={12} fill="currentColor" />
+                Watch how it works
+              </Link>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
 
-        {/* Right Visual Column */}
-        <motion.div
-          className="hero-right-col"
-          initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="hero-visual-wrapper">
-            {/* Soft halo circle behind the portrait */}
-            <div className="hero-circle-bg"></div>
+          <motion.div
+            className="th-visual"
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="th-glow" aria-hidden="true" />
 
-            {/* Elliptical orbit ring */}
-            <div className="hero-orbit-ring"></div>
+            <p className="th-proof">
+              <b>Verified data.</b>
+              <br />
+             <b>Real impact.</b> 
+              <br />
+              <span>Stronger communities.</span>
+            </p>
 
-            {/* Dots travelling along the orbit */}
-            <div className="orbit-dot orbit-dot-blue"></div>
-            <div className="orbit-dot orbit-dot-yellow"></div>
+            <img src={heroPhone} alt="Tumbo app home screen" className="th-phone-lg" />
+            <img src={heroConsent} alt="Your data. Your consent. Your power." className="th-consent" />
 
-            {/* Static decorative sparkles */}
-            <div className="hero-star hero-star-yellow">
-              <svg viewBox="0 0 24 24" fill="#facc15">
-                <path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z" />
+            <div className="th-stats-block">
+              <div className="th-stats-row">
+                <div className="th-bubble">
+                  <span className="th-bubble-icon" style={{ background: '#2E6BFF' }}>
+                    <Users size={16} color="#fff" />
+                  </span>
+                  <div>
+                    <strong>2.4M+</strong>
+                    <em>Community Members</em>
+                  </div>
+                </div>
+                <div className="th-bubble">
+                  <span className="th-bubble-icon" style={{ background: '#2FA84F' }}>
+                    <ShieldCheck size={16} color="#fff" />
+                  </span>
+                  <div>
+                    <strong>1.8M+</strong>
+                    <em>Verified Profiles</em>
+                  </div>
+                </div>
+                <div className="th-bubble">
+                  <span className="th-bubble-icon" style={{ background: '#F5821F' }}>
+                    <Landmark size={16} color="#fff" />
+                  </span>
+                  <div>
+                    <strong>980+</strong>
+                    <em>Active Partners</em>
+                  </div>
+                </div>
+              </div>
+              <svg className="th-stats-dashes" viewBox="0 0 320 70" fill="none" aria-hidden="true">
+                <path d="M52 0 C52 28, 160 20, 160 70" stroke="#9ec0ff" strokeWidth="2" strokeDasharray="4 6" />
+                <path d="M160 0 C160 18, 160 40, 160 70" stroke="#9ec0ff" strokeWidth="2" strokeDasharray="4 6" />
+                <path d="M268 0 C268 28, 160 20, 160 70" stroke="#9ec0ff" strokeWidth="2" strokeDasharray="4 6" />
               </svg>
+              <img src={heroCloud} alt="" className="th-cloud" />
             </div>
-            <div className="hero-star hero-star-blue">
-              <svg viewBox="0 0 24 24" fill="#2563eb">
-                <path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z" />
-              </svg>
-            </div>
+          </motion.div>
+        </div>
 
-            {/* Circle with portrait breaking out of the top */}
-            <div className="hero-image-wrapper">
-              <div className="hero-outer-oval"></div>
-              <div className="hero-middle-circle"></div>
-              <img src={heroStudent} alt="Student holding books" className="hero-photo" />
-            </div>
+        <div className="th-woman-wrap">
+          <img src={heroWoman} alt="Community member smiling" className="th-woman" />
+        </div>
 
-            {/* Floating Info Cards */}
-            {/* 1. Jobs (Top-Left) */}
-            <div className="hero-card-position jobs-pos">
-              <div className="hero-floating-card card-stagger-1">
-                <div className="card-icon-wrap" style={{ backgroundColor: '#eff6ff', color: '#2563eb' }}>
-                  <Briefcase size={16} />
-                </div>
-                <div className="card-info-content">
-                  <div className="card-info-title">Jobs</div>
-                  <div className="card-info-desc">Get your next career opportunity.</div>
-                </div>
-                <div className="card-info-arrow">
-                  <ArrowRight size={10} />
-                </div>
-              </div>
-            </div>
+        <svg className="th-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0,78 C220,20 420,118 720,72 C1020,26 1240,108 1440,64 L1440,120 L0,120 Z" />
+        </svg>
+      </div>
 
-            {/* 2. Grants & Funding (Top-Right) */}
-            <div className="hero-card-position grants-pos">
-              <div className="hero-floating-card card-stagger-2">
-                <div className="card-icon-wrap" style={{ backgroundColor: '#eff6ff', color: '#2563eb' }}>
-                  <DollarSign size={16} />
-                </div>
-                <div className="card-info-content">
-                  <div className="card-info-title">Grants & Funding</div>
-                  <div className="card-info-desc">Support your ideas and projects.</div>
-                </div>
-                <div className="card-info-arrow">
-                  <ArrowRight size={10} />
-                </div>
-              </div>
+      <div className="th-trustbar">
+        <div className="th-wrap th-trust-grid">
+          {trustItems.map((item) => (
+            <div className="th-trust" key={item.line1}>
+              {item.icon}
+              <span>
+                <b>{item.line1}</b>
+                {item.line2}
+              </span>
             </div>
+          ))}
+        </div>
+      </div>
 
-            {/* 3. Scholarships (Middle-Left) */}
-            <div className="hero-card-position scholarships-pos">
-              <div className="hero-floating-card card-stagger-3">
-                <div className="card-icon-wrap" style={{ backgroundColor: '#eff6ff', color: '#2563eb' }}>
-                  <GraduationCap size={16} />
-                </div>
-                <div className="card-info-content">
-                  <div className="card-info-title">Scholarships</div>
-                  <div className="card-info-desc">Unlock your future with education.</div>
-                </div>
-                <div className="card-info-arrow">
-                  <ArrowRight size={10} />
-                </div>
-              </div>
-            </div>
-
-            {/* 4. Events (Bottom-Right) */}
-            <div className="hero-card-position events-pos">
-              <div className="hero-floating-card card-stagger-4">
-                <div className="card-icon-wrap" style={{ backgroundColor: '#eff6ff', color: '#2563eb' }}>
-                  <Calendar size={16} />
-                </div>
-                <div className="card-info-content">
-                  <div className="card-info-title">Events</div>
-                  <div className="card-info-desc">Join conferences, networking and mentorship events.</div>
-                </div>
-                <div className="card-info-arrow">
-                  <ArrowRight size={10} />
-                </div>
-              </div>
-            </div>
-
-            {/* 5. Internships (Lower-Left) */}
-            <div className="hero-card-position internships-pos">
-              <div className="hero-floating-card card-stagger-5">
-                <div className="card-icon-wrap" style={{ backgroundColor: '#eff6ff', color: '#2563eb' }}>
-                  <Award size={16} />
-                </div>
-                <div className="card-info-content">
-                  <div className="card-info-title">Internships</div>
-                  <div className="card-info-desc">Gain valuable experience.</div>
-                </div>
-                <div className="card-info-arrow">
-                  <ArrowRight size={10} />
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </motion.div>
+      <div className="th-products-band">
+        <div className="th-wrap th-products">
+          {products.map((product) => (
+            <Link to="/ecosystem" className="th-product" key={product.title}>
+              <span className="th-product-icon" style={{ backgroundColor: product.color }}>
+                {product.icon}
+              </span>
+              <h3 style={{ color: product.color }}>{product.title}</h3>
+              <p className="th-product-kicker">{product.kicker}</p>
+              <p className="th-product-desc">{product.desc}</p>
+              <span className="th-product-link" style={{ color: product.color }}>
+                Learn more <ArrowRight size={14} />
+              </span>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -385,79 +411,126 @@ const FeaturedOpportunities: React.FC = () => {
    SUB-COMPONENT: ECOSYSTEM OVERVIEW
    ========================================================================== */
 const EcosystemOverview: React.FC = () => {
-  const features = [
+  const products = [
     {
       title: 'Tumbo Eye',
-      desc: 'The single sign-on hub and AI brain of the ecosystem—landing and discovery layer with progressive activation that guides users into the right services.',
+      desc: 'The hub and AI brain — a single sign-on discovery layer that guides users into the right services.',
       link: 'Explore Eye',
       to: '/ecosystem',
-      icon: <Eye size={22} strokeWidth={1.75} />,
+      icon: <Eye size={26} strokeWidth={1.6} />,
+      color: '#2E6BFF',
     },
     {
       title: 'Tumbo App',
-      desc: 'Community data collection with ten category forms and field agent tools—so citizens register once, verify once, and securely access multiple services.',
+      desc: 'Register once, verify once. Community data collection with field agent tools for secure access.',
       link: 'Learn More',
       to: '/ecosystem',
-      icon: <ShieldCheck size={22} strokeWidth={1.75} />,
+      icon: <ShieldCheck size={26} strokeWidth={1.6} />,
+      color: '#10B981',
     },
     {
       title: 'Tumbo Biz',
-      desc: 'Business engagement with CSI and B-BBEE tracking plus a community data marketplace for partners seeking verified local insight and talent.',
+      desc: 'Business engagement with CSI tracking and a data marketplace for verified local insight.',
       link: 'Explore Biz',
       to: '/ecosystem',
-      icon: <Settings2 size={22} strokeWidth={1.75} />,
+      icon: <Settings2 size={26} strokeWidth={1.6} />,
+      color: '#F59E0B',
     },
     {
       title: 'Tumbo Gov',
-      desc: 'Municipal integration with service delivery tracking and policy insight dashboards that help government engage communities with verified data.',
+      desc: 'Service delivery tracking and policy dashboards for government-community engagement.',
       link: 'Explore Gov',
       to: '/ecosystem',
-      icon: <Landmark size={22} strokeWidth={1.75} />,
+      icon: <Landmark size={26} strokeWidth={1.6} />,
+      color: '#8B5CF6',
     },
     {
       title: 'Tumbo Ye²',
-      desc: 'An informal marketplace supporting stock pooling, bulk buying and digital storefronts for township commerce and trusted community trade.',
+      desc: 'An informal marketplace for stock pooling, bulk buying and township digital storefronts.',
       link: 'Join Community',
       to: '/ecosystem',
-      icon: <Store size={22} strokeWidth={1.75} />,
+      icon: <Store size={26} strokeWidth={1.6} />,
+      color: '#EC4899',
     },
   ];
 
   return (
-    <section id="ecosystem" className="section eco-overview-section">
+    <section id="ecosystem" className="section eco-ov">
+      {/* Background decorations */}
+      <div className="eco-ov-bg" aria-hidden="true">
+        <div className="eco-ov-glow eco-ov-glow-1" />
+        <div className="eco-ov-glow eco-ov-glow-2" />
+        <svg className="eco-ov-network" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="80" r="3" fill="#2E6BFF" opacity="0.15" />
+          <circle cx="340" cy="50" r="2.5" fill="#2E6BFF" opacity="0.12" />
+          <circle cx="560" cy="120" r="3" fill="#2E6BFF" opacity="0.15" />
+          <circle cx="680" cy="60" r="2" fill="#2E6BFF" opacity="0.1" />
+          <circle cx="200" cy="300" r="2.5" fill="#2E6BFF" opacity="0.1" />
+          <circle cx="600" cy="340" r="3" fill="#2E6BFF" opacity="0.12" />
+          <circle cx="450" cy="200" r="2" fill="#2E6BFF" opacity="0.08" />
+          <path d="M120 80 Q230 40 340 50" stroke="#2E6BFF" strokeWidth="0.8" opacity="0.08" />
+          <path d="M340 50 Q450 85 560 120" stroke="#2E6BFF" strokeWidth="0.8" opacity="0.08" />
+          <path d="M560 120 Q620 90 680 60" stroke="#2E6BFF" strokeWidth="0.8" opacity="0.06" />
+          <path d="M200 300 Q400 260 600 340" stroke="#2E6BFF" strokeWidth="0.8" opacity="0.06" />
+          <path d="M120 80 Q160 190 200 300" stroke="#2E6BFF" strokeWidth="0.6" opacity="0.05" />
+        </svg>
+      </div>
+
       <div className="container">
-        <Reveal className="eco-overview-header text-center">
-          <div className="section-tag">OUR ECOSYSTEM</div>
-          <h2 className="eco-overview-title">
-            One Ecosystem. Multiple Solutions.{' '}
-            <span className="eco-overview-title-blue">Unlimited Opportunity.</span>
+        {/* Header */}
+        <Reveal className="eco-ov-header text-center">
+          <span className="eco-ov-pill">
+            <span className="eco-ov-pill-dot" />
+            One Platform. Endless Impact.
+          </span>
+          <h2 className="eco-ov-title">
+            One Ecosystem.<br />
+            Multiple Solutions.<br />
+            <span className="eco-ov-title-accent">Unlimited Opportunity.</span>
           </h2>
-          <p className="eco-overview-subtitle">
+          <p className="eco-ov-subtitle">
             A unified digital ecosystem enabling trusted data collection, digital identity,
-            artificial intelligence and community-driven services—built for African communities.
+            artificial intelligence and community-driven services — built for African communities.
           </p>
-          <h3 className="eco-overview-unique-title">What Makes Tumbo Unique</h3>
-          <p className="eco-overview-unique-desc">
+        </Reveal>
+
+        {/* What Makes Tumbo Unique */}
+        <Reveal className="eco-ov-unique text-center">
+          <div className="eco-ov-unique-divider">
+            <span className="eco-ov-unique-line" />
+            <h3 className="eco-ov-unique-title">What Makes Tumbo Unique</h3>
+            <span className="eco-ov-unique-line" />
+          </div>
+          <p className="eco-ov-unique-desc">
             Tumbo addresses fragmented and unverified community data by letting citizens register
             once, verify once, and securely access multiple services across one trusted platform.
           </p>
         </Reveal>
 
-        <div className="eco-overview-grid">
-          {features.map((feature, index) => (
-            <Reveal key={feature.title} delay={index * 0.06}>
-              <div className="eco-overview-card">
-                <div className="eco-overview-card-icon">{feature.icon}</div>
-                <h3 className="eco-overview-card-title">{feature.title}</h3>
-                <p className="eco-overview-card-desc">{feature.desc}</p>
-                <Link to={feature.to} className="eco-overview-card-link">
-                  {feature.link} <ArrowRight size={14} />
+        {/* Product Cards with connection line */}
+        <div className="eco-ov-cards-wrap">
+          <div className="eco-ov-connector" aria-hidden="true" />
+          <div className="eco-ov-grid">
+            {products.map((product, index) => (
+              <Reveal key={product.title} delay={index * 0.07}>
+                <Link to={product.to} className="eco-ov-card">
+                  <div className="eco-ov-card-accent" style={{ background: product.color }} />
+                  <div className="eco-ov-card-icon" style={{ background: `${product.color}12`, color: product.color }}>
+                    {product.icon}
+                  </div>
+                  <h3 className="eco-ov-card-name">{product.title}</h3>
+                  <p className="eco-ov-card-desc">{product.desc}</p>
+                  <span className="eco-ov-card-cta" style={{ color: product.color }}>
+                    {product.link} <ArrowRight size={14} />
+                  </span>
+                  <div className="eco-ov-card-node" style={{ background: product.color }} />
                 </Link>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
 
+        {/* Impact Banner */}
         <Reveal>
           <div className="eco-impact-banner">
             <div className="eco-impact-banner-media">
@@ -466,7 +539,7 @@ const EcosystemOverview: React.FC = () => {
             <div className="eco-impact-banner-content">
               <h3 className="eco-impact-banner-title">
                 Empowering Opportunity. Igniting Hope.{' '}
-                <span className="eco-overview-title-blue">Inspiring Greatness.</span>
+                <span className="eco-ov-title-accent">Inspiring Greatness.</span>
               </h3>
               <div className="eco-impact-banner-actions">
                 <Link to="/ecosystem" className="btn btn-primary">
@@ -801,7 +874,6 @@ export const Home: React.FC = () => {
   return (
     <>
       <HeroSection />
-      <StatsRow />
       <FeaturedOpportunities />
       <EcosystemOverview />
       <EmpoweringCommunities />

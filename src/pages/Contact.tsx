@@ -46,10 +46,10 @@ import appBubble5 from '../assets/partners-hero-event.png';
 import convoBg from '../assets/tumiso-feat-cta.png';
 
 const InstagramIcon: React.FC<{ size?: number }> = ({ size = 20 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" strokeWidth="2" />
-    <circle cx="12" cy="12" r="4.25" stroke="currentColor" strokeWidth="2" />
-    <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" />
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <circle cx="12" cy="12" r="4.5" />
+    <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" stroke="none" />
   </svg>
 );
 
@@ -97,11 +97,10 @@ const ContactHero: React.FC = () => (
   <section className="section section-blue-bg contact-hero">
     <div className="container contact-hero-grid">
       <Reveal className="contact-hero-content">
-        <p className="contact-hero-brand">Tumbo</p>
-        <div className="section-tag">CONTACT US</div>
+      
         <h1 className="contact-hero-title">
           Let&apos;s Connect and Create{' '}
-          <span className="highlight-blue">Opportunities Together</span>
+          <span className="text-grad">Opportunities Together</span>
         </h1>
         <p className="contact-hero-desc">
           Whether you&apos;re an individual seeking opportunities, a business looking to connect with

@@ -12,6 +12,7 @@ import { SuccessStories } from './pages/SuccessStories';
 import { Contact } from './pages/Contact';
 import { PrivacyPage, TermsPage } from './pages/Legal';
 import { TumisoAI } from './pages/TumisoAI';
+import { TumboBackground } from './components/TumboBackground';
 
 // Scroll behavior manager to handle scroll-to-top and hash section targets
 const ScrollManager: React.FC = () => {
@@ -41,6 +42,7 @@ const ScrollManager: React.FC = () => {
 function App() {
   return (
     <BrowserRouter>
+      <TumboBackground />
       <ScrollManager />
       <Navbar />
       <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>

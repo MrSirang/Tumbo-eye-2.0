@@ -204,11 +204,10 @@ const ResourcesHero: React.FC = () => (
   <section className="section section-blue-bg res-page-hero">
     <div className="container res-page-hero-grid">
       <Reveal className="res-page-hero-content">
-        <p className="res-page-hero-brand">Tumbo</p>
-        <div className="hero-tag-pill">RESOURCES</div>
+  
         <h1 className="res-page-hero-title">
           Knowledge, Tools &amp; Resources for{' '}
-          <span className="eco2-title-accent">Every Opportunity</span>
+          <span className="text-grad">Every Opportunity</span>
         </h1>
         <p className="res-page-hero-desc">
           Explore a growing library of trusted resources designed to help individuals, businesses,

@@ -39,10 +39,9 @@ const PartnersHero: React.FC = () => (
   <section className="section section-blue-bg partners-hero-section">
     <div className="container partners-hero-grid">
       <Reveal className="partners-hero-content">
-        <p className="partners-hero-brand">Tumbo</p>
-        <div className="hero-tag-pill">PARTNERS</div>
+    
         <h1 className="partners-hero-title">
-          Let&apos;s Build Communities <span className="highlight-blue">Together</span>
+          Let&apos;s Build Communities <span className="text-grad">Together</span>
         </h1>
         <p className="partners-hero-desc">
           Partner with Tumbo to connect with verified communities, measure social impact and create

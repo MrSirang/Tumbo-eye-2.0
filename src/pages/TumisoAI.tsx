@@ -24,9 +24,11 @@ import {
   Waypoints,
   Search,
   Headset,
+  BarChart3,
+  BookOpen,
+  Store,
 } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
-import SplitText from '../components/SplitText';
 
 import tumisoRobot from '../assets/tumiso-robot.png';
 import tumisoRecoCta from '../assets/tumiso-reco-cta.png';
@@ -63,9 +65,9 @@ const jobCards = [
 ];
 
 const recommendations = [
-  { title: 'Analytic Management', desc: 'Insights to grow your career path' },
-  { title: 'Network & Education', desc: 'Courses, mentors and community links' },
-  { title: 'Business Support', desc: 'Tools for entrepreneurs and SMEs' },
+  { title: 'Analytic Management', desc: 'Insights to grow your career path', icon: <BarChart3 size={20} strokeWidth={1.8} /> },
+  { title: 'Network & Education', desc: 'Courses, mentors and community links', icon: <BookOpen size={20} strokeWidth={1.8} /> },
+  { title: 'Business Support', desc: 'Tools for entrepreneurs and SMEs', icon: <Store size={20} strokeWidth={1.8} /> },
 ];
 
 const topFeatures = [
@@ -179,21 +181,9 @@ const TumisoHero: React.FC = () => (
   <section className="section tumiso-hero-section">
     <div className="container tumiso-hero-grid">
       <Reveal className="tumiso-hero-copy">
-        <div className="hero-tag-pill">TUMISO AI</div>
-        <SplitText
-          tag="h1"
-          text="Your Intelligent Guide to Opportunities"
-          className="tumiso-hero-title"
-          delay={35}
-          duration={0.55}
-          ease="power3.out"
-          splitType="words"
-          from={{ opacity: 0, y: 28 }}
-          to={{ opacity: 1, y: 0 }}
-          threshold={0.15}
-          rootMargin="-60px"
-          textAlign="left"
-        />
+        <h1 className="tumiso-hero-title">
+          Your Intelligent Guide to <span className="text-grad">Opportunities</span>
+        </h1>
         <p className="tumiso-hero-desc">
           Tumbo AI helps verified individuals discover relevant opportunities, access trusted information and receive personalised guidance across employment, education, funding, entrepreneurship and community programmes—all powered by intelligent recommendations.
         </p>
@@ -321,7 +311,7 @@ const TumisoChatSection: React.FC = () => {
                   {recommendations.map((item) => (
                     <li key={item.title}>
                       <button type="button" className="tumiso-reco-item">
-                        <span className="tumiso-reco-dot" aria-hidden="true" />
+                        <span className="tumiso-reco-icon" aria-hidden="true">{item.icon}</span>
                         <span className="tumiso-reco-copy">
                           <strong>{item.title}</strong>
                           <span>{item.desc}</span>
