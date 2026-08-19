@@ -26,7 +26,6 @@ import partnerAws from '../assets/partner-aws.png';
 import partnerDell from '../assets/partner-dell.png';
 import partnerBritishCouncil from '../assets/partner-british-council.png';
 import { Reveal } from '../components/Reveal';
-import { AnimatedStat } from '../components/AnimatedStat';
 import {
   ArrowRight,
   Briefcase,
@@ -260,86 +259,6 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-/* ==========================================================================
-   SUB-COMPONENT: STATS COUNTER ROW
-   ========================================================================== */
-const StatsRow: React.FC = () => {
-  const stats = [
-    {
-      num: '120K+',
-      label: 'Active Users',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
-        </svg>
-      ),
-    },
-    {
-      num: '25K+',
-      label: 'Job Opportunities',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28">
-          <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-        </svg>
-      ),
-    },
-    {
-      num: '8K+',
-      label: 'Scholarships',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28">
-          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-          <path d="M6 12v5c3 3 9 3 12 0v-5" />
-        </svg>
-      ),
-    },
-    {
-      num: '500+',
-      label: 'Partner Institutions',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </svg>
-      ),
-    },
-    {
-      num: '50+',
-      label: 'Communities Reached',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28">
-          <circle cx="12" cy="12" r="10" />
-          <line x1="2" y1="12" x2="22" y2="12" />
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-        </svg>
-      ),
-    },
-  ];
-
-  return (
-    <div className="stats-pill-wrapper">
-      <div className="container stats-pill-container">
-        <Reveal className="stats-pill-card">
-          {stats.map((stat, i) => (
-            <React.Fragment key={stat.label}>
-              <div className="stats-pill-item">
-                <div className="stats-pill-icon">{stat.icon}</div>
-                <div className="stats-pill-text">
-                  <AnimatedStat value={stat.num} className="stats-pill-num" />
-                  <span className="stats-pill-label">{stat.label}</span>
-                </div>
-              </div>
-              {i < stats.length - 1 && <div className="stats-pill-divider" />}
-            </React.Fragment>
-          ))}
-        </Reveal>
-      </div>
-    </div>
   );
 };
 
