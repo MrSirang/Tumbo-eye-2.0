@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import heroWoman from '../assets/hero-woman-new.png';
@@ -7,7 +7,12 @@ import heroPhone from '../assets/hero-phone-cut.png';
 import heroConsent from '../assets/hero-consent-card-cut.png';
 import heroCloud from '../assets/hero-cloud-cut.png';
 import featuredOppDsv from '../assets/featured-opp-dsv.png';
-import featuredOppMrd from '../assets/featured-opp-mrd.png';
+import oppCardScholarship from '../assets/opp-card-scholarship.png';
+import oppCardGrants from '../assets/opp-card-grants.png';
+import ssPersonCareer from '../assets/ss-person-career-woman.png';
+import ssPersonGraduate from '../assets/ss-person-graduate.png';
+import ssPersonLeader from '../assets/ss-person-leader.png';
+import ssPersonYellow from '../assets/ss-person-yellow-bg.png';
 import ecoBannerMan from '../assets/eco-banner-man.png';
 import ecoBannerWoman from '../assets/eco-banner-woman.png';
 import successStoryFeatured from '../assets/success-story-featured.png';
@@ -29,7 +34,13 @@ import { Reveal } from '../components/Reveal';
 import {
   ArrowRight,
   Briefcase,
+  Bookmark,
+  Building2,
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight,
   GraduationCap,
+  MapPin,
   Star,
   Sparkles,
   Award,
@@ -50,6 +61,7 @@ import {
   Cloud,
   Smartphone,
   ShoppingCart,
+  Wallet,
 } from 'lucide-react';
 
 /* ==========================================================================
@@ -265,61 +277,227 @@ const HeroSection: React.FC = () => {
 /* ==========================================================================
    SUB-COMPONENT: FEATURED OPPORTUNITIES
    ========================================================================== */
+type FeaturedOppTheme = 'job' | 'scholarship' | 'internship' | 'grant';
+
+type FeaturedOppCard = {
+  theme: FeaturedOppTheme;
+  badge: string;
+  image: string;
+  imageAlt: string;
+  title: string;
+  organization: string;
+  location: string;
+  type: string;
+  funding: string;
+  deadline: string;
+  cta: string;
+};
+
 const FeaturedOpportunities: React.FC = () => {
-  const listings = [
+  const cards: FeaturedOppCard[] = [
     {
-      image: featuredOppDsv,
-      imageAlt: 'Tumbo community engagement event outdoors',
-      title: 'DSV Recruitment Drive',
-      location: 'South Africa',
-      category: 'Employment',
-      desc: 'DSV is recruiting for multiple positions across South Africa, including drivers, security guards, general workers, cleaners, data capturers and administration clerks.',
+      theme: 'job',
+      badge: 'Job',
+      image: ssPersonCareer,
+      imageAlt: 'Digital marketing professional',
+      title: 'Digital Marketing Specialist',
+      organization: 'Tumbo Partner Network',
+      location: 'Cape Town, South Africa',
+      type: 'Full-time · Remote',
+      funding: 'R18,000 – R25,000 / mo',
+      deadline: 'Apply by 30 Sep 2026',
+      cta: 'Apply Now',
     },
     {
-      image: featuredOppMrd,
-      imageAlt: 'Community workshop and recruitment session',
-      title: 'Mr D Driver Recruitment',
-      location: 'South Africa',
-      category: 'Driver Opportunities',
-      desc: 'Mr D is recruiting vehicle and motorcycle delivery drivers in Middelburg. Applicants require a reliable vehicle or motorcycle, valid documentation and the relevant licence.',
+      theme: 'scholarship',
+      badge: 'Scholarship',
+      image: oppCardScholarship,
+      imageAlt: 'Scholarship funding and graduation',
+      title: 'Undergraduate Scholarship Programme',
+      organization: 'Global Education Fund',
+      location: 'Africa-wide',
+      type: 'Undergraduate',
+      funding: 'Full tuition + stipend',
+      deadline: 'Apply by 15 Oct 2026',
+      cta: 'View Details',
+    },
+    {
+      theme: 'internship',
+      badge: 'Internship',
+      image: featuredOppDsv,
+      imageAlt: 'Youth development internship',
+      title: 'Youth Development Internship',
+      organization: 'Tumbo Community',
+      location: 'Johannesburg, South Africa',
+      type: '3–6 months · Hybrid',
+      funding: 'Stipend provided',
+      deadline: 'Apply by 5 Oct 2026',
+      cta: 'Apply Now',
+    },
+    {
+      theme: 'grant',
+      badge: 'Grant',
+      image: oppCardGrants,
+      imageAlt: 'Community impact grants',
+      title: 'Community Impact Grant',
+      organization: 'Tumbo Foundation',
+      location: 'Southern Africa',
+      type: 'Community projects',
+      funding: 'Up to R50,000',
+      deadline: 'Apply by 20 Nov 2026',
+      cta: 'View Details',
     },
   ];
 
-  return (
-    <section id="opportunities" className="section featured-opportunities-section">
-      <div className="container">
-        <Reveal className="featured-opp-header text-center">
-          <div className="section-tag">DISCOVER OPPORTUNITIES</div>
-          <h2 className="section-title">
-            Featured <span className="highlight-blue">Opportunities</span>
-          </h2>
-          <p className="section-subtitle featured-opp-subtitle">
-            Every opportunity published through Tumbo is designed to reach verified individuals based on location, skills, qualifications and community data. Rather than relying on mass applications, Tumbo intelligently connects opportunities with people who meet the required criteria—creating better outcomes for both applicants and organisations.
-          </p>
-        </Reveal>
+  const avatars = [ssPersonCareer, ssPersonGraduate, ssPersonLeader, ssPersonYellow];
+  const [page, setPage] = useState(0);
+  const [perPage, setPerPage] = useState(4);
 
-        <div className="featured-listing-grid">
-          {listings.map((item, index) => (
-            <Reveal key={item.title} delay={index * 0.08}>
-              <article className="featured-listing-card">
-                <div className="featured-listing-image-wrap">
-                  <img src={item.image} alt={item.imageAlt} className="featured-listing-image" />
-                </div>
-                <div className="featured-listing-body">
-                  <h3 className="featured-listing-title">{item.title}</h3>
-                  <p className="featured-listing-meta">
-                    <strong>Location :</strong> {item.location}
-                    <span className="featured-listing-meta-sep">|</span>
-                    <strong>Category :</strong> {item.category}
-                  </p>
-                  <p className="featured-listing-desc">{item.desc}</p>
-                  <Link to="/opportunities" className="btn btn-primary featured-listing-btn">
-                    View Opportunity <ArrowRight size={15} />
-                  </Link>
-                </div>
-              </article>
-            </Reveal>
+  useEffect(() => {
+    const updatePerPage = () => {
+      if (window.innerWidth <= 640) setPerPage(1);
+      else if (window.innerWidth <= 1024) setPerPage(2);
+      else setPerPage(4);
+    };
+    updatePerPage();
+    window.addEventListener('resize', updatePerPage);
+    return () => window.removeEventListener('resize', updatePerPage);
+  }, []);
+
+  const pageCount = Math.max(1, Math.ceil(cards.length / perPage));
+
+  useEffect(() => {
+    setPage((p) => Math.min(p, pageCount - 1));
+  }, [pageCount]);
+
+  const visible = cards.slice(page * perPage, page * perPage + perPage);
+
+  const goPrev = () => setPage((p) => (p - 1 + pageCount) % pageCount);
+  const goNext = () => setPage((p) => (p + 1) % pageCount);
+
+  return (
+    <section id="opportunities" className="section fo-section">
+      <div className="fo-bg-blob fo-bg-blob-tl" aria-hidden="true" />
+      <div className="fo-bg-blob fo-bg-blob-br" aria-hidden="true" />
+      <div className="fo-bg-dots" aria-hidden="true" />
+
+      <div className="container fo-inner">
+        <div className="fo-header">
+          <div className="fo-social-proof">
+            <div className="fo-avatars">
+              {avatars.map((src, i) => (
+                <img key={i} src={src} alt="" className="fo-avatar" style={{ zIndex: avatars.length - i }} />
+              ))}
+              <span className="fo-avatar fo-avatar-plus" aria-hidden="true">
+                +
+              </span>
+            </div>
+            <p className="fo-social-text">Join thousands who are building a better tomorrow with Tumbo.</p>
+          </div>
+
+          <Reveal className="fo-header-center text-center">
+            <div className="fo-eyebrow">OPPORTUNITIES FOR A BRIGHTER TOMORROW</div>
+            <h2 className="fo-title">
+              Featured <span className="fo-title-gradient">Opportunities</span>
+            </h2>
+            <p className="fo-subtitle">
+              Discover handpicked opportunities from trusted organizations. Take the next step towards your goals and
+              make a real impact.
+            </p>
+          </Reveal>
+
+          <p className="fo-handwrite fo-handwrite-tr" aria-hidden="true">
+            Real Opportunities
+            <br />
+            Brighter Futures
+          </p>
+        </div>
+
+        <div className="fo-carousel">
+          <button type="button" className="fo-nav fo-nav-prev" onClick={goPrev} aria-label="Previous opportunities">
+            <ChevronLeft size={22} strokeWidth={2.2} />
+          </button>
+
+          <div className="fo-track" key={`${page}-${perPage}`}>
+            {visible.map((item, index) => (
+              <Reveal key={item.title} delay={index * 0.06} className="fo-card-wrap">
+                <article className={`fo-card fo-card-${item.theme}`}>
+                  <div className="fo-card-media">
+                    <img src={item.image} alt={item.imageAlt} className="fo-card-image" />
+                    <button type="button" className="fo-bookmark" aria-label={`Save ${item.title}`}>
+                      <Bookmark size={16} strokeWidth={1.8} />
+                    </button>
+                    <span className="fo-badge">{item.badge}</span>
+                  </div>
+
+                  <div className="fo-card-body">
+                    <h3 className="fo-card-title">{item.title}</h3>
+                    <ul className="fo-card-meta">
+                      <li>
+                        <Building2 size={15} strokeWidth={1.8} />
+                        <span>{item.organization}</span>
+                      </li>
+                      <li>
+                        <MapPin size={15} strokeWidth={1.8} />
+                        <span>{item.location}</span>
+                      </li>
+                      <li>
+                        <Briefcase size={15} strokeWidth={1.8} />
+                        <span>{item.type}</span>
+                      </li>
+                      <li>
+                        <Wallet size={15} strokeWidth={1.8} />
+                        <span>{item.funding}</span>
+                      </li>
+                      <li>
+                        <CalendarDays size={15} strokeWidth={1.8} />
+                        <span>{item.deadline}</span>
+                      </li>
+                    </ul>
+                    <Link to="/opportunities" className="fo-card-cta">
+                      {item.cta} <ArrowRight size={15} strokeWidth={2.2} />
+                    </Link>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          <button type="button" className="fo-nav fo-nav-next" onClick={goNext} aria-label="Next opportunities">
+            <ChevronRight size={22} strokeWidth={2.2} />
+          </button>
+        </div>
+
+        <div className="fo-dots" role="tablist" aria-label="Opportunity slides">
+          {Array.from({ length: pageCount }).map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              className={`fo-dot${i === page ? ' is-active' : ''}`}
+              onClick={() => setPage(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              aria-selected={i === page}
+            />
           ))}
+        </div>
+
+        <div className="fo-footer">
+          <p className="fo-handwrite fo-handwrite-bl" aria-hidden="true">
+            Explore. Apply. Create Impact.
+            <svg className="fo-hand-arrow" viewBox="0 0 120 40" fill="none" aria-hidden="true">
+              <path
+                d="M4 28C28 8 58 4 92 12"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+              />
+              <path d="M84 6l12 8-14 4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </p>
+
+          <Link to="/opportunities" className="fo-view-more">
+            View More Opportunities <ArrowRight size={18} strokeWidth={2.2} />
+          </Link>
         </div>
       </div>
     </section>

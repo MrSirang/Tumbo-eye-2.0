@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
@@ -12,26 +14,27 @@ import { SuccessStories } from './pages/SuccessStories';
 import { Contact } from './pages/Contact';
 import { PrivacyPage, TermsPage } from './pages/Legal';
 import { TumisoAI } from './pages/TumisoAI';
+import { SignUp } from './pages/SignUp';
+import { SignIn } from './pages/SignIn';
 import { TumboBackground } from './components/TumboBackground';
+import { ToMeChatbot } from './components/ToMeChatbot';
 
-// Scroll behavior manager to handle scroll-to-top and hash section targets
+const AUTH_ROUTES = ['/signup', '/signin'];
+
 const ScrollManager: React.FC = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // If there is a hash (e.g. #opportunities), attempt to scroll to it
     if (hash) {
       const elementId = hash.replace('#', '');
       const element = document.getElementById(elementId);
       if (element) {
-        // Wait slightly for page components to render
         const timer = setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 100);
         return () => clearTimeout(timer);
       }
     } else {
-      // Otherwise, scroll to the top of the page on route change
       window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
     }
   }, [pathname, hash]);
@@ -39,12 +42,15 @@ const ScrollManager: React.FC = () => {
   return null;
 };
 
-function App() {
+const AppShell: React.FC = () => {
+  const { pathname } = useLocation();
+  const isAuthPage = AUTH_ROUTES.includes(pathname);
+
   return (
-    <BrowserRouter>
-      <TumboBackground />
+    <>
+      {!isAuthPage && <TumboBackground />}
       <ScrollManager />
-      <Navbar />
+      {!isAuthPage && <Navbar />}
       <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -59,10 +65,27 @@ function App() {
           <Route path="/tumiso-ai" element={<TumisoAI />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
         </Routes>
       </main>
-      <Footer />
-    </BrowserRouter>
+      {!isAuthPage && <Footer />}
+      {!isAuthPage && <ToMeChatbot />}
+    </>
+  );
+};
+
+const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID ?? '';
+
+function App() {
+  return (
+    <GoogleOAuthProvider clientId={googleClientId}>
+      <AuthProvider>
+        <BrowserRouter>
+          <AppShell />
+        </BrowserRouter>
+      </AuthProvider>
+    </GoogleOAuthProvider>
   );
 }
 

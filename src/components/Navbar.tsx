@@ -60,7 +60,7 @@ export const Navbar: React.FC = () => {
           <button className="nav-lang" type="button" aria-label="Language">
             EN <ChevronDown size={14} />
           </button>
-          <Link to="/contact" className="nav-join-btn">
+          <Link to="/signup" className="nav-join-btn">
             Join Tumbo
           </Link>
         </div>
@@ -110,7 +110,7 @@ export const Navbar: React.FC = () => {
         </ul>
 
         <div className="mobile-nav-actions">
-          <Link to="/contact" className="nav-join-btn" onClick={closeMenu}>
+          <Link to="/signup" className="nav-join-btn" onClick={closeMenu}>
             Join Tumbo
           </Link>
         </div>
