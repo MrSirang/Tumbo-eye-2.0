@@ -16,6 +16,8 @@ public class User
 
     public AuthProvider AuthProvider { get; set; }
 
+    public UserRole Role { get; set; } = UserRole.User;
+
     public DateTime CreatedAt { get; set; }
 
     public DateTime UpdatedAt { get; set; }
@@ -25,4 +27,10 @@ public enum AuthProvider
 {
     Email = 0,
     Google = 1
+}
+
+public enum UserRole
+{
+    User = 0,
+    Admin = 1
 }

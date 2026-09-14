@@ -36,6 +36,13 @@ import {
 } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import { AnimatedStat } from '../components/AnimatedStat';
+import {
+  fetchPublicOpportunities,
+  formatPostedLabel,
+  resolveMediaUrl,
+  splitRequirements,
+  type ApiOpportunity,
+} from '../lib/opportunities';
 
 import oppAiRobot from '../assets/opp-ai-robot-new.png';
 import oppReadyBooth from '../assets/opp-ready-booth.png';
@@ -58,6 +65,7 @@ type SortKey = 'Recommended' | 'Latest' | 'Most Popular' | 'Near Me';
 type ListingTag = 'job' | 'small-shop' | 'service' | 'stock-sell' | 'locally-produced';
 
 type Opportunity = {
+  id?: string;
   title: string;
   tag: ListingTag;
   tagLabel: string;
@@ -199,6 +207,68 @@ const OPPORTUNITIES: Opportunity[] = [
       "Click 'Apply Now' to share your craft story. Selected makers will be invited to the next collective intake.",
   },
 ];
+
+const CATEGORY_SET = new Set<Exclude<Category, 'All'>>([
+  'Jobs',
+  'Scholarships',
+  'Internships',
+  'Grants',
+  'Training',
+  'Volunteering',
+  'Partnerships',
+]);
+
+const TAG_SET = new Set<ListingTag>([
+  'job',
+  'small-shop',
+  'service',
+  'stock-sell',
+  'locally-produced',
+]);
+
+const ICON_SET = new Set<Opportunity['detailIcon']>([
+  'briefcase',
+  'store',
+  'wrench',
+  'basket',
+  'palette',
+]);
+
+const mapApiOpportunity = (item: ApiOpportunity): Opportunity => {
+  const category = CATEGORY_SET.has(item.category as Exclude<Category, 'All'>)
+    ? (item.category as Exclude<Category, 'All'>)
+    : 'Jobs';
+  const tag = TAG_SET.has(item.tag as ListingTag) ? (item.tag as ListingTag) : 'job';
+  const detailIcon = ICON_SET.has(item.detailIcon as Opportunity['detailIcon'])
+    ? (item.detailIcon as Opportunity['detailIcon'])
+    : 'briefcase';
+
+  return {
+    id: item.id,
+    title: item.title,
+    tag,
+    tagLabel: item.tagLabel || tag.replace(/-/g, ' ').toUpperCase(),
+    category,
+    location: item.locationLabel || item.city || 'Online',
+    detail: item.opportunityType || category,
+    detailIcon,
+    image: resolveMediaUrl(item.imageUrl) || oppListingJob,
+    imageAlt: item.imageAlt || item.title,
+    posted: formatPostedLabel(item.postedAt),
+    salary: item.salaryText || 'Details on apply',
+    experience: item.experienceRequired
+      ? item.experienceRequired.startsWith('Experience')
+        ? item.experienceRequired
+        : `Experience ${item.experienceRequired}`
+      : 'Experience Not required',
+    about: item.aboutContent || item.shortDescription || '',
+    requirements: splitRequirements(item.requirementsContent),
+    howToApply:
+      item.howToApplyContent ||
+      "Click the 'Apply Now' button and fill in your details.",
+    externalUrl: item.applyUrl || undefined,
+  };
+};
 
 const openExternalOpportunity = (title: string, url: string) => {
   const leave = window.confirm(
@@ -457,6 +527,18 @@ const FindOpportunities: React.FC = () => {
 
   const [deadlineFilter, setDeadlineFilter] = useState('all');
 
+  const [page, setPage] = useState(1);
+
+  const [totalPages, setTotalPages] = useState(1);
+
+  const [totalCount, setTotalCount] = useState(OPPORTUNITIES.length);
+
+  const [listings, setListings] = useState<Opportunity[]>(OPPORTUNITIES);
+
+  const [usingApi, setUsingApi] = useState(false);
+
+  const [loadingList, setLoadingList] = useState(false);
+
   const categories: { name: Category; label: string; icon: React.ReactNode; iconClass: string }[] = [
 
     { name: 'All', label: 'All', icon: <LayoutGrid size={16} strokeWidth={2} />, iconClass: 'is-all' },
@@ -477,66 +559,110 @@ const FindOpportunities: React.FC = () => {
 
   ];
 
+  useEffect(() => {
+    let cancelled = false;
+
+    const load = async () => {
+      setLoadingList(true);
+      try {
+        const data = await fetchPublicOpportunities({
+          page,
+          limit: 12,
+          search: query.trim() || undefined,
+          category: activeCategory,
+          location: locationFilter,
+          opportunityType: typeFilter,
+          experience: experienceFilter,
+          sort: sortBy,
+        });
+
+        if (cancelled) return;
+
+        if (data.total > 0) {
+          setListings(data.items.map(mapApiOpportunity));
+          setTotalPages(data.totalPages);
+          setTotalCount(data.total);
+          setUsingApi(true);
+        } else if (page === 1 && !query && activeCategory === 'All' && locationFilter === 'all') {
+          setListings(OPPORTUNITIES);
+          setTotalPages(1);
+          setTotalCount(OPPORTUNITIES.length);
+          setUsingApi(false);
+        } else {
+          setListings([]);
+          setTotalPages(1);
+          setTotalCount(0);
+          setUsingApi(true);
+        }
+      } catch {
+        if (cancelled) return;
+        setUsingApi(false);
+        setListings(OPPORTUNITIES);
+        setTotalPages(1);
+        setTotalCount(OPPORTUNITIES.length);
+      } finally {
+        if (!cancelled) setLoadingList(false);
+      }
+    };
+
+    const timer = window.setTimeout(load, usingApi || query ? 250 : 0);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- debounce search; usingApi intentionally omitted
+  }, [page, query, activeCategory, locationFilter, typeFilter, experienceFilter, sortBy]);
+
   const filtered = useMemo(() => {
+    if (usingApi) {
+      if (deadlineFilter === 'all') return listings;
+      return listings.filter((item) =>
+        item.posted.toLowerCase().includes(deadlineFilter.toLowerCase()),
+      );
+    }
 
     const q = query.trim().toLowerCase();
 
-    return OPPORTUNITIES.filter((item) => {
-
+    return listings.filter((item) => {
       const categoryOk = activeCategory === 'All' || item.category === activeCategory;
-
       const queryOk =
-
         !q ||
-
         item.title.toLowerCase().includes(q) ||
-
         item.location.toLowerCase().includes(q) ||
-
         item.tagLabel.toLowerCase().includes(q) ||
-
         item.detail.toLowerCase().includes(q) ||
-
         item.category.toLowerCase().includes(q);
-
       const locationOk =
-
         locationFilter === 'all' || item.location.toLowerCase().includes(locationFilter.toLowerCase());
-
       const typeOk = typeFilter === 'all' || item.tag === typeFilter;
-
       const experienceOk =
-
         experienceFilter === 'all' ||
-
         item.experience.toLowerCase().includes(experienceFilter.toLowerCase());
-
       const deadlineOk =
-
         deadlineFilter === 'all' || item.posted.toLowerCase().includes(deadlineFilter.toLowerCase());
 
       return categoryOk && queryOk && locationOk && typeOk && experienceOk && deadlineOk;
-
     });
-
-  }, [activeCategory, query, locationFilter, typeFilter, experienceFilter, deadlineFilter]);
+  }, [
+    usingApi,
+    listings,
+    activeCategory,
+    query,
+    locationFilter,
+    typeFilter,
+    experienceFilter,
+    deadlineFilter,
+  ]);
 
   const resetFilters = () => {
-
     setActiveCategory('All');
-
     setQuery('');
-
     setSortBy('Recommended');
-
     setLocationFilter('all');
-
     setTypeFilter('all');
-
     setExperienceFilter('all');
-
     setDeadlineFilter('all');
-
+    setPage(1);
   };
 
   return (
@@ -577,7 +703,10 @@ const FindOpportunities: React.FC = () => {
 
                 className={`opp-pill-tab${activeCategory === cat.name ? ' is-active' : ''} ${cat.iconClass}`}
 
-                onClick={() => setActiveCategory(cat.name)}
+                onClick={() => {
+                  setActiveCategory(cat.name);
+                  setPage(1);
+                }}
 
               >
 
@@ -825,7 +954,11 @@ const FindOpportunities: React.FC = () => {
 
             <p className="opp-featured-count">
 
-              Showing {filtered.length} matching {filtered.length === 1 ? 'opportunity' : 'opportunities'}
+              {loadingList
+                ? 'Loading opportunities…'
+                : `Showing ${filtered.length} matching ${filtered.length === 1 ? 'opportunity' : 'opportunities'}${
+                    usingApi ? ` · ${totalCount} total` : ''
+                  }`}
 
             </p>
 
@@ -843,7 +976,7 @@ const FindOpportunities: React.FC = () => {
 
           {filtered.map((item, i) => (
 
-            <Reveal key={item.title} delay={i * 0.04}>
+            <Reveal key={item.id || item.title} delay={i * 0.04}>
 
               <article className={`opp-feat-card opp-feat-card-${item.tag}${viewMode === 'list' ? ' opp-feat-card-list' : ''}`}>
 
@@ -914,6 +1047,30 @@ const FindOpportunities: React.FC = () => {
           ))}
 
         </div>
+
+        {usingApi && totalPages > 1 && (
+          <div className="opp-pager" style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 24 }}>
+            <button
+              type="button"
+              className="btn btn-outline"
+              disabled={page <= 1 || loadingList}
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+            >
+              Previous
+            </button>
+            <span className="opp-featured-count" style={{ alignSelf: 'center' }}>
+              Page {page} of {totalPages}
+            </span>
+            <button
+              type="button"
+              className="btn btn-outline"
+              disabled={page >= totalPages || loadingList}
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            >
+              Next
+            </button>
+          </div>
+        )}
 
         {filtered.length === 0 && (
 

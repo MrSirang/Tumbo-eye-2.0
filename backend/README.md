@@ -1,93 +1,52 @@
-# Tumbo Eye — .NET Backend
+# Tumbo Eye API + Opportunities CMS
 
-ASP.NET Core 8 Web API with **Entity Framework Core** and **PostgreSQL** for user authentication.
+## Stack
+- ASP.NET Core 8
+- PostgreSQL (Neon / local)
+- EF Core + JWT admin auth
+- Static admin panel at `/admin/`
 
-> **Note:** Drizzle ORM is for Node.js/TypeScript only. For .NET we use **EF Core**, which is the standard PostgreSQL ORM for this stack.
+## Quick start
 
-## Features
-
-- Email/password **sign up** and **sign in**
-- **Google OAuth** (frontend sends Google ID token; backend verifies and issues JWT)
-- PostgreSQL `users` table with unique email and Google ID
-- JWT tokens for authenticated sessions
-- Swagger UI in development
-
-## Prerequisites
-
-1. [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-2. [PostgreSQL](https://www.postgresql.org/download/) (local or hosted)
-3. [Google Cloud OAuth Client ID](https://console.cloud.google.com/apis/credentials) (Web application)
-
-## Setup
-
-### 1. Install .NET 8 SDK
-
-Download and install from Microsoft if `dotnet --version` is not recognized.
-
-### 2. Create PostgreSQL database
-
-```sql
-CREATE DATABASE tumbo_eye;
-```
-
-### 3. Configure secrets
-
-Edit `TumboEye.Api/appsettings.Development.json` (or use User Secrets):
-
-| Setting | Description |
-|---------|-------------|
-| `ConnectionStrings:DefaultConnection` | PostgreSQL host, port, database, username, password |
-| `Jwt:Secret` | Random string, **at least 32 characters** |
-| `Google:ClientId` | Google OAuth Web Client ID |
-| `Cors:AllowedOrigins` | Frontend URL(s), e.g. `http://localhost:5173` |
-
-### 4. Run the API
-
-```powershell
+```bash
 cd backend/TumboEye.Api
 dotnet restore
-dotnet run
+dotnet tool install --global dotnet-ef   # if needed
+dotnet ef database update
+dotnet run --urls http://localhost:5000
 ```
 
-API runs at **http://localhost:5000**  
-Swagger: **http://localhost:5000/swagger**
+Open:
+- API health: http://localhost:5000/api/health
+- Swagger (Development): http://localhost:5000/swagger
+- **Admin panel:** http://localhost:5000/admin/
 
-On first run, EF Core applies migrations and creates the `users` table automatically.
+### Default admin (seeded on startup)
+- Email: `admin@tumbo.co.za`
+- Password: `TumboAdmin2026!`
 
-## API Endpoints
+Change these via config `Admin:Email` / `Admin:Password` (user-secrets recommended).
 
-| Method | Path | Body |
-|--------|------|------|
-| `POST` | `/api/auth/register` | `{ fullName, email, phone?, password, confirmPassword }` |
-| `POST` | `/api/auth/login` | `{ email, password }` |
-| `POST` | `/api/auth/google` | `{ idToken }` |
+## Connection string (Neon)
 
-Success response:
+Do **not** commit real passwords. Set with user-secrets:
 
-```json
-{
-  "token": "eyJ...",
-  "user": {
-    "id": "...",
-    "fullName": "...",
-    "email": "...",
-    "phone": null,
-    "authProvider": "Email"
-  }
-}
+```bash
+dotnet user-secrets init
+dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=YOUR_HOST;Database=neondb;Username=YOUR_USER;Password=YOUR_PASSWORD;SSL Mode=Require;Trust Server Certificate=true"
+dotnet user-secrets set "Jwt:Secret" "a-long-random-secret-at-least-32-characters"
 ```
 
-## Google OAuth setup
+## Public APIs
+- `GET /api/opportunities?page=1&limit=12&location=&category=&search=`
+- `GET /api/opportunities/{idOrSlug}`
 
-1. Go to [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials
-2. Create **OAuth 2.0 Client ID** → Application type: **Web application**
-3. Authorized JavaScript origins: `http://localhost:5173`
-4. Copy **Client ID** into both:
-   - Backend: `Google:ClientId` in appsettings
-   - Frontend: `VITE_GOOGLE_CLIENT_ID` in `.env`
+## Admin APIs (Bearer JWT, role Admin)
+- `GET/POST /api/admin/opportunities`
+- `GET/PUT/DELETE /api/admin/opportunities/{id}`
+- `PATCH /api/admin/opportunities/{id}/status`
+- `POST /api/admin/media` (image upload)
 
-## Frontend connection
-
-The React app uses `VITE_API_URL` (default `/api` via Vite proxy in dev).
-
-See root `.env.example` for frontend environment variables.
+## Frontend
+Footer → **Admin Panel** opens the CMS.  
+Opportunities page loads published records from the API (falls back to demo cards if the API is empty/offline).

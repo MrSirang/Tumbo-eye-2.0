@@ -139,6 +139,16 @@ export const Footer: React.FC = () => {
                   Browse Opportunities
                 </Link>
               </li>
+              <li>
+                <a
+                  href={import.meta.env.VITE_ADMIN_URL ?? 'http://localhost:5000/admin/'}
+                  className="footer-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Admin Panel
+                </a>
+              </li>
             </ul>
           </div>
 

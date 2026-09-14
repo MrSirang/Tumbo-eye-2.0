@@ -29,7 +29,8 @@ public record UserDto(
     string FullName,
     string Email,
     string? Phone,
-    string AuthProvider
+    string AuthProvider,
+    string Role
 );
 
 public record ErrorResponse(string Message);

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tumbo Admin — Opportunities CMS</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="login-view" class="login-shell">
+    <form id="login-form" class="login-card">
+      <p class="brand">TUMBO</p>
+      <h1>Admin Panel</h1>
+      <p class="muted">Sign in to manage opportunities</p>
+      <label>
+        Email
+        <input id="login-email" type="email" required autocomplete="username" placeholder="admin@tumbo.co.za" />
+      </label>
+      <label>
+        Password
+        <span class="password-field">
+          <input id="login-password" type="password" required autocomplete="current-password" placeholder="Enter admin password" />
+          <button type="button" id="toggle-password" class="password-toggle" aria-label="Show password" title="Show password">
+            <svg id="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <svg id="eye-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" hidden>
+              <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.77 21.77 0 0 1 5.06-5.94" />
+              <path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19" />
+              <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
+              <line x1="1" y1="1" x2="23" y2="23" />
+            </svg>
+          </button>
+        </span>
+      </label>
+      <p id="login-error" class="error" hidden></p>
+      <button type="submit" id="login-submit">Sign in</button>
+    </form>
+  </div>
+
+  <div id="app-view" class="app" hidden aria-hidden="true">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <strong>Tumbo Admin</strong>
+        <span>Opportunities CMS</span>
+        <span id="admin-name" class="admin-user"></span>
+      </div>
+      <nav>
+        <button type="button" class="nav-btn is-active" data-view="list">All Opportunities</button>
+        <button type="button" class="nav-btn" data-view="form" id="nav-create">Create New</button>
+      </nav>
+      <button type="button" id="logout-btn" class="logout">Sign out</button>
+    </aside>
+
+    <main class="main">
+      <section id="list-view">
+        <header class="page-head">
+          <div>
+            <h2>Opportunities</h2>
+            <p class="muted">Create, edit, publish and delete listings</p>
+          </div>
+          <button type="button" class="primary" id="btn-create">+ New Opportunity</button>
+        </header>
+
+        <div class="toolbar">
+          <input id="filter-search" type="search" placeholder="Search title, location…" />
+          <select id="filter-category">
+            <option value="">All categories</option>
+            <option>Jobs</option>
+            <option>Scholarships</option>
+            <option>Internships</option>
+            <option>Grants</option>
+            <option>Training</option>
+            <option>Volunteering</option>
+            <option>Partnerships</option>
+          </select>
+          <select id="filter-status">
+            <option value="">All statuses</option>
+            <option value="Draft">Draft</option>
+            <option value="Published">Published</option>
+            <option value="Unpublished">Unpublished</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Opportunity</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Posted</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="opp-table-body">
+              <tr><td colspan="6" class="muted">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <button type="button" id="prev-page">Previous</button>
+          <span id="page-label">Page 1</span>
+          <button type="button" id="next-page">Next</button>
+        </div>
+      </section>
+
+      <section id="form-view" hidden>
+        <header class="page-head">
+          <div>
+            <h2 id="form-title">Create Opportunity</h2>
+            <p class="muted">Fields match the public Opportunities card and detail view</p>
+          </div>
+          <button type="button" class="ghost" id="btn-back-list">← Back to list</button>
+        </header>
+
+        <form id="opp-form" class="form-grid">
+          <input type="hidden" id="opp-id" />
+
+          <label class="span-2">
+            Title *
+            <input id="f-title" required maxlength="200" />
+          </label>
+
+          <label>
+            Category *
+            <select id="f-category" required>
+              <option>Jobs</option>
+              <option>Scholarships</option>
+              <option>Internships</option>
+              <option>Grants</option>
+              <option>Training</option>
+              <option>Volunteering</option>
+              <option>Partnerships</option>
+            </select>
+          </label>
+
+          <label>
+            Opportunity type
+            <input id="f-type" placeholder="Full-time, Internship…" />
+          </label>
+
+          <label>
+            Organization / provider
+            <input id="f-org" />
+          </label>
+
+          <label>
+            Status
+            <select id="f-status">
+              <option value="Draft">Draft</option>
+              <option value="Published">Published</option>
+              <option value="Unpublished">Unpublished</option>
+            </select>
+          </label>
+
+          <label>
+            City
+            <input id="f-city" />
+          </label>
+          <label>
+            Region / State
+            <input id="f-region" />
+          </label>
+          <label>
+            Country
+            <input id="f-country" value="South Africa" />
+          </label>
+          <label>
+            Location label
+            <input id="f-location" placeholder="Midrand, GP" />
+          </label>
+
+          <label class="span-2">
+            Opportunity image
+            <div class="image-row">
+              <input id="f-image-url" placeholder="/uploads/opportunities/…" />
+              <input id="f-image-file" type="file" accept="image/*" />
+            </div>
+            <img id="f-image-preview" class="preview" alt="" hidden />
+          </label>
+
+          <label class="span-2">
+            Image alt text
+            <input id="f-image-alt" />
+          </label>
+
+          <label class="span-2">
+            Short description
+            <textarea id="f-short" rows="3" maxlength="1000"></textarea>
+          </label>
+
+          <label>
+            Salary / package
+            <input id="f-salary" />
+          </label>
+          <label>
+            Experience required
+            <input id="f-experience" placeholder="Not required / Preferred…" />
+          </label>
+          <label class="span-2">
+            Education / qualification
+            <input id="f-education" />
+          </label>
+
+          <label>
+            Card tag
+            <select id="f-tag">
+              <option value="job">job</option>
+              <option value="small-shop">small-shop</option>
+              <option value="service">service</option>
+              <option value="stock-sell">stock-sell</option>
+              <option value="locally-produced">locally-produced</option>
+            </select>
+          </label>
+          <label>
+            Tag label
+            <input id="f-tag-label" placeholder="JOB" />
+          </label>
+          <label>
+            Detail icon
+            <select id="f-icon">
+              <option value="briefcase">briefcase</option>
+              <option value="store">store</option>
+              <option value="wrench">wrench</option>
+              <option value="basket">basket</option>
+              <option value="palette">palette</option>
+            </select>
+          </label>
+          <label>
+            Posted date
+            <input id="f-posted" type="datetime-local" />
+          </label>
+          <label>
+            Application deadline
+            <input id="f-deadline" type="date" />
+          </label>
+          <label>
+            Featured
+            <select id="f-featured">
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+          </label>
+
+          <label class="span-2">
+            Apply Now URL
+            <input id="f-apply-url" type="url" placeholder="https://…" />
+          </label>
+
+          <label class="span-2">
+            About the role / opportunity
+            <textarea id="f-about" rows="5"></textarea>
+          </label>
+          <label class="span-2">
+            Requirements (one per line)
+            <textarea id="f-requirements" rows="5"></textarea>
+          </label>
+          <label class="span-2">
+            How to apply
+            <textarea id="f-howto" rows="4"></textarea>
+          </label>
+
+          <p id="form-error" class="error span-2" hidden></p>
+          <p id="form-success" class="success span-2" hidden></p>
+
+          <div class="form-actions span-2">
+            <button type="submit" class="primary">Save opportunity</button>
+            <button type="button" id="btn-publish" class="secondary">Save &amp; Publish</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

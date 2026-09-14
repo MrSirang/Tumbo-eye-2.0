@@ -6,6 +6,7 @@ export type AuthUser = {
   email: string;
   phone: string | null;
   authProvider: string;
+  role?: string;
 };
 
 export type AuthResponse = {

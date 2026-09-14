@@ -49,6 +49,7 @@ public class AuthService : IAuthService
             Phone = string.IsNullOrWhiteSpace(request.Phone) ? null : request.Phone.Trim(),
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
             AuthProvider = AuthProvider.Email,
+            Role = UserRole.User,
             CreatedAt = now,
             UpdatedAt = now
         };
@@ -129,6 +130,7 @@ public class AuthService : IAuthService
                 Email = normalizedEmail,
                 GoogleId = payload.Subject,
                 AuthProvider = AuthProvider.Google,
+                Role = UserRole.User,
                 CreatedAt = now,
                 UpdatedAt = now
             };
@@ -159,7 +161,8 @@ public class AuthService : IAuthService
                 user.FullName,
                 user.Email,
                 user.Phone,
-                user.AuthProvider.ToString()
+                user.AuthProvider.ToString(),
+                user.Role.ToString()
             )
         );
     }
