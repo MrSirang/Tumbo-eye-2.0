@@ -90,9 +90,10 @@ public class AuthService : IAuthService
     public async Task<(AuthResponse? Result, string? Error)> GoogleSignInAsync(GoogleAuthRequest request)
     {
         var clientId = _configuration["Google:ClientId"];
-        if (string.IsNullOrWhiteSpace(clientId))
+        if (string.IsNullOrWhiteSpace(clientId) ||
+            clientId.Contains("YOUR_GOOGLE_CLIENT_ID", StringComparison.OrdinalIgnoreCase))
         {
-            return (null, "Google sign-in is not configured on the server.");
+            return (null, "Google sign-in is not configured yet. Add your Google Client ID on the server.");
         }
 
         GoogleJsonWebSignature.Payload payload;
@@ -138,14 +139,12 @@ public class AuthService : IAuthService
         }
         else
         {
-            user.GoogleId ??= payload.Subject;
-            user.FullName = payload.Name ?? user.FullName;
+            user.GoogleId = payload.Subject;
+            user.FullName = string.IsNullOrWhiteSpace(payload.Name) ? user.FullName : payload.Name;
+            user.AuthProvider = string.IsNullOrEmpty(user.PasswordHash)
+                ? AuthProvider.Google
+                : user.AuthProvider;
             user.UpdatedAt = now;
-
-            if (user.AuthProvider == AuthProvider.Email && string.IsNullOrEmpty(user.GoogleId))
-            {
-                user.GoogleId = payload.Subject;
-            }
         }
 
         await _db.SaveChangesAsync();

@@ -1,7 +1,8 @@
-import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import type { AuthResponse, AuthUser } from '../lib/auth';
 import {
   clearAuthSession,
+  fetchCurrentUser,
   getStoredToken,
   getStoredUser,
   saveAuthSession,
@@ -11,6 +12,7 @@ type AuthContextValue = {
   user: AuthUser | null;
   token: string | null;
   isAuthenticated: boolean;
+  authReady: boolean;
   setSession: (response: AuthResponse) => void;
   logout: () => void;
 };
@@ -20,6 +22,45 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<AuthUser | null>(() => getStoredUser());
   const [token, setToken] = useState<string | null>(() => getStoredToken());
+  const [authReady, setAuthReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const hydrate = async () => {
+      const storedToken = getStoredToken();
+      const storedUser = getStoredUser();
+
+      if (!storedToken || !storedUser) {
+        if (!cancelled) {
+          setUser(null);
+          setToken(null);
+          setAuthReady(true);
+        }
+        return;
+      }
+
+      try {
+        const fresh = await fetchCurrentUser(storedToken);
+        if (cancelled) return;
+        setToken(storedToken);
+        setUser(fresh);
+        localStorage.setItem('tumbo_auth_user', JSON.stringify(fresh));
+      } catch {
+        if (cancelled) return;
+        clearAuthSession();
+        setUser(null);
+        setToken(null);
+      } finally {
+        if (!cancelled) setAuthReady(true);
+      }
+    };
+
+    void hydrate();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const setSession = useCallback((response: AuthResponse) => {
     saveAuthSession(response);
@@ -38,10 +79,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       user,
       token,
       isAuthenticated: Boolean(token && user),
+      authReady,
       setSession,
       logout,
     }),
-    [user, token, setSession, logout]
+    [user, token, authReady, setSession, logout]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

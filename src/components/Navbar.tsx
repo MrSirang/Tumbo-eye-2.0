@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { ChevronDown, LogOut, Menu, X } from 'lucide-react';
 import logo from '../assets/tumbo-logo-nav.png';
+import { useAuth } from '../context/AuthContext';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+
+  const handleLogout = () => {
+    logout();
+    closeMenu();
+    navigate('/signin');
+  };
 
   return (
     <header className="navbar-header">
@@ -28,13 +37,22 @@ export const Navbar: React.FC = () => {
                 Products <ChevronDown size={14} />
               </span>
               <div className="nav-dropdown-menu">
-                <NavLink to="/ecosystem" onClick={closeMenu}>Tumbo Ecosystem</NavLink>
-                <NavLink to="/opportunities" onClick={closeMenu}>Opportunities</NavLink>
-                <NavLink to="/tumiso-ai" onClick={closeMenu}>Tumiso AI</NavLink>
+                <NavLink to="/ecosystem" onClick={closeMenu}>
+                  Tumbo Ecosystem
+                </NavLink>
+                <NavLink to="/opportunities" onClick={closeMenu}>
+                  Opportunities
+                </NavLink>
+                <NavLink to="/tumiso-ai" onClick={closeMenu}>
+                  Tumiso AI
+                </NavLink>
               </div>
             </li>
             <li>
-              <NavLink to="/success-stories" className={({ isActive }) => `nav-item-link ${isActive ? 'active' : ''}`}>
+              <NavLink
+                to="/success-stories"
+                className={({ isActive }) => `nav-item-link ${isActive ? 'active' : ''}`}
+              >
                 Impact
               </NavLink>
             </li>
@@ -60,9 +78,26 @@ export const Navbar: React.FC = () => {
           <button className="nav-lang" type="button" aria-label="Language">
             EN <ChevronDown size={14} />
           </button>
-          <Link to="/signup" className="nav-join-btn">
-            Join Tumbo
-          </Link>
+          {isAuthenticated ? (
+            <div className="nav-auth-session">
+              <span className="nav-user-chip" title={user?.email}>
+                {user?.fullName?.split(' ')[0] || 'Account'}
+              </span>
+              <button type="button" className="nav-signout-btn" onClick={handleLogout}>
+                <LogOut size={15} />
+                Sign out
+              </button>
+            </div>
+          ) : (
+            <div className="nav-auth-links">
+              <Link to="/signin" className="nav-signin-link">
+                Sign in
+              </Link>
+              <Link to="/signup" className="nav-join-btn">
+                Join Tumbo
+              </Link>
+            </div>
+          )}
         </div>
 
         <button className="mobile-menu-btn" onClick={toggleMenu} aria-label="Toggle Navigation Menu">
@@ -73,48 +108,93 @@ export const Navbar: React.FC = () => {
       <div className={`mobile-drawer ${isOpen ? 'open' : ''}`}>
         <ul className="mobile-nav-links">
           <li>
-            <NavLink to="/about" className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`} onClick={closeMenu}>
+            <NavLink
+              to="/about"
+              className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`}
+              onClick={closeMenu}
+            >
               About Tumbo
             </NavLink>
           </li>
           <li>
-            <NavLink to="/ecosystem" className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`} onClick={closeMenu}>
+            <NavLink
+              to="/ecosystem"
+              className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`}
+              onClick={closeMenu}
+            >
               Products
             </NavLink>
           </li>
           <li>
-            <NavLink to="/opportunities" className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`} onClick={closeMenu}>
+            <NavLink
+              to="/opportunities"
+              className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`}
+              onClick={closeMenu}
+            >
               Opportunities
             </NavLink>
           </li>
           <li>
-            <NavLink to="/success-stories" className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`} onClick={closeMenu}>
+            <NavLink
+              to="/success-stories"
+              className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`}
+              onClick={closeMenu}
+            >
               Impact
             </NavLink>
           </li>
           <li>
-            <NavLink to="/partners" className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`} onClick={closeMenu}>
+            <NavLink
+              to="/partners"
+              className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`}
+              onClick={closeMenu}
+            >
               Partners
             </NavLink>
           </li>
           <li>
-            <NavLink to="/resources" className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`} onClick={closeMenu}>
+            <NavLink
+              to="/resources"
+              className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`}
+              onClick={closeMenu}
+            >
               Resources
             </NavLink>
           </li>
           <li>
-            <NavLink to="/contact" className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`} onClick={closeMenu}>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) => `mobile-nav-item-link ${isActive ? 'active' : ''}`}
+              onClick={closeMenu}
+            >
               Contact
             </NavLink>
           </li>
         </ul>
 
         <div className="mobile-nav-actions">
-          <Link to="/signup" className="nav-join-btn" onClick={closeMenu}>
-            Join Tumbo
-          </Link>
+          {isAuthenticated ? (
+            <>
+              <p className="mobile-nav-user">{user?.fullName}</p>
+              <button type="button" className="nav-signout-btn" onClick={handleLogout}>
+                <LogOut size={15} />
+                Sign out
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/signin" className="nav-signin-link" onClick={closeMenu}>
+                Sign in
+              </Link>
+              <Link to="/signup" className="nav-join-btn" onClick={closeMenu}>
+                Join Tumbo
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>
   );
 };
+
+export default Navbar;

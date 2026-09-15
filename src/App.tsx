@@ -19,6 +19,8 @@ import { SignIn } from './pages/SignIn';
 import { TumboBackground } from './components/TumboBackground';
 import { ToMeChatbot } from './components/ToMeChatbot';
 
+import { isGoogleAuthConfigured } from './lib/auth';
+
 const AUTH_ROUTES = ['/signup', '/signin'];
 
 const ScrollManager: React.FC = () => {
@@ -75,18 +77,24 @@ const AppShell: React.FC = () => {
   );
 };
 
-const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID ?? '';
+const googleClientId = isGoogleAuthConfigured()
+  ? (import.meta.env.VITE_GOOGLE_CLIENT_ID as string)
+  : 'disabled-google-client-id.apps.googleusercontent.com';
 
 function App() {
-  return (
-    <GoogleOAuthProvider clientId={googleClientId}>
-      <AuthProvider>
-        <BrowserRouter>
-          <AppShell />
-        </BrowserRouter>
-      </AuthProvider>
-    </GoogleOAuthProvider>
+  const appTree = (
+    <AuthProvider>
+      <BrowserRouter>
+        <AppShell />
+      </BrowserRouter>
+    </AuthProvider>
   );
+
+  if (!isGoogleAuthConfigured()) {
+    return appTree;
+  }
+
+  return <GoogleOAuthProvider clientId={googleClientId}>{appTree}</GoogleOAuthProvider>;
 }
 
 export default App;

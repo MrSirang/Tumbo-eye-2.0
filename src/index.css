@@ -632,6 +632,61 @@ a {
   background: #0E1F4C;
 }
 
+.nav-auth-links,
+.nav-auth-session {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-signin-link {
+  color: #16215C;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 8px 4px;
+}
+
+.nav-signin-link:hover {
+  color: var(--primary);
+}
+
+.nav-user-chip {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.nav-signout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.nav-signout-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.mobile-nav-user {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
 .navbar-header {
   border-bottom: 1px solid #eef2f7;
 }

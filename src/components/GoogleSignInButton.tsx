@@ -1,5 +1,6 @@
 import React from 'react';
 import { GoogleLogin, type CredentialResponse } from '@react-oauth/google';
+import { isGoogleAuthConfigured } from '../lib/auth';
 
 const GoogleIcon: React.FC = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
@@ -33,7 +34,7 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
   onSuccess,
   onError,
 }) => {
-  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  const configured = isGoogleAuthConfigured();
 
   const handleSuccess = async (response: CredentialResponse) => {
     if (!response.credential) {
@@ -43,11 +44,19 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
     await onSuccess(response.credential);
   };
 
-  if (!clientId) {
+  if (!configured) {
     return (
-      <button type="button" className="signup-google" disabled>
+      <button
+        type="button"
+        className="signup-google"
+        onClick={() =>
+          onError?.(
+            'Google sign-in is not set up yet. Add VITE_GOOGLE_CLIENT_ID to your .env file (Google Cloud Console → OAuth Web Client ID).',
+          )
+        }
+      >
         <GoogleIcon />
-        Google sign-in not configured
+        Continue with Google
       </button>
     );
   }
@@ -58,13 +67,14 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
         <GoogleIcon />
         Continue with Google
       </button>
-      <div className="signup-google-native">
+      <div className="signup-google-native" aria-hidden={disabled}>
         <GoogleLogin
           onSuccess={handleSuccess}
           onError={() => onError?.('Google sign-in was cancelled or failed.')}
+          useOneTap={false}
           theme="outline"
           size="large"
-          width="100%"
+          width="400"
           text="continue_with"
           shape="rectangular"
         />

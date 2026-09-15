@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TumboEye.Api.DTOs;
 using TumboEye.Api.Services;
@@ -64,5 +66,31 @@ public class AuthController : ControllerBase
         }
 
         return Ok(result);
+    }
+
+    [Authorize]
+    [HttpGet("me")]
+    public IActionResult Me()
+    {
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            ?? User.FindFirstValue("sub")
+            ?? string.Empty;
+        var email = User.FindFirstValue(ClaimTypes.Email)
+            ?? User.FindFirstValue("email")
+            ?? string.Empty;
+        var name = User.FindFirstValue(ClaimTypes.Name)
+            ?? User.Identity?.Name
+            ?? email;
+        var role = User.FindFirstValue(ClaimTypes.Role) ?? "User";
+        var provider = User.FindFirstValue("auth_provider") ?? "Email";
+
+        return Ok(new UserDto(
+            Guid.TryParse(id, out var guid) ? guid : Guid.Empty,
+            name,
+            email,
+            null,
+            provider,
+            role
+        ));
     }
 }
