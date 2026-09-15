@@ -140,9 +140,9 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <a href="/admin/" className="footer-link">
+                <Link to="/admin" className="footer-link" onClick={handleScrollTop}>
                   Admin Panel
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

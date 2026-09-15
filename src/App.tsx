@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
@@ -16,12 +16,13 @@ import { PrivacyPage, TermsPage } from './pages/Legal';
 import { TumisoAI } from './pages/TumisoAI';
 import { SignUp } from './pages/SignUp';
 import { SignIn } from './pages/SignIn';
+import { AdminPanel } from './pages/AdminPanel';
 import { TumboBackground } from './components/TumboBackground';
 import { ToMeChatbot } from './components/ToMeChatbot';
 
 import { isGoogleAuthConfigured } from './lib/auth';
 
-const AUTH_ROUTES = ['/signup', '/signin'];
+const AUTH_ROUTES = ['/signup', '/signin', '/admin'];
 
 const ScrollManager: React.FC = () => {
   const { pathname, hash } = useLocation();
@@ -69,6 +70,8 @@ const AppShell: React.FC = () => {
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/admin/*" element={<AdminPanel />} />
         </Routes>
       </main>
       {!isAuthPage && <Footer />}
@@ -84,9 +87,9 @@ const googleClientId = isGoogleAuthConfigured()
 function App() {
   const appTree = (
     <AuthProvider>
-      <BrowserRouter>
+      <HashRouter>
         <AppShell />
-      </BrowserRouter>
+      </HashRouter>
     </AuthProvider>
   );
 
